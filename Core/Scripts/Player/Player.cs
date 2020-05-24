@@ -5,7 +5,7 @@ namespace KoreDefenceGodot.Core.Scripts.Player
 {
 	public class Player : KinematicBody2D
 	{
-		private AnimatedSprite playerSprite;
+		private AnimatedSprite _playerSprite;
 
 		[Export] private int _speed = 150;
 
@@ -21,36 +21,36 @@ namespace KoreDefenceGodot.Core.Scripts.Player
 			if (_upFlag)
 			{
 				moveY += (int)(-_speed * delta);
-				playerSprite.Play("walk_up");
+				_playerSprite.Play("walk_up");
 			}
 
 			if (_downFlag)
 			{
 				moveY += (int)(_speed * delta);
-				playerSprite.Play("walk_down");
+				_playerSprite.Play("walk_down");
 			}
 
 			if (_leftFlag)
 			{
 				moveX += (int)(-_speed * delta);
-				if(moveY == 0) playerSprite.Play("walk_left"); 
+				if(moveY == 0) _playerSprite.Play("walk_left"); 
 			}
 
 			if (_rightFlag)
 			{
 				moveX += (int)(_speed * delta);
-				if(moveY == 0) playerSprite.Play("walk_right");
+				if(moveY == 0) _playerSprite.Play("walk_right");
 			}
 			
 			if(!(_upFlag || _downFlag || _leftFlag || _rightFlag))
-				playerSprite.Stop();
+				_playerSprite.Stop();
 
 			MoveAndCollide(new Vector2(moveX, moveY));
 		}
 
 		public override void _Ready()
 		{
-			playerSprite = GetNode<AnimatedSprite>("AnimatedSprite");
+			_playerSprite = GetNode<AnimatedSprite>("AnimatedSprite");
 		}
 
 		public override void _Process(float delta)
