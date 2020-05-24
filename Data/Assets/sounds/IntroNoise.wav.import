@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/IntroNoise.wav-a4b2c1ab8ab3f4a2ff63be2b50b6fe32.sample"
+
+[deps]
+
+source_file="res://Data/Assets/sounds/IntroNoise.wav"
+dest_files=[ "res://.import/IntroNoise.wav-a4b2c1ab8ab3f4a2ff63be2b50b6fe32.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
