@@ -9,14 +9,14 @@ namespace KoreDefenceGodot.Core.Scripts
 		private string _GameTitle = "Kore Defence";
 		private TileSystem _tileSystem;
 
-		public void LoadTiles()
+		private void LoadTiles()
 		{
 			_tileSystem = GD.Load<PackedScene>("res://Data/Scenes/Tiles/TileSystem.tscn").Instance() as TileSystem;
 			
 			_tileSystem?.Setup(1000,800,40);
 			AddChild(_tileSystem);
 			
-			Path path = new Path();
+			var path = new Path();
 			path.Setup(_tileSystem.Tiles, new []{2, 2, 2, 2, 2, 2, 2, 1, -10, 10, -9}, new []{3, -3, 2, -3, 2, -3, 3, 2, 3, 2, 2});
 		}
 		public override void _Ready()

@@ -10,7 +10,7 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Tiles
 		DownLeft,
 		DownRight,
 		LeftDown,
-		RightDown,
+		RightDown
 	}
 	public class Path
 	{

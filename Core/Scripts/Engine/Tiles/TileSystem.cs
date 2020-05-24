@@ -26,9 +26,9 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Tiles
         {
             GD.Print("hello!");
             Tiles = new Tile[_numTilesX,_numTilesY];
-            for (int x = 0; x < _numTilesX; x++)
+            for (var x = 0; x < _numTilesX; x++)
             {
-                for (int y = 0; y < _numTilesY; y++)
+                for (var y = 0; y < _numTilesY; y++)
                 {
                     if (_tileScene.Instance() is Tile newTile)
                     {

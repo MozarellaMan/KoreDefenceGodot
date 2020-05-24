@@ -14,6 +14,7 @@
     <IntermediateOutputPath>$(BaseIntermediateOutputPath)\$(Configuration)</IntermediateOutputPath>
     <ApiConfiguration Condition=" '$(Configuration)' != 'Release' ">Debug</ApiConfiguration>
     <ApiConfiguration Condition=" '$(Configuration)' == 'Release' ">Release</ApiConfiguration>
+    <LangVersion>8</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -53,6 +54,9 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\Scripts\Engine\GUI\IUIElement.cs" />
+    <Compile Include="Core\Scripts\Engine\GUI\UIPanel.cs" />
+    <Compile Include="Core\Scripts\Engine\GUI\UIScreen.cs" />
     <Compile Include="Core\Scripts\Engine\Tiles\Path.cs" />
     <Compile Include="Core\Scripts\Engine\Tiles\Tile.cs" />
     <Compile Include="Core\Scripts\Engine\Tiles\TileSystem.cs" />
