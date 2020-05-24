@@ -1,5 +1,6 @@
 using Godot;
 using KoreDefenceGodot.Core.Scripts.Engine.Tiles;
+using Path = KoreDefenceGodot.Core.Scripts.Engine.Tiles.Path;
 
 namespace KoreDefenceGodot.Core.Scripts
 {
@@ -14,6 +15,9 @@ namespace KoreDefenceGodot.Core.Scripts
 			
 			_tileSystem?.Setup(1000,800,40);
 			AddChild(_tileSystem);
+			
+			Path path = new Path();
+			path.Setup(_tileSystem.Tiles, new []{2, 2, 2, 2, 2, 2, 2, 1, -10, 10, -9}, new []{3, -3, 2, -3, 2, -3, 3, 2, 3, 2, 2});
 		}
 		public override void _Ready()
 		{

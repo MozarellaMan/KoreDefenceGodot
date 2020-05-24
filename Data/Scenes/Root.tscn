@@ -9,8 +9,9 @@
 script = ExtResource( 1 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( 386.704, 357.895 )
+position = Vector2( 219.112, 665.513 )
 z_index = 1
 script = ExtResource( 2 )
 
 [node name="BaseMap" parent="." instance=ExtResource( 4 )]
+position = Vector2( 1, 0 )
