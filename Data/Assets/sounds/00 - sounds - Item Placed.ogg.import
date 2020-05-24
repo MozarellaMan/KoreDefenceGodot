@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/00 - sounds - Item Placed.ogg-053d8cda57ab491e5ab858a5360fa050.oggstr"
+
+[deps]
+
+source_file="res://Data/Assets/sounds/00 - sounds - Item Placed.ogg"
+dest_files=[ "res://.import/00 - sounds - Item Placed.ogg-053d8cda57ab491e5ab858a5360fa050.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

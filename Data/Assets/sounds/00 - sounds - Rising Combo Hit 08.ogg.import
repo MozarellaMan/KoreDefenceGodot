@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/00 - sounds - Rising Combo Hit 08.ogg-ab3e3150cca1b478f354e992a3e149c4.oggstr"
+
+[deps]
+
+source_file="res://Data/Assets/sounds/00 - sounds - Rising Combo Hit 08.ogg"
+dest_files=[ "res://.import/00 - sounds - Rising Combo Hit 08.ogg-ab3e3150cca1b478f354e992a3e149c4.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

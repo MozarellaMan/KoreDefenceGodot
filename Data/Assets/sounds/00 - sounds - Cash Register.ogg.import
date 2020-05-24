@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/00 - sounds - Cash Register.ogg-4218cf1eafba6660f955dd6dce9cdf8a.oggstr"
+
+[deps]
+
+source_file="res://Data/Assets/sounds/00 - sounds - Cash Register.ogg"
+dest_files=[ "res://.import/00 - sounds - Cash Register.ogg-4218cf1eafba6660f955dd6dce9cdf8a.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

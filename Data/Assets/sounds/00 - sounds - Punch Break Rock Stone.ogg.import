@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/00 - sounds - Punch Break Rock Stone.ogg-f68970a199f85183b7ac3b86e5dfa619.oggstr"
+
+[deps]
+
+source_file="res://Data/Assets/sounds/00 - sounds - Punch Break Rock Stone.ogg"
+dest_files=[ "res://.import/00 - sounds - Punch Break Rock Stone.ogg-f68970a199f85183b7ac3b86e5dfa619.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

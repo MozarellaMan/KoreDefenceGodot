@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/00 - InspectorJ - 27.9.17.ogg-82c0dee69366006500a9a93164492571.oggstr"
+
+[deps]
+
+source_file="res://Data/Assets/sounds/00 - InspectorJ - 27.9.17.ogg"
+dest_files=[ "res://.import/00 - InspectorJ - 27.9.17.ogg-82c0dee69366006500a9a93164492571.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

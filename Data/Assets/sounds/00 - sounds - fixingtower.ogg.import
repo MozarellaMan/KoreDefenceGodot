@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/00 - sounds - fixingtower.ogg-c84e0728edaca6150ff1cd89e73cd44f.oggstr"
+
+[deps]
+
+source_file="res://Data/Assets/sounds/00 - sounds - fixingtower.ogg"
+dest_files=[ "res://.import/00 - sounds - fixingtower.ogg-c84e0728edaca6150ff1cd89e73cd44f.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

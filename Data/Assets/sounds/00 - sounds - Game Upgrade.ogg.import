@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/00 - sounds - Game Upgrade.ogg-6a8cd4563ea7e74bcae0191ed04a792d.oggstr"
+
+[deps]
+
+source_file="res://Data/Assets/sounds/00 - sounds - Game Upgrade.ogg"
+dest_files=[ "res://.import/00 - sounds - Game Upgrade.ogg-6a8cd4563ea7e74bcae0191ed04a792d.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

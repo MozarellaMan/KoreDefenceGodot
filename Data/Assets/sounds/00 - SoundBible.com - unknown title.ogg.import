@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/00 - SoundBible.com - unknown title.ogg-1daa7a81b21ce50c5aea3ce86f86898d.oggstr"
+
+[deps]
+
+source_file="res://Data/Assets/sounds/00 - SoundBible.com - unknown title.ogg"
+dest_files=[ "res://.import/00 - SoundBible.com - unknown title.ogg-1daa7a81b21ce50c5aea3ce86f86898d.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

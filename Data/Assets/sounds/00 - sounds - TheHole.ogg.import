@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/00 - sounds - TheHole.ogg-3f4370ee2db0542eeb4c23be006c2c7c.oggstr"
+
+[deps]
+
+source_file="res://Data/Assets/sounds/00 - sounds - TheHole.ogg"
+dest_files=[ "res://.import/00 - sounds - TheHole.ogg-3f4370ee2db0542eeb4c23be006c2c7c.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
