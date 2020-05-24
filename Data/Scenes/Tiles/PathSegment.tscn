@@ -14,14 +14,19 @@ animations = [ {
 "name": "RightDown",
 "speed": 1.0
 }, {
-"frames": [ ExtResource( 2 ) ],
+"frames": [ ExtResource( 6 ) ],
 "loop": false,
-"name": "LeftDown",
+"name": "DownLeft",
 "speed": 1.0
 }, {
 "frames": [ ExtResource( 4 ) ],
 "loop": false,
 "name": "DownRight",
+"speed": 1.0
+}, {
+"frames": [ ExtResource( 2 ) ],
+"loop": false,
+"name": "LeftDown",
 "speed": 1.0
 }, {
 "frames": [ ExtResource( 5 ) ],
@@ -33,15 +38,10 @@ animations = [ {
 "loop": false,
 "name": "Horizontal",
 "speed": 1.0
-}, {
-"frames": [ ExtResource( 6 ) ],
-"loop": false,
-"name": "DownLeft",
-"speed": 1.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 20, 20 )
+extents = Vector2( 16, 16 )
 
 [node name="PathSegment" type="StaticBody2D"]
 

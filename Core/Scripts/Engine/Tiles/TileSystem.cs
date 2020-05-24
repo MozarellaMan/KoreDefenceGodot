@@ -19,6 +19,9 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Tiles
             
         }
 
+        /// <summary>
+        /// Create all tiles
+        /// </summary>
         public override void _Ready()
         {
             GD.Print("hello!");

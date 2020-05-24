@@ -3,6 +3,9 @@ using Godot;
 
 namespace KoreDefenceGodot.Core.Scripts.Engine.Tiles
 {
+	/// <summary>
+	/// Enum for describing what a specific tile contains on the screen
+	/// </summary>
 	public enum TileObject
 	{
 		Path,
@@ -11,7 +14,9 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Tiles
 		Lava,
 		None
 	}
-	
+	/// <summary>
+	/// The screen is divided into virtual "Tile" objects that can be used to spawn game objects at specific positions.
+	/// </summary>
 	public class Tile : Node2D
 	{
 
@@ -33,17 +38,6 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Tiles
 		public override void _Ready()
 		{
 			Position = new Vector2(_x*40,_y*40);
-			switch (_occupiedBy)
-			{
-				case TileObject.Path:
-					break;
-				case TileObject.Cracked:
-					break;
-				case TileObject.Lava:
-					break;
-				case TileObject.Money:
-					break;
-			}
 		}
 
 		public void Occupy(TileObject obj)
@@ -52,10 +46,14 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Tiles
 			GD.Print(_occupiedBy);
 		}
 
+		/// <summary>
+		/// Instances an Path object on this tile
+		/// </summary>
+		/// <param name="type"> The type of path sprite to be drawn</param>
 		public void OccupyPath(PathType type)
 		{
 			_occupiedBy = TileObject.Path;
-			GD.Print($"{Position} is occupied by {type.ToString()}!");
+			// GD.Print($"{Position} is occupied by {type.ToString()}!");
 
 			var pathSegment = PathResource.Instance();
 			pathSegment.GetNode<AnimatedSprite>("Path").Play(type.ToString());

@@ -9,10 +9,10 @@ namespace KoreDefenceGodot.Core.Scripts.Player
 
 		[Export] private int _speed = 150;
 
-		private bool _upFlag = false;
-		private bool _downFlag = false;
-		private bool _leftFlag = false;
-		private bool _rightFlag = false;
+		private bool _upFlag;
+		private bool _downFlag;
+		private bool _leftFlag;
+		private bool _rightFlag;
 
 		private void MovePlayer(float delta)
 		{
@@ -53,7 +53,7 @@ namespace KoreDefenceGodot.Core.Scripts.Player
 			_playerSprite = GetNode<AnimatedSprite>("AnimatedSprite");
 		}
 
-		public override void _Process(float delta)
+		public override void _PhysicsProcess(float delta)
 		{
 			if (Input.IsActionPressed("ui_up"))
 				_upFlag = true;

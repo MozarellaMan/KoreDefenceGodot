@@ -79,7 +79,6 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Tiles
 		}
 		
 		
-
 		private static void OccupyTileWithPath(Tile[,] tiles, PathType type, int x1, int x2, int y1, int y2)
 		{
 			for (var x = x1; x <= x2; x++) {
