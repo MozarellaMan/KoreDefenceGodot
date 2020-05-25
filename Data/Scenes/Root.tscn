@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Core/Scripts/MainScene.cs" type="Script" id=1]
 [ext_resource path="res://Core/Scripts/Player/Player.cs" type="Script" id=2]
 [ext_resource path="res://Data/Scenes/Player/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Data/Scenes/BaseMap.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Data/Scenes/GUI/UIScreen.tscn" type="PackedScene" id=5]
 
 [node name="Root" type="Node2D"]
 script = ExtResource( 1 )
@@ -14,3 +15,5 @@ z_index = 1
 script = ExtResource( 2 )
 
 [node name="BaseMap" parent="." instance=ExtResource( 4 )]
+
+[node name="UIScreen" parent="." instance=ExtResource( 5 )]

@@ -1,0 +1,36 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Data/Scenes/GUI/normal_hover.tres" type="StyleBox" id=1]
+[ext_resource path="res://Data/Scenes/GUI/Retro.tres" type="Theme" id=2]
+[ext_resource path="res://Data/Assets/coolvetica/INVASION2000.TTF" type="DynamicFontData" id=3]
+[ext_resource path="res://Data/Scenes/GUI/normal_pressed.tres" type="StyleBox" id=4]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0, 0, 0, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0, 0.898039, 0.0509804, 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 28
+font_data = ExtResource( 3 )
+
+[node name="StartButton" type="Button"]
+margin_right = 200.0
+margin_bottom = 85.0
+rect_min_size = Vector2( 200, 85 )
+hint_tooltip = "Start the wave!"
+focus_mode = 0
+theme = ExtResource( 2 )
+custom_styles/hover = ExtResource( 1 )
+custom_styles/pressed = ExtResource( 4 )
+custom_styles/normal = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
+custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
+text = "START"
+__meta__ = {
+"_edit_use_anchors_": false
+}

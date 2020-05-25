@@ -54,9 +54,6 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Core\Scripts\Engine\GUI\IUIElement.cs" />
-    <Compile Include="Core\Scripts\Engine\GUI\UIPanel.cs" />
-    <Compile Include="Core\Scripts\Engine\GUI\UIScreen.cs" />
     <Compile Include="Core\Scripts\Engine\Tiles\Path.cs" />
     <Compile Include="Core\Scripts\Engine\Tiles\Tile.cs" />
     <Compile Include="Core\Scripts\Engine\Tiles\TileSystem.cs" />
@@ -66,6 +63,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Core\Scripts\Engine\GUI" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,0 +1,61 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Data/Scenes/GUI/Retro.tres" type="Theme" id=1]
+[ext_resource path="res://Data/Assets/misc/sun.png" type="Texture" id=2]
+[ext_resource path="res://Data/Assets/misc/sword.png" type="Texture" id=3]
+
+[node name="WaveInfo" type="HBoxContainer"]
+margin_top = 4.0
+margin_right = 310.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 310, 30 )
+size_flags_horizontal = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_right = 96.0
+margin_bottom = 30.0
+
+[node name="Sun" type="TextureRect" parent="HBoxContainer"]
+margin_right = 28.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 28, 28 )
+texture = ExtResource( 2 )
+stretch_mode = 6
+
+[node name="Day" type="Label" parent="HBoxContainer"]
+margin_left = 32.0
+margin_right = 96.0
+margin_bottom = 30.0
+size_flags_vertical = 1
+theme = ExtResource( 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 0 )
+text = "Day 1"
+uppercase = true
+
+[node name="CurrentWave" type="HBoxContainer" parent="."]
+margin_left = 198.0
+margin_right = 310.0
+margin_bottom = 30.0
+size_flags_horizontal = 14
+
+[node name="Wave" type="Label" parent="CurrentWave"]
+margin_right = 80.0
+margin_bottom = 30.0
+size_flags_vertical = 1
+theme = ExtResource( 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 0 )
+text = "Wave 1"
+uppercase = true
+
+[node name="Sword" type="TextureRect" parent="CurrentWave"]
+margin_left = 84.0
+margin_right = 112.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 28, 28 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource( 3 )
+expand = true
