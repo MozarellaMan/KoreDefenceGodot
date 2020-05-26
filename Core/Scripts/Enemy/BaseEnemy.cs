@@ -164,12 +164,6 @@ namespace KoreDefenceGodot.Core.Scripts.Enemy
 		{
 			HasReachedBase = true;
 		}
-
-		// for some reason weird error if this is not there, something to do with signals. Ignore!
-		public void OnEnemyReachedBase(){}
-		
-		[Signal]
-		public delegate void ReachedBase();
 	}
 }
 
