@@ -2,12 +2,12 @@
 
 namespace KoreDefenceGodot.Core.Scripts.Engine.Tiles
 {
-    public class TileSystem : Node2D
+    public abstract class TileSystem : Node2D
     {
         private int _numTilesX;
         private int _numTilesY;
         private PackedScene _tileScene;
-        public Tile[,] Tiles { get; set; }
+        public Tile[,] Tiles { get; private set; }
         private PackedScene _pathResource;
 
         public void Setup(int screenWidth, int screenHeight, int tileSize)
@@ -16,7 +16,6 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Tiles
             _pathResource = GD.Load<PackedScene>("res://Data/Scenes/Tiles/PathSegment.tscn");
             _numTilesX = screenWidth / tileSize;
             _numTilesY = screenHeight / tileSize;
-            
         }
 
         /// <summary>
@@ -30,13 +29,11 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Tiles
             {
                 for (var y = 0; y < _numTilesY; y++)
                 {
-                    if (_tileScene.Instance() is Tile newTile)
-                    {
-                        newTile.Setup(x,y);
-                        newTile.PathResource = _pathResource;
-                        AddChild(newTile);
-                        Tiles[x, y] = newTile;
-                    }
+                    if (!(_tileScene.Instance() is Tile newTile)) continue; // check null
+                    newTile.Setup(x,y);
+                    newTile.PathResource = _pathResource;
+                    AddChild(newTile);
+                    Tiles[x, y] = newTile;
                 }
             }
         }

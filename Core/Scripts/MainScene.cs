@@ -7,7 +7,7 @@ namespace KoreDefenceGodot.Core.Scripts
 {
 	public class MainScene : Node2D
 	{
-		private string _GameTitle = "Kore Defence";
+		private const string GameTitle = "Kore Defence";
 		private TileSystem _tileSystem;
 		private PlayerBase _playerBase;
 
@@ -36,7 +36,7 @@ namespace KoreDefenceGodot.Core.Scripts
 
 		public override void _Process(float delta)
 		{
-			OS.SetWindowTitle($"{_GameTitle} FPS: {Godot.Engine.GetFramesPerSecond()}");
+			OS.SetWindowTitle($"{GameTitle} FPS: {Godot.Engine.GetFramesPerSecond()}");
 		}
 
 		public override void _UnhandledInput(InputEvent @event)
