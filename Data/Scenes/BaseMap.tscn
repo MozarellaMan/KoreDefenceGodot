@@ -123,16 +123,6 @@ animations = [ {
 "name": "day7",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 70 ), ExtResource( 48 ), ExtResource( 49 ), ExtResource( 52 ), ExtResource( 53 ), ExtResource( 58 ), ExtResource( 67 ), ExtResource( 59 ), ExtResource( 68 ), ExtResource( 92 ), ExtResource( 87 ), ExtResource( 101 ), ExtResource( 88 ) ],
-"loop": true,
-"name": "day6",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 82 ), ExtResource( 98 ), ExtResource( 90 ), ExtResource( 99 ), ExtResource( 103 ), ExtResource( 91 ), ExtResource( 83 ), ExtResource( 94 ), ExtResource( 96 ), ExtResource( 97 ), ExtResource( 100 ), ExtResource( 77 ), ExtResource( 78 ) ],
-"loop": true,
-"name": "day8",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 69 ), ExtResource( 72 ), ExtResource( 74 ), ExtResource( 60 ), ExtResource( 46 ), ExtResource( 64 ), ExtResource( 56 ), ExtResource( 44 ), ExtResource( 54 ), ExtResource( 47 ), ExtResource( 75 ), ExtResource( 65 ), ExtResource( 66 ) ],
 "loop": true,
 "name": "day5",
@@ -141,6 +131,16 @@ animations = [ {
 "frames": [ ExtResource( 35 ), ExtResource( 41 ), ExtResource( 40 ), ExtResource( 42 ), ExtResource( 43 ), ExtResource( 34 ), ExtResource( 31 ), ExtResource( 38 ), ExtResource( 36 ), ExtResource( 39 ), ExtResource( 37 ), ExtResource( 32 ), ExtResource( 33 ) ],
 "loop": true,
 "name": "day2",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 70 ), ExtResource( 48 ), ExtResource( 49 ), ExtResource( 52 ), ExtResource( 53 ), ExtResource( 58 ), ExtResource( 67 ), ExtResource( 59 ), ExtResource( 68 ), ExtResource( 92 ), ExtResource( 87 ), ExtResource( 101 ), ExtResource( 88 ) ],
+"loop": true,
+"name": "day6",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 82 ), ExtResource( 98 ), ExtResource( 90 ), ExtResource( 99 ), ExtResource( 103 ), ExtResource( 91 ), ExtResource( 83 ), ExtResource( 94 ), ExtResource( 96 ), ExtResource( 97 ), ExtResource( 100 ), ExtResource( 77 ), ExtResource( 78 ) ],
+"loop": true,
+"name": "day8",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 8 ), ExtResource( 1 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 7 ), ExtResource( 4 ), ExtResource( 5 ) ],
@@ -175,6 +175,7 @@ position = Vector2( 500, 64 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Sky"]
 frames = SubResource( 1 )
 animation = "day8"
+frame = 11
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sky"]
@@ -192,7 +193,7 @@ shape = SubResource( 3 )
 position = Vector2( 27, 0 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MapBoundaries/Right"]
-position = Vector2( 685, 400 )
+position = Vector2( 679, 400 )
 shape = SubResource( 3 )
 
 [node name="Bottom" type="StaticBody2D" parent="MapBoundaries"]

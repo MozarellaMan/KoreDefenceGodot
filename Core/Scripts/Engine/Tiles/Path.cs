@@ -44,6 +44,8 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Tiles
 
 			for (var i = 0; i < horzLength; i++)
 			{
+				PathPoints[i*2,0] = _curPositionX * tileSize;
+				PathPoints[i*2,1] = _curPositionY * tileSize;
 				var newPositionX = _curPositionX + horizontalPaths[i];
 				var minX = Math.Min(newPositionX, _curPositionX);
 				var maxX = Math.Max(newPositionX, _curPositionX);
@@ -76,6 +78,10 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Tiles
 					break;
 				}
 			}
+			
+			PathPoints[horzLength+vertLength,0] = _curPositionX * tileSize;
+			PathPoints[horzLength+vertLength,1] = _curPositionY * tileSize;
+			
 		}
 		
 		

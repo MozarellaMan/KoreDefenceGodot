@@ -1,4 +1,5 @@
 using Godot;
+using KoreDefenceGodot.Core.Scripts.Enemy;
 using KoreDefenceGodot.Core.Scripts.Engine.Tiles;
 using KoreDefenceGodot.Core.Scripts.Player;
 using Path = KoreDefenceGodot.Core.Scripts.Engine.Tiles.Path;
@@ -10,6 +11,8 @@ namespace KoreDefenceGodot.Core.Scripts
 		private const string GameTitle = "Kore Defence";
 		private TileSystem _tileSystem;
 		private PlayerBase _playerBase;
+		private BaseEnemy _testEnemy;
+		private Path _gamePath;
 
 		private void LoadTilesAndPath()
 		{
@@ -19,19 +22,19 @@ namespace KoreDefenceGodot.Core.Scripts
 			AddChild(_tileSystem);
 			
 			// Generate Path
-			var path = new Path();
-			path.Setup(_tileSystem.Tiles, new []{2, 2, 2, 2, 2, 2, 2, 1, -10, 10, -9}, new []{3, -3, 2, -3, 2, -3, 3, 2, 3, 2, 2});
+			_gamePath = new Path();
+			_gamePath.Setup(_tileSystem.Tiles, new []{2, 2, 2, 2, 2, 2, 2, 1, -10, 10, -9}, new []{3, -3, 2, -3, 2, -3, 3, 2, 3, 2, 2});
 			
 			// Create player base at end of Path
 			_playerBase = GD.Load<PackedScene>("res://Data/Scenes/Player/PlayerBase.tscn").Instance() as PlayerBase;
-			_playerBase?.Setup(path.GetEndPoint());
+			_playerBase?.Setup(_gamePath.GetEndPoint());
 			AddChild(_playerBase);
-
 		}
 		public override void _Ready()
 		{
 			GD.Print("Main Scene ready!");
 			LoadTilesAndPath();
+			SpawnEnemies();
 		}
 
 		public override void _Process(float delta)
@@ -45,6 +48,13 @@ namespace KoreDefenceGodot.Core.Scripts
 			if (!eventKey.Pressed || eventKey.Scancode != (int) KeyList.P) return;
 			_playerBase?.Damage(1);
 
+		}
+
+		private void SpawnEnemies()
+		{
+			_testEnemy = GD.Load<PackedScene>("res://Data/Scenes/Enemy/Enemy.tscn").Instance() as BaseEnemy;
+			_testEnemy?.Setup(_gamePath,_playerBase,EnemyType.Koreman);
+			AddChild(_testEnemy);
 		}
 	}
 }

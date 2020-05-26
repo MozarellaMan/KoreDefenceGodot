@@ -23,7 +23,6 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Tiles
         /// </summary>
         public override void _Ready()
         {
-            GD.Print("hello!");
             Tiles = new Tile[_numTilesX,_numTilesY];
             for (var x = 0; x < _numTilesX; x++)
             {

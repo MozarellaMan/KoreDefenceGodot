@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Data/Assets/chars/koreman/koremanAnim.tres" type="SpriteFrames" id=1]
+[ext_resource path="res://Data/Assets/effects/DamageFlash.tres" type="Material" id=2]
+[ext_resource path="res://Core/Scripts/Enemy/BaseEnemy.cs" type="Script" id=3]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 16.1046
+
+[node name="Enemy" type="KinematicBody2D"]
+material = ExtResource( 2 )
+collision_layer = 2
+collision_mask = 2
+script = ExtResource( 3 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+material = ExtResource( 2 )
+frames = ExtResource( 1 )
+animation = "WalkDown"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+[connection signal="ReachedBase" from="." to="." method="OnEnemyReachedBase"]

@@ -54,7 +54,9 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\Scripts\Enemy\BaseEnemy.cs" />
     <Compile Include="Core\Scripts\Enemy\DefaultEnemyState.cs" />
+    <Compile Include="Core\Scripts\Enemy\EnemyType.cs" />
     <Compile Include="Core\Scripts\Engine\State\IState.cs" />
     <Compile Include="Core\Scripts\Engine\State\IStateMachine.cs" />
     <Compile Include="Core\Scripts\Engine\State\NodeStateMachine.cs" />
