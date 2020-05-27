@@ -8,21 +8,40 @@ namespace KoreDefenceGodot.Core.Scripts.Enemy
         public static readonly DefaultEnemyState Idle = new IdleState();
         public static readonly DefaultEnemyState Global = new GlobalState();
         public static readonly DefaultEnemyState Moving = new MovingState();
-        public static readonly DefaultEnemyState Attacking = new AttackingState();
-        public static readonly DefaultEnemyState Dead = new DeadState();
+        private static readonly DefaultEnemyState Attacking = new AttackingState();
+        private static readonly DefaultEnemyState Dead = new DeadState();
+
+
+        public virtual void OnEnter(BaseEnemy entity)
+        {
+        }
+
+        public virtual void Update(BaseEnemy entity, float delta)
+        {
+        }
+
+        public virtual void HandleInput(BaseEnemy entity, InputEvent inputEvent)
+        {
+        }
+
+        public virtual void OnExit(BaseEnemy entity)
+        {
+        }
 
         private sealed class GlobalState : DefaultEnemyState
         {
             public override void Update(BaseEnemy entity, float delta)
             {
-                if(entity.IsDead())
+                if (entity.IsDead())
                     entity.EnemyStateMachine.ChangeState(Dead);
-                
+
                 // GD.Print(entity.HasReachedBase());
             }
         }
 
-        private sealed class IdleState : DefaultEnemyState {}
+        private sealed class IdleState : DefaultEnemyState
+        {
+        }
 
         private sealed class MovingState : DefaultEnemyState
         {
@@ -42,7 +61,6 @@ namespace KoreDefenceGodot.Core.Scripts.Enemy
                 GD.Print("now attacking!");
                 entity.AttackBase(100);
             }
-
         }
 
         private sealed class DeadState : DefaultEnemyState
@@ -51,23 +69,6 @@ namespace KoreDefenceGodot.Core.Scripts.Enemy
             {
                 GD.Print("dead!");
             }
-        }
-        
-
-        public virtual void OnEnter(BaseEnemy entity)
-        {
-        }
-
-        public virtual void Update(BaseEnemy entity, float delta)
-        {
-        }
-
-        public virtual void HandleInput(BaseEnemy entity, InputEvent inputEvent)
-        {
-        }
-
-        public virtual void OnExit(BaseEnemy entity)
-        {
         }
     }
 }

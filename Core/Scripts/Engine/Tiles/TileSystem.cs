@@ -6,9 +6,9 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Tiles
     {
         private int _numTilesX;
         private int _numTilesY;
+        private PackedScene _pathResource;
         private PackedScene _tileScene;
         public Tile[,] Tiles { get; private set; }
-        private PackedScene _pathResource;
 
         public void Setup(int screenWidth, int screenHeight, int tileSize)
         {
@@ -19,21 +19,19 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Tiles
         }
 
         /// <summary>
-        /// Create all tiles
+        ///     Create all tiles
         /// </summary>
         public override void _Ready()
         {
-            Tiles = new Tile[_numTilesX,_numTilesY];
+            Tiles = new Tile[_numTilesX, _numTilesY];
             for (var x = 0; x < _numTilesX; x++)
+            for (var y = 0; y < _numTilesY; y++)
             {
-                for (var y = 0; y < _numTilesY; y++)
-                {
-                    if (!(_tileScene.Instance() is Tile newTile)) continue; // check null
-                    newTile.Setup(x,y);
-                    newTile.PathResource = _pathResource;
-                    AddChild(newTile);
-                    Tiles[x, y] = newTile;
-                }
+                if (!(_tileScene.Instance() is Tile newTile)) continue; // check null
+                newTile.Setup(x, y);
+                newTile.PathResource = _pathResource;
+                AddChild(newTile);
+                Tiles[x, y] = newTile;
             }
         }
     }

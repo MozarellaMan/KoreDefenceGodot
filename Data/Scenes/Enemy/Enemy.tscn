@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Data/Assets/chars/koreman/koremanAnim.tres" type="SpriteFrames" id=1]
+[ext_resource path="res://Data/Assets/chars/kore/koreAnim.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://Data/Assets/effects/DamageFlash.tres" type="Material" id=2]
 [ext_resource path="res://Core/Scripts/Enemy/BaseEnemy.cs" type="Script" id=3]
 
@@ -16,7 +16,7 @@ script = ExtResource( 3 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 material = ExtResource( 2 )
 frames = ExtResource( 1 )
-animation = "WalkDown"
+animation = "WalkRight"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
