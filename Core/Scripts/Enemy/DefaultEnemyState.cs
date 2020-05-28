@@ -1,4 +1,5 @@
 ﻿using Godot;
+using Godot.Collections;
 using KoreDefenceGodot.Core.Scripts.Engine.State;
 
 namespace KoreDefenceGodot.Core.Scripts.Enemy
@@ -8,9 +9,8 @@ namespace KoreDefenceGodot.Core.Scripts.Enemy
         public static readonly DefaultEnemyState Idle = new IdleState();
         public static readonly DefaultEnemyState Global = new GlobalState();
         public static readonly DefaultEnemyState Moving = new MovingState();
-        private static readonly DefaultEnemyState Attacking = new AttackingState();
-        private static readonly DefaultEnemyState Dead = new DeadState();
-
+        public static readonly DefaultEnemyState Attacking = new AttackingState();
+        public static readonly DefaultEnemyState Dead = new DeadState();
 
         public virtual void OnEnter(BaseEnemy entity)
         {
@@ -59,8 +59,9 @@ namespace KoreDefenceGodot.Core.Scripts.Enemy
             public override void OnEnter(BaseEnemy entity)
             {
                 GD.Print("now attacking!");
-                entity.AttackBase(100);
+                entity.AttackBase();
             }
+            
         }
 
         private sealed class DeadState : DefaultEnemyState

@@ -56,6 +56,8 @@
   <ItemGroup>
     <Compile Include="Core\Scripts\Enemy\BaseEnemy.cs" />
     <Compile Include="Core\Scripts\Enemy\DefaultEnemyState.cs" />
+    <Compile Include="Core\Scripts\Enemy\EnemyFactory.cs" />
+    <Compile Include="Core\Scripts\Enemy\EnemyPoolWave.cs" />
     <Compile Include="Core\Scripts\Enemy\EnemyType.cs" />
     <Compile Include="Core\Scripts\Engine\State\IState.cs" />
     <Compile Include="Core\Scripts\Engine\State\IStateMachine.cs" />

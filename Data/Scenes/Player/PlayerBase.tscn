@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://Data/Assets/base/base_death_1.png" type="Texture" id=1]
 [ext_resource path="res://Data/Assets/base/base_7.png" type="Texture" id=2]
@@ -20,35 +20,119 @@
 [ext_resource path="res://Data/Assets/base/base_11.png" type="Texture" id=18]
 [ext_resource path="res://Data/Assets/base/base_4.png" type="Texture" id=19]
 [ext_resource path="res://Core/Scripts/Player/PlayerBase.cs" type="Script" id=20]
-[ext_resource path="res://Data/Assets/effects/DamageFlash.tres" type="Material" id=21]
 
-[sub_resource type="SpriteFrames" id=1]
+[sub_resource type="VisualShaderNodeColorConstant" id=1]
+constant = Color( 1, 0, 0, 1 )
+
+[sub_resource type="VisualShaderNodeScalarUniform" id=2]
+uniform_name = "FlashStatus"
+
+[sub_resource type="VisualShaderNodeIf" id=3]
+default_input_values = [ 0, 0.0, 1, 1.0, 2, 1e-05, 3, Vector3( 0, 0, 0 ), 4, Vector3( 0, 0, 0 ), 5, Vector3( 0, 0, 0 ) ]
+
+[sub_resource type="VisualShaderNodeTexture" id=4]
+source = 2
+
+[sub_resource type="VisualShader" id=5]
+code = "shader_type canvas_item;
+uniform float FlashStatus;
+
+
+
+void vertex() {
+// Output:0
+
+}
+
+void fragment() {
+// ScalarUniform:3
+	float n_out3p0 = FlashStatus;
+
+// Color:2
+	vec3 n_out2p0 = vec3(1.000000, 0.000000, 0.000000);
+	float n_out2p1 = 1.000000;
+
+// Texture:5
+	vec3 n_out5p0;
+	float n_out5p1;
+	{
+		vec4 _tex_read = texture(TEXTURE , UV.xy);
+		n_out5p0 = _tex_read.rgb;
+		n_out5p1 = _tex_read.a;
+	}
+
+// If:4
+	float n_in4p1 = 1.00000;
+	float n_in4p2 = 0.00001;
+	vec3 n_out4p0;
+	if(abs(n_out3p0 - n_in4p1) < n_in4p2)
+	{
+		n_out4p0 = n_out2p0;
+	}
+	else if(n_out3p0 < n_in4p1)
+	{
+		n_out4p0 = n_out5p0;
+	}
+	else
+	{
+		n_out4p0 = n_out2p0;
+	}
+
+// Output:0
+	COLOR.rgb = n_out4p0;
+	COLOR.a = n_out5p1;
+
+}
+
+void light() {
+// Output:0
+
+}
+"
+mode = 1
+flags/light_only = false
+nodes/fragment/0/position = Vector2( 780, 180 )
+nodes/fragment/2/node = SubResource( 1 )
+nodes/fragment/2/position = Vector2( 277, 323 )
+nodes/fragment/3/node = SubResource( 2 )
+nodes/fragment/3/position = Vector2( 168, 229 )
+nodes/fragment/4/node = SubResource( 3 )
+nodes/fragment/4/position = Vector2( 580, 240 )
+nodes/fragment/5/node = SubResource( 4 )
+nodes/fragment/5/position = Vector2( 340, 120 )
+nodes/fragment/connections = PoolIntArray( 3, 0, 4, 0, 4, 0, 0, 0, 2, 0, 4, 3, 2, 0, 4, 4, 5, 0, 4, 5, 5, 1, 0, 1 )
+
+[sub_resource type="ShaderMaterial" id=6]
+shader = SubResource( 5 )
+shader_param/FlashStatus = 0.0
+
+[sub_resource type="SpriteFrames" id=7]
 animations = [ {
-"frames": [ ExtResource( 19 ), ExtResource( 17 ), ExtResource( 16 ), ExtResource( 2 ) ],
-"loop": true,
-"name": "BaseDamage1",
-"speed": 10.0
-}, {
 "frames": [ ExtResource( 14 ), ExtResource( 1 ), ExtResource( 13 ), ExtResource( 10 ), ExtResource( 9 ), ExtResource( 3 ), ExtResource( 5 ) ],
 "loop": false,
 "name": "BaseDeath",
 "speed": 6.0
 }, {
-"frames": [ ExtResource( 8 ), ExtResource( 4 ), ExtResource( 12 ), ExtResource( 11 ) ],
+"frames": [ ExtResource( 19 ), ExtResource( 17 ), ExtResource( 16 ), ExtResource( 2 ) ],
 "loop": true,
-"name": "BaseNormal",
+"name": "BaseDamage1",
 "speed": 10.0
 }, {
 "frames": [ ExtResource( 15 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 18 ) ],
 "loop": true,
 "name": "BaseDamage2",
 "speed": 10.0
+}, {
+"frames": [ ExtResource( 8 ), ExtResource( 4 ), ExtResource( 12 ), ExtResource( 11 ) ],
+"loop": true,
+"name": "BaseNormal",
+"speed": 10.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 64, 40 )
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 64, 40 )
 
 [node name="PlayerBase" type="Area2D"]
@@ -57,18 +141,18 @@ collision_mask = 2
 script = ExtResource( 20 )
 
 [node name="Base" type="AnimatedSprite" parent="."]
-material = ExtResource( 21 )
-frames = SubResource( 1 )
+material = SubResource( 6 )
+frames = SubResource( 7 )
 animation = "BaseNormal"
-frame = 3
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
-shape = SubResource( 2 )
+shape = SubResource( 8 )
 
 [node name="Area2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource( 3 )
+shape = SubResource( 9 )
 [connection signal="body_entered" from="." to="." method="_OnBodyEntered"]
