@@ -3,10 +3,11 @@ using System.Linq;
 using Godot;
 using KoreDefenceGodot.Core.Scripts.Player;
 using static KoreDefenceGodot.Core.Scripts.Enemy.EnemyType;
+using Path = KoreDefenceGodot.Core.Scripts.Engine.Tiles.Path;
 
 namespace KoreDefenceGodot.Core.Scripts.Enemy
 {
-	public class EnemyFactory : Node2D
+	public abstract class EnemyFactory : Node2D
 	{
 		/// <summary>
 		/// 	Maximum number of enemies
@@ -22,27 +23,62 @@ namespace KoreDefenceGodot.Core.Scripts.Enemy
 		/// </summary>
 		private EnemyPoolWave[] _enemyPool;
 
-		private float _spawnDelay;
+		public float SpawnDelay { get; private set; }
 		private float _previousSpawnDelay;
 
 		public void  Setup(float spawnDelay, EnemyPoolWave[] enemyPool)
 		{
-			_spawnDelay = spawnDelay;
+			SpawnDelay = spawnDelay;
 			_enemyPool = enemyPool;
-			// add all wave enemy amounts to get total enemies
+			// add all wave enemy amounts to get total 
+			_enemyLimit = enemyPool.Select(wave => wave.Amount).Sum();
 			_previousSpawnDelay = spawnDelay;
+			
 		}
 
-		private void CreateEnemy(Path gamePath, PlayerBase playerBase, EnemyType type)
+		private BaseEnemy CreateEnemy(Path gamePath, PlayerBase playerBase, EnemyType type)
 		{
 			if (_numEnemies < _enemyLimit)
 			{
 				_numEnemies++;
-				if (type == EnemyType.Koreman)
-				{
-					
-				}
+				return LoadEnemy(gamePath, playerBase, type);
 			}
+
+			GD.PrintErr("Enemy limit reached!");
+			return null;
+		}
+
+		public BaseEnemy CreateEnemies(Path gamePath, PlayerBase playerBase)
+		{
+			var cumulativePoolTotal = 0;
+			if (_numEnemies >= _enemyLimit) return null;
+			foreach (var poolWave in _enemyPool)
+			{
+				cumulativePoolTotal += poolWave.Amount;
+				// e.g. if numEnemies = 0 and the number of enemies in the first pool is 1,
+				if (_numEnemies >= cumulativePoolTotal) continue;
+				// checks if last enemy in pool
+				SpawnDelay = _numEnemies == cumulativePoolTotal - 1 ? poolWave.Delay : _previousSpawnDelay;
+
+				return CreateEnemy(gamePath, playerBase, poolWave.EnemyType);
+			}
+			
+			return null;
+		}
+
+		public bool CanSpawnMoreEnemies()
+		{
+			return _numEnemies < _enemyLimit;
+		}
+
+		private static BaseEnemy LoadEnemy(Path gamePath, PlayerBase playerBase, EnemyType type)
+		{
+			var newEnemy = GD.Load<PackedScene>("res://Data/Scenes/Enemy/Enemy.tscn")
+				.Instance() as BaseEnemy;
+			
+			newEnemy?.Setup(gamePath,playerBase,type);
+
+			return newEnemy;
 		}
 	}
 }
