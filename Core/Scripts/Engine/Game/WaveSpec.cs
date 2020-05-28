@@ -189,21 +189,21 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Game
 
         public class WaveDefinition
         {
-            private readonly EnemyPoolWave[] _enemyWaves;
-            private readonly string[] _popups;
-            private readonly float _spawnDelay;
+            public readonly EnemyPoolWave[] EnemyWaves;
+            public readonly string[] Popups;
+            public readonly float SpawnDelay;
 
             public WaveDefinition(float spawnDelay, EnemyPoolWave[] enemyPoolWaves, string[] popups)
             {
-                _spawnDelay = spawnDelay;
-                _enemyWaves = enemyPoolWaves;
-                _popups = popups;
+                SpawnDelay = spawnDelay;
+                EnemyWaves = enemyPoolWaves;
+                Popups = popups;
             }
 
             public WaveDefinition(float spawnDelay, EnemyPoolWave[] enemyPoolWaves)
             {
-                _spawnDelay = spawnDelay;
-                _enemyWaves = enemyPoolWaves;
+                SpawnDelay = spawnDelay;
+                EnemyWaves = enemyPoolWaves;
             }
         }
     }
