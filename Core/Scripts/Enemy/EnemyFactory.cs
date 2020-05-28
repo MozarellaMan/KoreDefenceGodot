@@ -2,7 +2,6 @@ using System;
 using System.Linq;
 using Godot;
 using KoreDefenceGodot.Core.Scripts.Player;
-using static KoreDefenceGodot.Core.Scripts.Enemy.EnemyType;
 using Path = KoreDefenceGodot.Core.Scripts.Engine.Tiles.Path;
 
 namespace KoreDefenceGodot.Core.Scripts.Enemy

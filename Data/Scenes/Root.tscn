@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Core/Scripts/MainScene.cs" type="Script" id=1]
 [ext_resource path="res://Core/Scripts/Player/Player.cs" type="Script" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://Data/Scenes/BaseMap.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Data/Scenes/GUI/UIScreen.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Data/Scenes/Enemy/EnemyFactory.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Core/Scripts/Engine/Game/Wave.cs" type="Script" id=7]
+[ext_resource path="res://Data/Scenes/Game/Wave.tscn" type="PackedScene" id=8]
 
 [node name="Root" type="Node2D"]
 script = ExtResource( 1 )
@@ -19,4 +21,7 @@ script = ExtResource( 2 )
 
 [node name="UIScreen" parent="." instance=ExtResource( 5 )]
 
-[node name="EnemyFactory" parent="." instance=ExtResource( 6 )]
+[node name="Wave" parent="." instance=ExtResource( 8 )]
+script = ExtResource( 7 )
+
+[node name="EnemyFactory" parent="Wave" instance=ExtResource( 6 )]

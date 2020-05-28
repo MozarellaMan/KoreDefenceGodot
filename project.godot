@@ -19,6 +19,10 @@ config/name="KoreDefenceGodot"
 run/main_scene="res://Data/Scenes/Root.tscn"
 config/icon="res://Data/Assets/icon.png"
 
+[autoload]
+
+GameInfo="*res://Core/Scripts/Engine/Game/GameInfo.cs"
+
 [display]
 
 window/size/width=1000

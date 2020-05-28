@@ -1,5 +1,6 @@
 ﻿using Godot;
 using Godot.Collections;
+using KoreDefenceGodot.Core.Scripts.Engine.Game;
 using KoreDefenceGodot.Core.Scripts.Engine.State;
 
 namespace KoreDefenceGodot.Core.Scripts.Enemy
