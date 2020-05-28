@@ -22,6 +22,7 @@ config/icon="res://Data/Assets/icon.png"
 [autoload]
 
 GameInfo="*res://Core/Scripts/Engine/Game/GameInfo.cs"
+WaveSpec="*res://Core/Scripts/Engine/Game/WaveSpec.cs"
 
 [display]
 

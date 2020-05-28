@@ -61,6 +61,7 @@
     <Compile Include="Core\Scripts\Enemy\EnemyType.cs" />
     <Compile Include="Core\Scripts\Engine\Game\GameInfo.cs" />
     <Compile Include="Core\Scripts\Engine\Game\Wave.cs" />
+    <Compile Include="Core\Scripts\Engine\Game\WaveSpec.cs"/>
     <Compile Include="Core\Scripts\Engine\State\IState.cs" />
     <Compile Include="Core\Scripts\Engine\State\IStateMachine.cs" />
     <Compile Include="Core\Scripts\Engine\State\NodeStateMachine.cs" />
