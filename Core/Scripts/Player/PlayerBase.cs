@@ -3,10 +3,11 @@ using KoreDefenceGodot.Core.Scripts.Enemy;
 
 namespace KoreDefenceGodot.Core.Scripts.Player
 {
-    public class PlayerBase : Area2D
+    public abstract class PlayerBase : Area2D
     {
         private const int DefaultHealth = 1000;
         private AnimatedSprite _baseSprite;
+        private ShaderMaterial _shader;
         private bool _takingDmg;
         private float _time;
         private int Health { get; set; }
@@ -27,6 +28,7 @@ namespace KoreDefenceGodot.Core.Scripts.Player
         {
             _baseSprite = GetNode<AnimatedSprite>("Base");
             _baseSprite.Play("BaseNormal");
+            _shader = _baseSprite.Material as ShaderMaterial;
         }
 
         public override void _Process(float delta)
@@ -51,14 +53,14 @@ namespace KoreDefenceGodot.Core.Scripts.Player
             const float animTime = 0.1f;
             if (!(_time > animTime)) return;
             _time = 0;
-            if (_takingDmg)
+            if (_takingDmg && (int) _shader.GetShaderParam("FlashStatus") == 0)
             {
-                ((ShaderMaterial) _baseSprite.Material).SetShaderParam("FlashStatus", 1);
+                _shader.SetShaderParam("FlashStatus", 1);
                 _takingDmg = false;
             }
             else
             {
-                ((ShaderMaterial) _baseSprite.Material).SetShaderParam("FlashStatus", 0);
+                _shader.SetShaderParam("FlashStatus", 0);
             }
         }
 

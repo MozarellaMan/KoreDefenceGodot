@@ -1,5 +1,4 @@
 using Godot;
-using KoreDefenceGodot.Core.Scripts.Enemy;
 using KoreDefenceGodot.Core.Scripts.Engine.Game;
 using KoreDefenceGodot.Core.Scripts.Engine.Tiles;
 using KoreDefenceGodot.Core.Scripts.Player;
@@ -13,7 +12,6 @@ namespace KoreDefenceGodot.Core.Scripts
         private Path _gamePath;
         private PlayerBase _playerBase;
         private Wave _runningWave;
-        private BaseEnemy _testEnemy;
         private TileSystem _tileSystem;
 
         private void LoadTilesAndPath()
@@ -58,13 +56,6 @@ namespace KoreDefenceGodot.Core.Scripts
             if (!(@event is InputEventKey eventKey)) return;
             if (!eventKey.Pressed || eventKey.Scancode != (int) KeyList.P) return;
             _playerBase?.Damage(1);
-        }
-
-        private void SpawnEnemies()
-        {
-            _testEnemy = GD.Load<PackedScene>("res://Data/Scenes/Enemy/Enemy.tscn").Instance() as BaseEnemy;
-            _testEnemy?.Setup(_gamePath, _playerBase, EnemyType.Koreman);
-            AddChild(_testEnemy);
         }
     }
 }

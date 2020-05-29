@@ -22,7 +22,7 @@
 [ext_resource path="res://Core/Scripts/Player/PlayerBase.cs" type="Script" id=20]
 
 [sub_resource type="VisualShaderNodeColorConstant" id=1]
-constant = Color( 1, 0, 0, 1 )
+constant = Color( 0.768937, 0, 0, 1 )
 
 [sub_resource type="VisualShaderNodeScalarUniform" id=2]
 uniform_name = "FlashStatus"
@@ -49,7 +49,7 @@ void fragment() {
 	float n_out3p0 = FlashStatus;
 
 // Color:2
-	vec3 n_out2p0 = vec3(1.000000, 0.000000, 0.000000);
+	vec3 n_out2p0 = vec3(0.768937, 0.000000, 0.000000);
 	float n_out2p1 = 1.000000;
 
 // Texture:5
@@ -89,6 +89,7 @@ void light() {
 
 }
 "
+graph_offset = Vector2( 0, 183.152 )
 mode = 1
 flags/light_only = false
 nodes/fragment/0/position = Vector2( 780, 180 )
@@ -108,10 +109,10 @@ shader_param/FlashStatus = 0.0
 
 [sub_resource type="SpriteFrames" id=7]
 animations = [ {
-"frames": [ ExtResource( 14 ), ExtResource( 1 ), ExtResource( 13 ), ExtResource( 10 ), ExtResource( 9 ), ExtResource( 3 ), ExtResource( 5 ) ],
-"loop": false,
-"name": "BaseDeath",
-"speed": 6.0
+"frames": [ ExtResource( 8 ), ExtResource( 4 ), ExtResource( 12 ), ExtResource( 11 ) ],
+"loop": true,
+"name": "BaseNormal",
+"speed": 10.0
 }, {
 "frames": [ ExtResource( 19 ), ExtResource( 17 ), ExtResource( 16 ), ExtResource( 2 ) ],
 "loop": true,
@@ -123,10 +124,10 @@ animations = [ {
 "name": "BaseDamage2",
 "speed": 10.0
 }, {
-"frames": [ ExtResource( 8 ), ExtResource( 4 ), ExtResource( 12 ), ExtResource( 11 ) ],
-"loop": true,
-"name": "BaseNormal",
-"speed": 10.0
+"frames": [ ExtResource( 14 ), ExtResource( 1 ), ExtResource( 13 ), ExtResource( 10 ), ExtResource( 9 ), ExtResource( 3 ), ExtResource( 5 ) ],
+"loop": false,
+"name": "BaseDeath",
+"speed": 6.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=8]
@@ -144,7 +145,7 @@ script = ExtResource( 20 )
 material = SubResource( 6 )
 frames = SubResource( 7 )
 animation = "BaseNormal"
-frame = 1
+frame = 2
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
