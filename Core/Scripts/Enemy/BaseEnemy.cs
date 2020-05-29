@@ -51,10 +51,7 @@ namespace KoreDefenceGodot.Core.Scripts.Enemy
             _enemySprite = GetNode<AnimatedSprite>("AnimatedSprite");
             var enemyAnimation = GD.Load<SpriteFrames>(enemyType.AnimationPath);
             _enemySprite.Frames = enemyAnimation;
-        }
-
-        public override void _Ready()
-        {
+            ZIndex = 1;
         }
 
         public override void _Process(float delta)
@@ -183,7 +180,6 @@ namespace KoreDefenceGodot.Core.Scripts.Enemy
 
         public void EnemyReachedBase()
         {
-            GD.Print("Yes!");
             HasReachedBase = true;
         }
     }

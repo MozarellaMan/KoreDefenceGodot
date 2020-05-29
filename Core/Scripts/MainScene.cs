@@ -1,5 +1,6 @@
 using Godot;
 using KoreDefenceGodot.Core.Scripts.Enemy;
+using KoreDefenceGodot.Core.Scripts.Engine.Game;
 using KoreDefenceGodot.Core.Scripts.Engine.Tiles;
 using KoreDefenceGodot.Core.Scripts.Player;
 using Path = KoreDefenceGodot.Core.Scripts.Engine.Tiles.Path;
@@ -11,6 +12,7 @@ namespace KoreDefenceGodot.Core.Scripts
         private const string GameTitle = "Kore Defence";
         private Path _gamePath;
         private PlayerBase _playerBase;
+        private Wave _runningWave;
         private BaseEnemy _testEnemy;
         private TileSystem _tileSystem;
 
@@ -30,18 +32,25 @@ namespace KoreDefenceGodot.Core.Scripts
             _playerBase = GD.Load<PackedScene>("res://Data/Scenes/Player/PlayerBase.tscn").Instance() as PlayerBase;
             _playerBase?.Setup(_gamePath.GetEndPoint());
             AddChild(_playerBase);
+            _runningWave = GetNode<Node2D>("Wave") as Wave;
         }
 
         public override void _Ready()
         {
             GD.Print("Main Scene ready!");
             LoadTilesAndPath();
-            SpawnEnemies();
+            _runningWave.Setup(_gamePath, _playerBase);
+            _runningWave.CreateWave();
         }
 
         public override void _Process(float delta)
         {
             OS.SetWindowTitle($"{GameTitle} FPS: {Godot.Engine.GetFramesPerSecond()}");
+        }
+
+        public override void _PhysicsProcess(float delta)
+        {
+            _runningWave.RunWave(delta);
         }
 
         public override void _UnhandledInput(InputEvent @event)

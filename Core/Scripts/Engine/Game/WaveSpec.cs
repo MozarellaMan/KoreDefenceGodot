@@ -12,7 +12,7 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Game
     ///     Level 6 = 16-18
     ///     Level 7 = 19-21
     /// </summary>
-    public class WaveSpec : Node
+    public abstract class WaveSpec : Node
     {
         public static readonly WaveDefinition[] WaveNumbers =
         {

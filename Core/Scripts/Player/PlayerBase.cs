@@ -36,8 +36,6 @@ namespace KoreDefenceGodot.Core.Scripts.Player
             if (Health > DefaultHealth * 0.33 && Health < DefaultHealth * 0.66) _baseSprite.Play("BaseDamage1");
 
             if (Health < DefaultHealth * 0.33) _baseSprite.Play("BaseDamage2");
-
-            if (_takingDmg) GD.Print("Damaged!");
         }
 
         public void Damage(int amount)

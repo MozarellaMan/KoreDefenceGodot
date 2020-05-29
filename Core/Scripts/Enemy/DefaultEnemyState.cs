@@ -57,7 +57,6 @@ namespace KoreDefenceGodot.Core.Scripts.Enemy
         {
             public override void OnEnter(BaseEnemy entity)
             {
-                GD.Print("now attacking!");
                 entity.AttackBase();
             }
         }

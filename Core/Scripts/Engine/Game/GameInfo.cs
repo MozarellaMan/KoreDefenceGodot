@@ -56,7 +56,7 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Game
 
         public static int GetRawWaveNumber()
         {
-            return (LevelNumber - 1) * 3 + WaveNumber;
+            return LevelNumber * 3 + WaveNumber;
         }
     }
 }

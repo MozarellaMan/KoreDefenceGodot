@@ -1,4 +1,3 @@
-﻿using System.Collections.Generic;
 using Godot;
 using KoreDefenceGodot.Core.Scripts.Enemy;
 using KoreDefenceGodot.Core.Scripts.Player;
@@ -8,9 +7,7 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Game
 {
     public abstract class Wave : Node2D
     {
-        private List<BaseEnemy> _enemies;
-
-        // TODO Timer to keep time of enemy waves
+        private float _elapsedTime;
         private EnemyFactory _factory;
         private Path _gamePath;
         private PlayerBase _playerBase;
@@ -22,6 +19,7 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Game
         public void CreateWave()
         {
             var waveCount = GameInfo.GetRawWaveNumber() - 1;
+            GD.Print(waveCount);
             var currentWave = WaveSpec.WaveNumbers[waveCount];
             if (currentWave == null) return;
             _factory = GD.Load<PackedScene>("res://Data/Scenes/Enemy/EnemyFactory.tscn")
@@ -31,12 +29,10 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Game
             AddChild(_factory);
         }
 
-        public void Setup(List<BaseEnemy> enemies, Path gamePath, PlayerBase playerBase)
+        public void Setup(Path gamePath, PlayerBase playerBase)
         {
-            _enemies = enemies;
             _gamePath = gamePath;
             _playerBase = playerBase;
-
             // TODO Load wave sound resources
         }
 
@@ -48,15 +44,15 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Game
             WaveOver = false;
         }
 
-        public void RunWave()
+        public void RunWave(float delta)
         {
-            float lastEnemySpawnTime = 10; // TODO Implement enemy Timer!
+            _elapsedTime += delta; // keeps wave spawn time
             if (_factory.CanSpawnMoreEnemies())
             {
-                if (lastEnemySpawnTime.CompareTo(_factory.SpawnDelay) <= 0) return;
+                if (_elapsedTime < _factory.SpawnDelay) return;
                 var newEnemy = _factory.CreateEnemies(_gamePath, _playerBase);
-                if (newEnemy != null) _enemies.Add(newEnemy);
-                // TODO Restart enemy timer!
+                if (newEnemy != null) _factory.AddChild(newEnemy);
+                _elapsedTime = 0;
             }
             else
             {
