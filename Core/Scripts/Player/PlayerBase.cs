@@ -1,3 +1,4 @@
+#nullable enable
 using Godot;
 using KoreDefenceGodot.Core.Scripts.Enemy;
 
@@ -6,8 +7,8 @@ namespace KoreDefenceGodot.Core.Scripts.Player
     public abstract class PlayerBase : Area2D
     {
         private const int DefaultHealth = 1000;
-        private AnimatedSprite _baseSprite;
-        private ShaderMaterial _shader;
+        private AnimatedSprite? _baseSprite;
+        private ShaderMaterial? _shader;
         private bool _takingDmg;
         private float _time;
         private int Health { get; set; }
@@ -35,9 +36,9 @@ namespace KoreDefenceGodot.Core.Scripts.Player
         {
             UpdateDamage(delta);
             if (IsDead()) return;
-            if (Health > DefaultHealth * 0.33 && Health < DefaultHealth * 0.66) _baseSprite.Play("BaseDamage1");
+            if (Health > DefaultHealth * 0.33 && Health < DefaultHealth * 0.66) _baseSprite?.Play("BaseDamage1");
 
-            if (Health < DefaultHealth * 0.33) _baseSprite.Play("BaseDamage2");
+            if (Health < DefaultHealth * 0.33) _baseSprite?.Play("BaseDamage2");
         }
 
         public void Damage(int amount)
@@ -53,14 +54,14 @@ namespace KoreDefenceGodot.Core.Scripts.Player
             const float animTime = 0.1f;
             if (!(_time > animTime)) return;
             _time = 0;
-            if (_takingDmg && (int) _shader.GetShaderParam("FlashStatus") == 0)
+            if (_takingDmg && (int) (_shader?.GetShaderParam("FlashStatus") ?? false) == 0)
             {
-                _shader.SetShaderParam("FlashStatus", 1);
+                _shader?.SetShaderParam("FlashStatus", 1);
                 _takingDmg = false;
             }
             else
             {
-                _shader.SetShaderParam("FlashStatus", 0);
+                _shader?.SetShaderParam("FlashStatus", 0);
             }
         }
 
