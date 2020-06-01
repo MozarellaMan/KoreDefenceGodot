@@ -30,19 +30,22 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Game
         /// <param name="y">y position of projectile</param>
         /// <param name="collateral">the amount of enemies the projectile can pass through</param>
         /// <param name="playAnimation">if this projectile should play it's animation, default is true</param>
-        public void Setup(float x, float y, int collateral, bool playAnimation = true)
+        public void Setup(int collateral, bool playAnimation = true)
         {
             _collateral = collateral;
             PlayAnimation = playAnimation;
         }
 
-        public void SetVelocity(Vector2 velocity, bool doCalculateAngle)
+        public void SetVelocity(Node2D source, Vector2 target, int speed, bool doCalculateAngle)
         {
+            var direction = target - source.Position;
+            var mag = (float) Math.Sqrt(direction.x * direction.x + direction.y * direction.y);
+            var velocity = new Vector2(direction.x / mag * speed, direction.y / mag * speed);
             Velocity = velocity;
             // Square root is expensive so only needed if bullet angle is needed
             if (!doCalculateAngle) return;
-            var mag = (float) Math.Sqrt(Velocity.x * Velocity.x + Velocity.y * Velocity.y);
-            var unitVector = Velocity / mag;
+            var angleMag = (float) Math.Sqrt(Velocity.x * Velocity.x + Velocity.y * Velocity.y);
+            var unitVector = Velocity / angleMag;
             unitVector = unitVector.x < 0 ? new Vector2(unitVector.x, -unitVector.y) : unitVector;
             var angle = (float) Math.Asin(unitVector.y);
             Rotation = angle;

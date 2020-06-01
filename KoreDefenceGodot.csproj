@@ -72,6 +72,7 @@
     <Compile Include="Core\Scripts\MainScene.cs" />
     <Compile Include="Core\Scripts\Player\Player.cs" />
     <Compile Include="Core\Scripts\Player\PlayerBase.cs" />
+      <Compile Include="Core\Scripts\Tower\BaseTower.cs"/>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

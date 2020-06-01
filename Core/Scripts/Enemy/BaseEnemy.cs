@@ -54,11 +54,6 @@ namespace KoreDefenceGodot.Core.Scripts.Enemy
             ZIndex = 1;
         }
 
-        public override void _Ready()
-        {
-            //Material = Material.Duplicate(true).Call("new") as Material;
-        }
-
         public override void _Process(float delta)
         {
             EnemyStateMachine.Update(delta);

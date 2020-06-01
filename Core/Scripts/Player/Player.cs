@@ -1,4 +1,3 @@
-using System;
 using Godot;
 using KoreDefenceGodot.Core.Scripts.Engine.Game;
 
@@ -8,9 +7,15 @@ namespace KoreDefenceGodot.Core.Scripts.Player
     {
         private bool _downFlag;
         private bool _leftFlag;
-        private PackedScene _playerProjectile;
 
+
+        private PackedScene _playerProjectile;
         private AnimatedSprite _playerSprite;
+        [Export] private int _projectileCollateral = 1;
+        [Export] private float _projectileCooldown = 0.25f;
+        [Export] private int _projectileDamage = 50;
+        [Export] private float _projectileLifetime = 0.25f;
+        [Export] private int _projectileSpeed = 20;
         private bool _rightFlag;
 
         [Export] private int _speed = 150;
@@ -89,20 +94,13 @@ namespace KoreDefenceGodot.Core.Scripts.Player
 
         private void Shoot(InputEventMouse @event)
         {
-            const float cooldown = 0.25f;
-            if (!(_timeSinceLastShot > cooldown)) return;
-            const int collateral = 1;
+            if (!(_timeSinceLastShot > _projectileCooldown)) return;
             if (_playerProjectile.Instance() is Projectile projectile)
             {
-                projectile.Setup(Position.x, Position.y, collateral, false);
-                projectile.Damage = 50;
-                projectile.Lifetime = .25f;
-
-                var direction = @event.Position - Position;
-                var mag = (float) Math.Sqrt(direction.x * direction.x + direction.y * direction.y);
-                const int speed = 20;
-                var velocity = new Vector2(direction.x / mag * speed, direction.y / mag * speed);
-                projectile.SetVelocity(velocity, true);
+                projectile.Setup(_projectileCollateral, false);
+                projectile.Damage = _projectileDamage;
+                projectile.Lifetime = _projectileLifetime;
+                projectile.SetVelocity(this, @event.Position, _projectileSpeed, true);
                 AddChild(projectile);
             }
 
