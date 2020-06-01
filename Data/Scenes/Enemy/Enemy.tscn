@@ -84,20 +84,23 @@ nodes/fragment/5/node = SubResource( 4 )
 nodes/fragment/5/position = Vector2( 340, 120 )
 nodes/fragment/connections = PoolIntArray( 3, 0, 4, 0, 4, 0, 0, 0, 2, 0, 4, 3, 2, 0, 4, 4, 5, 0, 4, 5, 5, 1, 0, 1 )
 
-[sub_resource type="ShaderMaterial" id=8]
+[sub_resource type="ShaderMaterial" id=6]
+resource_local_to_scene = true
 shader = SubResource( 5 )
 shader_param/FlashStatus = 0.0
 
 [sub_resource type="CircleShape2D" id=7]
 radius = 16.1046
 
-[node name="Enemy" type="KinematicBody2D"]
+[node name="Enemy" type="KinematicBody2D" groups=[
+"enemies",
+]]
 collision_layer = 2
 collision_mask = 2
 script = ExtResource( 3 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-material = SubResource( 8 )
+material = SubResource( 6 )
 frames = ExtResource( 1 )
 animation = "WalkRight"
 

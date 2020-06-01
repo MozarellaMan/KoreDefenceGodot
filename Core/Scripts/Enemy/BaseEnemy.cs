@@ -30,7 +30,7 @@ namespace KoreDefenceGodot.Core.Scripts.Enemy
         private float Speed { get; set; }
         private bool Affected { get; set; }
         public NodeStateMachine<BaseEnemy, DefaultEnemyState> EnemyStateMachine { get; private set; }
-        private EnemyType EnemyType { get; set; }
+        public EnemyType EnemyType { get; set; }
 
         /// <summary>
         ///     Flag that tells whether the enemy has reached the player base.
@@ -54,6 +54,11 @@ namespace KoreDefenceGodot.Core.Scripts.Enemy
             ZIndex = 1;
         }
 
+        public override void _Ready()
+        {
+            //Material = Material.Duplicate(true).Call("new") as Material;
+        }
+
         public override void _Process(float delta)
         {
             EnemyStateMachine.Update(delta);
@@ -71,6 +76,12 @@ namespace KoreDefenceGodot.Core.Scripts.Enemy
             Health = Health - amount < 0 ? 0 : Health - amount;
             _takingDmg = true;
             return source;
+        }
+
+        public void DealDamage(int amount)
+        {
+            Health = Health - amount < 0 ? 0 : Health - amount;
+            _takingDmg = true;
         }
 
         public void Heal(int amount)

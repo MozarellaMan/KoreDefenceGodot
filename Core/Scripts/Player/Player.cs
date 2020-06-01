@@ -1,4 +1,6 @@
+using System;
 using Godot;
+using KoreDefenceGodot.Core.Scripts.Engine.Game;
 
 namespace KoreDefenceGodot.Core.Scripts.Player
 {
@@ -6,15 +8,19 @@ namespace KoreDefenceGodot.Core.Scripts.Player
     {
         private bool _downFlag;
         private bool _leftFlag;
+        private PackedScene _playerProjectile;
+
         private AnimatedSprite _playerSprite;
         private bool _rightFlag;
 
         [Export] private int _speed = 150;
 
+        private float _timeSinceLastShot;
         private bool _upFlag;
 
         private void MovePlayer(float delta)
         {
+            _timeSinceLastShot += delta;
             var moveX = 0;
             var moveY = 0;
             if (_upFlag)
@@ -50,6 +56,7 @@ namespace KoreDefenceGodot.Core.Scripts.Player
         public override void _Ready()
         {
             _playerSprite = GetNode<AnimatedSprite>("AnimatedSprite");
+            _playerProjectile = GD.Load<PackedScene>("res://Data/Scenes/Game/Projectile.tscn");
         }
 
         public override void _PhysicsProcess(float delta)
@@ -72,6 +79,34 @@ namespace KoreDefenceGodot.Core.Scripts.Player
             if (Input.IsActionJustReleased("ui_left"))
                 _leftFlag = false;
             MovePlayer(delta);
+        }
+
+        public override void _Input(InputEvent @event)
+        {
+            if (!(@event is InputEventMouseButton eventMouseButton)) return;
+            Shoot(eventMouseButton);
+        }
+
+        private void Shoot(InputEventMouse @event)
+        {
+            const float cooldown = 0.25f;
+            if (!(_timeSinceLastShot > cooldown)) return;
+            const int collateral = 1;
+            if (_playerProjectile.Instance() is Projectile projectile)
+            {
+                projectile.Setup(Position.x, Position.y, collateral, false);
+                projectile.Damage = 50;
+                projectile.Lifetime = .25f;
+
+                var direction = @event.Position - Position;
+                var mag = (float) Math.Sqrt(direction.x * direction.x + direction.y * direction.y);
+                const int speed = 20;
+                var velocity = new Vector2(direction.x / mag * speed, direction.y / mag * speed);
+                projectile.SetVelocity(velocity, true);
+                AddChild(projectile);
+            }
+
+            _timeSinceLastShot = 0;
         }
     }
 }

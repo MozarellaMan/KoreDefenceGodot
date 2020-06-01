@@ -31,7 +31,7 @@ namespace KoreDefenceGodot.Core.Scripts.Enemy
         {
             public override void Update(BaseEnemy entity, float delta)
             {
-                if (entity.IsDead())
+                if (entity.IsDead() && !entity.EnemyStateMachine.IsInState(Dead))
                     entity.EnemyStateMachine.ChangeState(Dead);
 
                 // GD.Print(entity.HasReachedBase());
@@ -66,6 +66,7 @@ namespace KoreDefenceGodot.Core.Scripts.Enemy
             public override void OnEnter(BaseEnemy entity)
             {
                 GD.Print("dead!");
+                entity.QueueFree();
             }
         }
     }
