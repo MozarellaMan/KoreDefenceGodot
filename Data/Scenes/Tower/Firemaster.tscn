@@ -47,15 +47,15 @@ region = Rect2( 448, 0, 64, 64 )
 
 [sub_resource type="SpriteFrames" id=9]
 animations = [ {
-"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ],
-"loop": true,
-"name": "Attacking",
-"speed": 28.0
-}, {
 "frames": [ ExtResource( 1 ) ],
 "loop": true,
 "name": "Idle",
 "speed": 1.0
+}, {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ],
+"loop": true,
+"name": "Attacking",
+"speed": 28.0
 } ]
 
 [sub_resource type="CircleShape2D" id=10]
@@ -76,6 +76,6 @@ playing = true
 collision_layer = 2
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="TowerRange" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource( 10 )
 [connection signal="body_entered" from="Area2D" to="." method="OnAreaEntered"]

@@ -21,7 +21,7 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Game
         private Vector2 Velocity { get; set; }
         public bool PlayAnimation { get; set; }
 
-        public Node Source { get; private set; }
+        public Node Source { get; set; }
 
         /// <summary>
         ///     Part of instantiating a new projectile
