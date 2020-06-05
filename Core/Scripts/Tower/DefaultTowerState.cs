@@ -34,10 +34,46 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
 
         private sealed class IdleState : DefaultTowerState
         {
+            public override void OnEnter(BaseTower entity)
+            {
+                entity.PlayIdleAnimation();
+            }
+
+            public override void Update(BaseTower entity, float delta)
+            {
+                if (entity.CurrentTarget != null && entity.Purchased)
+                {
+                    entity.TowerStateMachine.ChangeState(Attacking);
+                }
+                else
+                {
+                    if (entity.TowerGun.RotationDegrees < 0)
+                        entity.TowerGun.RotationDegrees += 1;
+                    if (entity.TowerGun.RotationDegrees > 0)
+                        entity.TowerGun.RotationDegrees -= 1;
+                }
+            }
         }
 
         private sealed class AttackingState : DefaultTowerState
         {
+            public override void OnEnter(BaseTower entity)
+            {
+                entity.PlayAttackAnimation();
+            }
+
+            public override void Update(BaseTower entity, float delta)
+            {
+                if (entity.CurrentTarget == null)
+                {
+                    entity.TowerStateMachine.ChangeState(Idle);
+                }
+                else
+                {
+                    entity.TrackNextTarget(delta);
+                    entity.Shoot(entity.CurrentTarget, delta);
+                }
+            }
         }
 
         private sealed class PickedUpState : DefaultTowerState

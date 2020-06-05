@@ -7,16 +7,16 @@ namespace KoreDefenceGodot.Core.Scripts.Enemy
 {
     public abstract class EnemyFactory : Node2D
     {
-        /// <summary>
-        ///     Defines what enemies will appear in this wave, the types and frequency
-        /// </summary>
-        private EnemyPoolWave[] _enemyPool;
+	    /// <summary>
+	    ///     Defines what enemies will appear in this wave, the types and frequency
+	    /// </summary>
+	    private EnemyPoolWave[] _enemyPool;
 
-        /// <summary>
-        ///     Current number of enemies spawned
-        /// </summary>
-        /// <returns></returns>
-        private int _numEnemies;
+	    /// <summary>
+	    ///     Current number of enemies spawned
+	    /// </summary>
+	    /// <returns></returns>
+	    private int _numEnemies;
 
         private float _previousSpawnDelay;
 

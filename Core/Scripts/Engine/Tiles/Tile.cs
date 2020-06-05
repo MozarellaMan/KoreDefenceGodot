@@ -2,10 +2,10 @@ using Godot;
 
 namespace KoreDefenceGodot.Core.Scripts.Engine.Tiles
 {
-    /// <summary>
-    ///     Enum for describing what a specific tile contains on the screen
-    /// </summary>
-    public enum TileObject
+	/// <summary>
+	///     Enum for describing what a specific tile contains on the screen
+	/// </summary>
+	public enum TileObject
     {
         Path,
         Cracked,
@@ -14,10 +14,10 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Tiles
         None
     }
 
-    /// <summary>
-    ///     The screen is divided into virtual "Tile" objects that can be used to spawn game objects at specific positions.
-    /// </summary>
-    public class Tile : Node2D
+	/// <summary>
+	///     The screen is divided into virtual "Tile" objects that can be used to spawn game objects at specific positions.
+	/// </summary>
+	public class Tile : Node2D
     {
         [Export] private TileObject _occupiedBy;
 

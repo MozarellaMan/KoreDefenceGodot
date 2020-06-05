@@ -188,5 +188,9 @@ namespace KoreDefenceGodot.Core.Scripts.Enemy
         {
             HasReachedBase = true;
         }
+
+        public void PlayAttackAnimation()
+        {
+        }
     }
 }

@@ -7,11 +7,14 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
 {
     public abstract class BaseTower : Node2D
     {
-        private readonly int _projectileSpeed = 10;
+        private const int ProjectileSpeed = 10;
+        private const int TargetingSpeed = 20;
+
+
         private CollisionShape2D _attackArea;
         private int _attackDamage;
-
         private int _attackRadius;
+
         // TODO : Tower upgrades
         // TODO : Tower projectile status effect
 
@@ -20,14 +23,15 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
         private float _firePeriod;
         private bool _hasShot;
         private bool _isDeleted;
-        private bool _isPurchased;
         private int _projectileCollateral;
         private PackedScene _projectileResource;
         private float _shootTimeCounter;
 
+
         private Sprite _towerBody;
-        private AnimatedSprite _towerGun;
-        private BaseEnemy currentTarget;
+        public BaseEnemy CurrentTarget;
+        public bool Purchased = true;
+        public AnimatedSprite TowerGun;
 
         // TODO : Tower type
         public NodeStateMachine<BaseTower, DefaultTowerState> TowerStateMachine { get; private set; }
@@ -35,11 +39,16 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
         public override void _Ready()
         {
             _attackArea = GetNode("Area2D").GetNode<CollisionShape2D>("TowerRange");
-            _towerGun = GetNode<AnimatedSprite>("Gun");
+            TowerGun = GetNode<AnimatedSprite>("Gun");
             _projectileResource = GD.Load<PackedScene>("res://Data/Scenes/Tower/Projectiles/FiremasterBullet.tscn");
             TowerStateMachine =
                 new NodeStateMachine<BaseTower, DefaultTowerState>(this, DefaultTowerState.Idle,
                     DefaultTowerState.Global);
+        }
+
+        public override void _PhysicsProcess(float delta)
+        {
+            TowerStateMachine.Update(delta);
         }
 
         public void Shoot(BaseEnemy enemy, float delta)
@@ -50,19 +59,39 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
             if (!(_projectileResource.Instance() is Projectile projectile)) return;
             projectile.Setup(_projectileCollateral);
             projectile.Source = this;
-            projectile.SetVelocity(this, enemy.Position, _projectileSpeed, false);
+            projectile.SetVelocity(this, enemy.Position, ProjectileSpeed, false);
             _shootTimeCounter -= _firePeriod;
         }
 
-        public void TrackNextTarget()
+        public void TrackNextTarget(float delta)
         {
-            if (currentTarget != null) _towerGun.LookAt(currentTarget.Position);
+            if (CurrentTarget == null) return;
+
+            var difference = Mathf.Rad2Deg(TowerGun.GetAngleTo(CurrentTarget.GlobalPosition)) + 90;
+
+            TowerGun.GlobalRotationDegrees += difference * (TargetingSpeed * delta);
         }
 
         private void OnAreaEntered(object body)
         {
-            if (currentTarget != null && !currentTarget.IsDead()) return;
-            if (body is BaseEnemy enemy) currentTarget = enemy;
+            if (CurrentTarget != null && !CurrentTarget.IsDead()) return;
+            if (body is BaseEnemy enemy) CurrentTarget = enemy;
+        }
+
+        private void OnBodyExit(object body)
+        {
+            if (!(body is BaseEnemy enemy)) return;
+            if (CurrentTarget == enemy) CurrentTarget = null;
+        }
+
+        public void PlayAttackAnimation()
+        {
+            TowerGun.Play("Attacking");
+        }
+
+        public void PlayIdleAnimation()
+        {
+            TowerGun.Play("Idle");
         }
     }
 }

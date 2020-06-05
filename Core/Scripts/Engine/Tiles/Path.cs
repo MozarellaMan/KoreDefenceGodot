@@ -15,10 +15,10 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Tiles
 
     public class Path
     {
-        /// <summary>
-        ///     Starting position of the Path
-        /// </summary>
-        private int _curPositionX = -1;
+	    /// <summary>
+	    ///     Starting position of the Path
+	    /// </summary>
+	    private int _curPositionX = -1;
 
         private int _curPositionY = 4;
         private int _tileSize;
