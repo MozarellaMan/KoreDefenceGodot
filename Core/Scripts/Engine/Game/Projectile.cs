@@ -13,6 +13,7 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Game
 
         // TODO Status effects
         private int _enemyHitCount;
+        private AnimatedSprite _projectileSprite;
         private float _timeSinceCreation;
         public Vector2 Acceleration = new Vector2(0, 0);
 
@@ -36,20 +37,29 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Game
             PlayAnimation = playAnimation;
         }
 
-        public void SetVelocity(Node2D source, Vector2 target, int speed, bool doCalculateAngle)
+        public override void _Ready()
         {
-            var direction = target - source.Position;
+            _projectileSprite = GetNode<AnimatedSprite>("AnimatedSprite");
+        }
+
+        public void SetVelocity(Node2D source, Vector2 target, int speed, bool doCalculateAngle = false)
+        {
+            var direction = target - source.GlobalPosition;
             var mag = (float) Math.Sqrt(direction.x * direction.x + direction.y * direction.y);
             var velocity = new Vector2(direction.x / mag * speed, direction.y / mag * speed);
             Velocity = velocity;
-            // Square root is expensive so only needed if bullet angle is needed
+
             if (!doCalculateAngle) return;
-            var angleMag = (float) Math.Sqrt(Velocity.x * Velocity.x + Velocity.y * Velocity.y);
-            var unitVector = Velocity / angleMag;
-            unitVector = unitVector.x < 0 ? new Vector2(unitVector.x, -unitVector.y) : unitVector;
-            var angle = (float) Math.Asin(unitVector.y);
-            Rotation = angle;
+            GlobalRotation = CalculateBulletAngle();
         }
+
+        public void SetVelocity(Vector2 velocity, bool doCalculateAngle = false)
+        {
+            Velocity = velocity;
+            if (!doCalculateAngle) return;
+            GlobalRotation = CalculateBulletAngle();
+        }
+
 
         public override void _PhysicsProcess(float delta)
         {
@@ -57,7 +67,7 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Game
         }
 
 
-        public void UpdateProjectile(float delta)
+        private void UpdateProjectile(float delta)
         {
             _timeSinceCreation += delta;
             Velocity += Acceleration;
@@ -66,7 +76,7 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Game
             if (IsDead()) QueueFree();
         }
 
-        public bool IsDead()
+        private bool IsDead()
         {
             return _timeSinceCreation > Lifetime || _enemyHitCount >= _collateral;
         }
@@ -89,6 +99,21 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Game
 
             // TODO : Check for effects
             // TODO : Increment player damage achievement
+        }
+
+        public void FlipSprite()
+        {
+            if (_projectileSprite != null) _projectileSprite.FlipH = !_projectileSprite.FlipH;
+        }
+
+        // Square root is expensive so only needed if bullet angle is needed
+        private float CalculateBulletAngle()
+        {
+            var mag = (float) Math.Sqrt(Velocity.x * Velocity.x + Velocity.y * Velocity.y);
+            var unitVector = Velocity / mag;
+            unitVector = unitVector.x < 0 ? new Vector2(unitVector.x, -unitVector.y) : unitVector;
+            var angle = (float) Math.Asin(unitVector.y);
+            return angle;
         }
     }
 }

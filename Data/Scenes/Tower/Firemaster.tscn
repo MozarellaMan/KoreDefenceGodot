@@ -69,7 +69,6 @@ script = ExtResource( 4 )
 texture = ExtResource( 2 )
 
 [node name="Gun" type="AnimatedSprite" parent="."]
-rotation = 1.5708
 frames = SubResource( 9 )
 animation = "Idle"
 playing = true

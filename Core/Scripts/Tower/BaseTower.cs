@@ -44,6 +44,8 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
             TowerStateMachine =
                 new NodeStateMachine<BaseTower, DefaultTowerState>(this, DefaultTowerState.Idle,
                     DefaultTowerState.Global);
+
+            _firePeriod = 0.2f;
         }
 
         public override void _PhysicsProcess(float delta)
@@ -54,12 +56,17 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
         public void Shoot(BaseEnemy enemy, float delta)
         {
             _shootTimeCounter += delta;
-            if (!(_shootTimeCounter > _firePeriod) && _hasShot) return;
+            if (!(_shootTimeCounter > _firePeriod)) return;
             _hasShot = true;
+            // projectile exists and is instantiated
             if (!(_projectileResource.Instance() is Projectile projectile)) return;
-            projectile.Setup(_projectileCollateral);
+            AddChild(projectile);
+            projectile.Setup(1);
             projectile.Source = this;
-            projectile.SetVelocity(this, enemy.Position, ProjectileSpeed, false);
+            projectile.Damage = 30;
+            projectile.SetVelocity(this, enemy.GlobalPosition, ProjectileSpeed);
+            projectile.FlipSprite();
+            projectile.LookAt(enemy.GlobalPosition);
             _shootTimeCounter -= _firePeriod;
         }
 

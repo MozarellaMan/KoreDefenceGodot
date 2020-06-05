@@ -97,11 +97,12 @@ namespace KoreDefenceGodot.Core.Scripts.Player
             if (!(_timeSinceLastShot > _projectileCooldown)) return;
             if (_playerProjectile.Instance() is Projectile projectile)
             {
+                AddChild(projectile);
                 projectile.Setup(_projectileCollateral, false);
                 projectile.Damage = _projectileDamage;
                 projectile.Lifetime = _projectileLifetime;
-                projectile.SetVelocity(this, @event.Position, _projectileSpeed, true);
-                AddChild(projectile);
+                projectile.SetVelocity(this, @event.Position, _projectileSpeed);
+                projectile.LookAt(@event.GlobalPosition);
             }
 
             _timeSinceLastShot = 0;
