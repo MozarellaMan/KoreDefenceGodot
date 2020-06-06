@@ -3,7 +3,7 @@
 [ext_resource path="res://Data/Assets/towers/firemaster/firemaster_gun/firemastergun_1.png" type="Texture" id=1]
 [ext_resource path="res://Data/Assets/towers/firemaster/firemaster_body/firemasterbod_1.png" type="Texture" id=2]
 [ext_resource path="res://Data/Assets/towers/firemaster/firemaster_gun/firemastergunshooting_1.png" type="Texture" id=3]
-[ext_resource path="res://Core/Scripts/Tower/BaseTower.cs" type="Script" id=4]
+[ext_resource path="res://Core/Scripts/Tower/Towers/Firemaster.cs" type="Script" id=4]
 
 [sub_resource type="AtlasTexture" id=1]
 flags = 4

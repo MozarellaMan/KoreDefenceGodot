@@ -7,12 +7,12 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
 {
     public abstract class BaseTower : Node2D
     {
-        private const int ProjectileSpeed = 10;
+        private protected const int ProjectileSpeed = 10;
         private const int TargetingSpeed = 20;
 
 
         private CollisionShape2D _attackArea;
-        private int _attackDamage;
+        private protected int _attackDamage;
         private int _attackRadius;
 
         // TODO : Tower upgrades
@@ -20,18 +20,19 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
 
         private Vector2 _clickOffsetInTower;
         private Vector2 _dragStart;
-        private float _firePeriod;
-        private bool _hasShot;
+        private protected float _firePeriod;
+        private protected bool _hasShot;
         private bool _isDeleted;
-        private int _projectileCollateral;
-        private PackedScene _projectileResource;
-        private float _shootTimeCounter;
+        private protected int _projectileCollateral;
+        private protected PackedScene _projectileResource;
+        private protected float _shootTimeCounter;
 
 
         private Sprite _towerBody;
         public BaseEnemy CurrentTarget;
         public bool Purchased = true;
         public AnimatedSprite TowerGun;
+        public TowerType TowerType;
 
         // TODO : Tower type
         public NodeStateMachine<BaseTower, DefaultTowerState> TowerStateMachine { get; private set; }
@@ -40,12 +41,16 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
         {
             _attackArea = GetNode("Area2D").GetNode<CollisionShape2D>("TowerRange");
             TowerGun = GetNode<AnimatedSprite>("Gun");
-            _projectileResource = GD.Load<PackedScene>("res://Data/Scenes/Tower/Projectiles/FiremasterBullet.tscn");
+            _projectileResource = GD.Load<PackedScene>(TowerType.ProjectilePath);
             TowerStateMachine =
                 new NodeStateMachine<BaseTower, DefaultTowerState>(this, DefaultTowerState.Idle,
                     DefaultTowerState.Global);
 
-            _firePeriod = 0.2f;
+            _firePeriod = 1f / TowerType.FireRate;
+            _attackRadius = TowerType.AttackRadius;
+            _attackDamage = TowerType.Damage;
+            _projectileCollateral = TowerType.Collateral;
+            _hasShot = false;
         }
 
         public override void _PhysicsProcess(float delta)
@@ -53,7 +58,7 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
             TowerStateMachine.Update(delta);
         }
 
-        public void Shoot(BaseEnemy enemy, float delta)
+        public virtual void Shoot(BaseEnemy enemy, float delta)
         {
             _shootTimeCounter += delta;
             if (!(_shootTimeCounter > _firePeriod)) return;
@@ -61,9 +66,9 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
             // projectile exists and is instantiated
             if (!(_projectileResource.Instance() is Projectile projectile)) return;
             AddChild(projectile);
-            projectile.Setup(1);
+            projectile.Setup(_projectileCollateral);
             projectile.Source = this;
-            projectile.Damage = 30;
+            projectile.Damage = _attackDamage;
             projectile.SetVelocity(this, enemy.GlobalPosition, ProjectileSpeed);
             projectile.FlipSprite();
             projectile.LookAt(enemy.GlobalPosition);
