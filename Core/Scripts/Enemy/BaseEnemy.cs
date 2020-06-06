@@ -170,17 +170,17 @@ namespace KoreDefenceGodot.Core.Scripts.Enemy
         private void UpdateDamageEffect(float delta)
         {
             _time += delta;
-            const float animTime = 0.1f;
+            const float animTime = 0.05f;
             if (!(_time > animTime)) return;
             _time = 0;
             if (_takingDmg)
             {
-                ((ShaderMaterial) _enemySprite.Material).SetShaderParam("FlashStatus", 1);
+                _enemySprite.Modulate = new Color(194, 0, 0);
                 _takingDmg = false;
             }
             else
             {
-                ((ShaderMaterial) _enemySprite.Material).SetShaderParam("FlashStatus", 0);
+                _enemySprite.Modulate = new Color(1, 1, 1);
             }
         }
 
