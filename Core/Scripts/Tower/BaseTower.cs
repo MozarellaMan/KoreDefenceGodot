@@ -7,7 +7,6 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
 {
     public abstract class BaseTower : Node2D
     {
-        private protected const int ProjectileSpeed = 10;
         private const int TargetingSpeed = 20;
 
 
@@ -30,6 +29,7 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
 
         private Sprite _towerBody;
         public BaseEnemy CurrentTarget;
+        private protected int ProjectileSpeed = 10;
         public bool Purchased = true;
         public AnimatedSprite TowerGun;
         public TowerType TowerType;

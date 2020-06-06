@@ -19,7 +19,7 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Game
 
         public int Damage;
         public float Lifetime = 2;
-        private Vector2 Velocity { get; set; }
+        internal Vector2 Velocity { get; set; }
         public bool PlayAnimation { get; set; }
 
         public Node Source { get; set; }
@@ -70,8 +70,10 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Game
         private void UpdateProjectile(float delta)
         {
             _timeSinceCreation += delta;
-            Velocity += Acceleration;
-            Translate(Velocity);
+            var newVelocity = Velocity += Acceleration;
+            Translate(newVelocity);
+            GD.Print(Name + ": \nPosition: " + Position + "\nVelocity: " + Velocity + "\nVelocity+Acceleration: " +
+                     newVelocity);
 
             if (IsDead()) QueueFree();
         }
