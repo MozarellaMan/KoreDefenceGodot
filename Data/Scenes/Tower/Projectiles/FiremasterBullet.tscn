@@ -4,302 +4,242 @@
 [ext_resource path="res://Core/Scripts/Engine/Game/Projectile.cs" type="Script" id=2]
 
 [sub_resource type="AtlasTexture" id=1]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 0, 0, 68, 9 )
 
 [sub_resource type="AtlasTexture" id=2]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 68, 0, 68, 9 )
 
 [sub_resource type="AtlasTexture" id=3]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 136, 0, 68, 9 )
 
 [sub_resource type="AtlasTexture" id=4]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 204, 0, 68, 9 )
 
 [sub_resource type="AtlasTexture" id=5]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 272, 0, 68, 9 )
 
 [sub_resource type="AtlasTexture" id=6]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 340, 0, 68, 9 )
 
 [sub_resource type="AtlasTexture" id=7]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 408, 0, 68, 9 )
 
 [sub_resource type="AtlasTexture" id=8]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 476, 0, 68, 9 )
 
 [sub_resource type="AtlasTexture" id=9]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 544, 0, 68, 9 )
 
 [sub_resource type="AtlasTexture" id=10]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 612, 0, 68, 9 )
 
 [sub_resource type="AtlasTexture" id=11]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 680, 0, 68, 9 )
 
 [sub_resource type="AtlasTexture" id=12]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 748, 0, 68, 9 )
 
 [sub_resource type="AtlasTexture" id=13]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 816, 0, 68, 9 )
 
 [sub_resource type="AtlasTexture" id=14]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 884, 0, 68, 9 )
 
 [sub_resource type="AtlasTexture" id=15]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 952, 0, 68, 9 )
 
 [sub_resource type="AtlasTexture" id=16]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 1020, 0, 68, 9 )
 
 [sub_resource type="AtlasTexture" id=17]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 1088, 0, 68, 9 )
 
 [sub_resource type="AtlasTexture" id=18]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 1156, 0, 68, 9 )
 
 [sub_resource type="AtlasTexture" id=19]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 1224, 0, 68, 9 )
 
 [sub_resource type="AtlasTexture" id=20]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 1292, 0, 68, 9 )
 
 [sub_resource type="AtlasTexture" id=21]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 1360, 0, 68, 9 )
 
 [sub_resource type="AtlasTexture" id=22]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 1428, 0, 68, 9 )
 
 [sub_resource type="AtlasTexture" id=23]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 1496, 0, 68, 9 )
 
 [sub_resource type="AtlasTexture" id=24]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 1564, 0, 68, 9 )
 
 [sub_resource type="AtlasTexture" id=25]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 1632, 0, 68, 9 )
 
 [sub_resource type="AtlasTexture" id=26]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 1700, 0, 68, 9 )
 
 [sub_resource type="AtlasTexture" id=27]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 1768, 0, 68, 9 )
 
 [sub_resource type="AtlasTexture" id=28]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 1836, 0, 68, 9 )
 
 [sub_resource type="AtlasTexture" id=29]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 1904, 0, 68, 9 )
 
 [sub_resource type="AtlasTexture" id=30]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 1972, 0, 68, 9 )
 
 [sub_resource type="AtlasTexture" id=31]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 2040, 0, 68, 9 )
 
 [sub_resource type="AtlasTexture" id=32]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 2108, 0, 68, 9 )
 
 [sub_resource type="AtlasTexture" id=33]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 2176, 0, 68, 9 )
 
 [sub_resource type="AtlasTexture" id=34]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 2244, 0, 68, 9 )
 
 [sub_resource type="AtlasTexture" id=35]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 2312, 0, 68, 9 )
 
 [sub_resource type="AtlasTexture" id=36]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 2380, 0, 68, 9 )
 
 [sub_resource type="AtlasTexture" id=37]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 2448, 0, 68, 9 )
 
 [sub_resource type="AtlasTexture" id=38]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 2516, 0, 68, 9 )
 
 [sub_resource type="AtlasTexture" id=39]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 2584, 0, 68, 9 )
 
 [sub_resource type="AtlasTexture" id=40]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 2652, 0, 68, 9 )
 
 [sub_resource type="AtlasTexture" id=41]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 2720, 0, 68, 9 )
 
 [sub_resource type="AtlasTexture" id=42]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 2788, 0, 68, 9 )
 
 [sub_resource type="AtlasTexture" id=43]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 2856, 0, 68, 9 )
 
 [sub_resource type="AtlasTexture" id=44]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 2924, 0, 68, 9 )
 
 [sub_resource type="AtlasTexture" id=45]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 2992, 0, 68, 9 )
 
 [sub_resource type="AtlasTexture" id=46]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 3060, 0, 68, 9 )
 
 [sub_resource type="AtlasTexture" id=47]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 3128, 0, 68, 9 )
 
 [sub_resource type="AtlasTexture" id=48]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 3196, 0, 68, 9 )
 
 [sub_resource type="AtlasTexture" id=49]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 3264, 0, 68, 9 )
 
 [sub_resource type="AtlasTexture" id=50]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 3332, 0, 68, 9 )
 
 [sub_resource type="AtlasTexture" id=51]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 3400, 0, 68, 9 )
 
 [sub_resource type="AtlasTexture" id=52]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 3468, 0, 68, 9 )
 
 [sub_resource type="AtlasTexture" id=53]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 3536, 0, 68, 9 )
 
 [sub_resource type="AtlasTexture" id=54]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 3604, 0, 68, 9 )
 
 [sub_resource type="AtlasTexture" id=55]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 3672, 0, 68, 9 )
 
 [sub_resource type="AtlasTexture" id=56]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 3740, 0, 68, 9 )
 
 [sub_resource type="AtlasTexture" id=57]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 3808, 0, 68, 9 )
 
 [sub_resource type="AtlasTexture" id=58]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 3876, 0, 68, 9 )
 
 [sub_resource type="AtlasTexture" id=59]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 3944, 0, 68, 9 )
 
 [sub_resource type="AtlasTexture" id=60]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 4012, 0, 68, 9 )
 
@@ -312,7 +252,7 @@ animations = [ {
 } ]
 
 [sub_resource type="CircleShape2D" id=62]
-radius = 1.92972
+radius = 3.04217
 
 [node name="Bullet" type="Area2D"]
 z_index = 3
@@ -321,14 +261,15 @@ collision_mask = 2
 script = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-position = Vector2( 15, 0 )
+position = Vector2( 17, 0 )
+rotation = 3.14159
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 61 )
 animation = "fire"
-frame = 21
+frame = 30
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0.393614, 0.138266 )
+position = Vector2( 30.6832, 0.0307983 )
 shape = SubResource( 62 )
 [connection signal="body_shape_entered" from="." to="." method="OnBodyEntered"]

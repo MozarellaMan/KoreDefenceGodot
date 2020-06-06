@@ -72,8 +72,6 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Game
             _timeSinceCreation += delta;
             var newVelocity = Velocity += Acceleration;
             Translate(newVelocity);
-            GD.Print(Name + ": \nPosition: " + Position + "\nVelocity: " + Velocity + "\nVelocity+Acceleration: " +
-                     newVelocity);
 
             if (IsDead()) QueueFree();
         }
