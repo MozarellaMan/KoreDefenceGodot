@@ -60,21 +60,22 @@
     <Compile Include="Core\Scripts\Enemy\EnemyPoolWave.cs" />
     <Compile Include="Core\Scripts\Enemy\EnemyType.cs" />
     <Compile Include="Core\Scripts\Engine\Game\GameInfo.cs" />
-    <Compile Include="Core\Scripts\Engine\Game\Projectile.cs"/>
+    <Compile Include="Core\Scripts\Engine\Game\Projectile.cs" />
     <Compile Include="Core\Scripts\Engine\Game\Wave.cs" />
-      <Compile Include="Core\Scripts\Engine\Game\WaveSpec.cs"/>
-      <Compile Include="Core\Scripts\Engine\State\IState.cs"/>
-      <Compile Include="Core\Scripts\Engine\State\IStateMachine.cs"/>
-      <Compile Include="Core\Scripts\Engine\State\NodeStateMachine.cs"/>
-      <Compile Include="Core\Scripts\Engine\Tiles\Path.cs"/>
-      <Compile Include="Core\Scripts\Engine\Tiles\Tile.cs"/>
-      <Compile Include="Core\Scripts\Engine\Tiles\TileSystem.cs"/>
-      <Compile Include="Core\Scripts\MainScene.cs"/>
-      <Compile Include="Core\Scripts\Player\Player.cs"/>
-      <Compile Include="Core\Scripts\Player\PlayerBase.cs"/>
-      <Compile Include="Core\Scripts\Tower\BaseTower.cs"/>
-      <Compile Include="Core\Scripts\Tower\DefaultTowerState.cs"/>
-      <Compile Include="Properties\AssemblyInfo.cs"/>
+      <Compile Include="Core\Scripts\Engine\Game\WaveSpec.cs" />
+      <Compile Include="Core\Scripts\Engine\State\IState.cs" />
+      <Compile Include="Core\Scripts\Engine\State\IStateMachine.cs" />
+      <Compile Include="Core\Scripts\Engine\State\NodeStateMachine.cs" />
+      <Compile Include="Core\Scripts\Engine\Tiles\Path.cs" />
+      <Compile Include="Core\Scripts\Engine\Tiles\Tile.cs" />
+      <Compile Include="Core\Scripts\Engine\Tiles\TileSystem.cs" />
+      <Compile Include="Core\Scripts\MainScene.cs" />
+      <Compile Include="Core\Scripts\Player\Player.cs" />
+      <Compile Include="Core\Scripts\Player\PlayerBase.cs" />
+      <Compile Include="Core\Scripts\Tower\BaseTower.cs" />
+      <Compile Include="Core\Scripts\Tower\DefaultTowerState.cs" />
+      <Compile Include="Core\Scripts\Tower\TowerType.cs" />
+      <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
