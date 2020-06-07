@@ -175,7 +175,7 @@ namespace KoreDefenceGodot.Core.Scripts.Enemy
             _time = 0;
             if (_takingDmg)
             {
-                _enemySprite.Modulate = new Color(194, 0, 0);
+                _enemySprite.Modulate = new Color(194, 0, 0, 0.5f);
                 _takingDmg = false;
             }
             else
