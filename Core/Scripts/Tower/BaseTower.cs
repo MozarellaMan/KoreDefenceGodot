@@ -104,7 +104,6 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
         private void OnAreaEntered(Node body)
         {
             if (!body.IsInGroup("enemies")) return;
-            if (CurrentTarget != null) return;
             if (body is BaseEnemy enemy) Targets.Add(enemy);
         }
 

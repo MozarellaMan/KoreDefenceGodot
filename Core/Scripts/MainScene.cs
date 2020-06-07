@@ -50,12 +50,5 @@ namespace KoreDefenceGodot.Core.Scripts
         {
             _runningWave.RunWave(delta);
         }
-
-        public override void _UnhandledInput(InputEvent @event)
-        {
-            if (!(@event is InputEventKey eventKey)) return;
-            if (!eventKey.Pressed || eventKey.Scancode != (int) KeyList.P) return;
-            _playerBase?.Damage(1);
-        }
     }
 }

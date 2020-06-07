@@ -90,8 +90,6 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
                     entity.TrackNextTarget(delta);
                     entity.Shoot(entity.CurrentTarget, delta);
                 }
-
-                entity.CurrentTarget = entity.Targets.Count == 0 ? null : entity.CurrentTarget;
             }
         }
 

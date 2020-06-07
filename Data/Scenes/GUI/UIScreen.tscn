@@ -6,6 +6,7 @@
 anchor_right = 1.004
 anchor_bottom = 1.0
 margin_right = -3.99994
+mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -13,12 +14,14 @@ __meta__ = {
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 margin_right = 1000.0
 margin_bottom = 800.0
+mouse_filter = 2
 custom_constants/separation = 0
 
 [node name="MainHUD" type="MarginContainer" parent="HBoxContainer"]
 margin_right = 690.0
 margin_bottom = 800.0
 rect_min_size = Vector2( 690, 0 )
+mouse_filter = 2
 
 [node name="SideMenu" type="MarginContainer" parent="HBoxContainer"]
 margin_left = 690.0

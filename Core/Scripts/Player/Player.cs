@@ -88,7 +88,7 @@ namespace KoreDefenceGodot.Core.Scripts.Player
 
         public override void _UnhandledInput(InputEvent @event)
         {
-            if (!(@event is InputEventMouseButton eventMouseButton) || !@event.IsActionPressed("picked_up")) return;
+            if (!(@event is InputEventMouseButton eventMouseButton) || !@event.IsActionPressed("shoot")) return;
             Shoot(eventMouseButton);
         }
 
