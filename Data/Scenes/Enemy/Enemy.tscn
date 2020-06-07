@@ -89,8 +89,8 @@ resource_local_to_scene = true
 shader = SubResource( 5 )
 shader_param/FlashStatus = 0.0
 
-[sub_resource type="CircleShape2D" id=7]
-radius = 16.1046
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 16, 16 )
 
 [node name="Enemy" type="KinematicBody2D" groups=[
 "enemies",

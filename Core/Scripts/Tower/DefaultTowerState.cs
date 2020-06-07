@@ -80,7 +80,7 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
             public override void Update(BaseTower entity, float delta)
             {
                 entity.Targets = entity.Targets.Where(enemy => !enemy.IsDead()).ToList();
-                entity.CurrentTarget = entity.Targets.Count == 0 ? null : entity.Targets.Last();
+                entity.CurrentTarget = entity.Targets.Count == 0 ? null : entity.Targets.First();
                 if (entity.CurrentTarget == null && entity.Targets.Count == 0)
                 {
                     entity.TowerStateMachine.ChangeState(Idle);
