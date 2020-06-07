@@ -19,6 +19,10 @@ namespace KoreDefenceGodot.Core.Scripts.Enemy
         {
         }
 
+        public virtual void Draw(BaseEnemy entity)
+        {
+        }
+
         public virtual void HandleInput(BaseEnemy entity, InputEvent inputEvent)
         {
         }

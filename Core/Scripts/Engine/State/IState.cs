@@ -22,6 +22,12 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.State
         void Update(TEntity entity, float delta);
 
         /// <summary>
+        ///     Action on draw loop
+        /// </summary>
+        /// <param name="entity">The entity</param>
+        void Draw(TEntity entity);
+
+        /// <summary>
         ///     Action on input updates
         /// </summary>
         /// <param name="entity">the entity</param>

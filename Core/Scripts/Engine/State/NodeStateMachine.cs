@@ -61,5 +61,11 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.State
         {
             return CurrentState.Equals(state);
         }
+
+        public void Draw()
+        {
+            GlobalState?.Draw(Node);
+            CurrentState?.Draw(Node);
+        }
     }
 }

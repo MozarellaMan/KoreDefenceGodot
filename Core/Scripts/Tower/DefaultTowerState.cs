@@ -21,6 +21,10 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
         {
         }
 
+        public virtual void Draw(BaseTower entity)
+        {
+        }
+
         public virtual void HandleInput(BaseTower entity, InputEvent inputEvent)
         {
         }
@@ -33,10 +37,11 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
         {
             public override void HandleInput(BaseTower entity, InputEvent inputEvent)
             {
-                if (!(inputEvent is InputEventMouseButton eventMouseButton) || !inputEvent.IsPressed()) return;
-                if (eventMouseButton.ButtonIndex != (int) ButtonList.Left) return;
+                if (entity.TowerStateMachine.IsInState(Broken)) return;
+                if (!(inputEvent is InputEventMouseButton eventMouseButton) ||
+                    !inputEvent.IsActionPressed("picked_up")) return;
                 if (GameInfo.GetRect(entity.TowerGun).HasPoint(entity.ToLocal(eventMouseButton.Position)))
-                    GD.Print("clicked!");
+                    entity.TowerStateMachine.ChangeState(entity.Purchased ? PickedUp : Buying);
             }
         }
 
@@ -86,6 +91,35 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
 
         private sealed class PickedUpState : DefaultTowerState
         {
+            public override void OnEnter(BaseTower entity)
+            {
+                entity.DragStart = entity.Position;
+                // TODO : show gui sell menu
+            }
+
+            public override void Update(BaseTower entity, float delta)
+            {
+                var mousePos = entity.GetGlobalMousePosition();
+                entity.Update();
+                entity.DragTo(mousePos);
+            }
+
+
+            public override void Draw(BaseTower entity)
+            {
+                entity.DrawAttackRadius();
+            }
+
+            public override void HandleInput(BaseTower entity, InputEvent inputEvent)
+            {
+                if (!(inputEvent is InputEventMouseButton) || !inputEvent.IsActionReleased("picked_up")) return;
+                entity.TowerStateMachine.ChangeState(Idle);
+            }
+
+            public override void OnExit(BaseTower entity)
+            {
+                entity.Update();
+            }
         }
 
         private sealed class BrokenState : DefaultTowerState

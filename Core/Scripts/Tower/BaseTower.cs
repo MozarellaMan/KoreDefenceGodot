@@ -8,17 +8,13 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
     public abstract class BaseTower : Node2D
     {
         private const int TargetingSpeed = 20;
-
-
-        private CollisionShape2D _attackArea;
+        public Color _attackAreaColor = new Color(255, 255, 255, 0.6f);
         private protected int _attackDamage;
-        private int _attackRadius;
 
         // TODO : Tower upgrades
         // TODO : Tower projectile status effect
 
         private Vector2 _clickOffsetInTower;
-        private Vector2 _dragStart;
         private protected float _firePeriod;
         private protected bool _hasShot;
         private bool _isDeleted;
@@ -28,7 +24,12 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
 
 
         private Sprite _towerBody;
+
+
+        public CollisionShape2D AttackArea;
+        public int AttackRadius;
         public BaseEnemy CurrentTarget;
+        public Vector2 DragStart;
         private protected int ProjectileSpeed = 10;
         public bool Purchased = true;
         public AnimatedSprite TowerGun;
@@ -39,7 +40,7 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
 
         public override void _Ready()
         {
-            _attackArea = GetNode("Area2D").GetNode<CollisionShape2D>("TowerRange");
+            AttackArea = GetNode("Area2D").GetNode<CollisionShape2D>("TowerRange");
             TowerGun = GetNode<AnimatedSprite>("Gun");
             _projectileResource = GD.Load<PackedScene>(TowerType.ProjectilePath);
             TowerStateMachine =
@@ -47,7 +48,7 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
                     DefaultTowerState.Global);
 
             _firePeriod = 1f / TowerType.FireRate;
-            _attackRadius = TowerType.AttackRadius;
+            AttackRadius = TowerType.AttackRadius;
             _attackDamage = TowerType.Damage;
             _projectileCollateral = TowerType.Collateral;
             _hasShot = false;
@@ -93,6 +94,7 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
         {
             // uncomment to test bounding rectangle
             // DrawRect(GetRect(), Colors.White);
+            TowerStateMachine.Draw();
         }
 
         private void OnAreaEntered(object body)
@@ -117,6 +119,11 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
             TowerGun.Play("Idle");
         }
 
+        public void DragTo(Vector2 pos)
+        {
+            Position = pos - _clickOffsetInTower;
+        }
+
         /// <summary>
         ///     Get the tower gun sprite's bounding rectangle
         /// </summary>
@@ -124,6 +131,11 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
         protected virtual Rect2 GetRect()
         {
             return GameInfo.GetRect(TowerGun);
+        }
+
+        public virtual void DrawAttackRadius()
+        {
+            DrawCircle(ToLocal(GlobalPosition), AttackRadius, _attackAreaColor);
         }
     }
 }
