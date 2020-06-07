@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Godot;
 using KoreDefenceGodot.Core.Scripts.Enemy;
 using KoreDefenceGodot.Core.Scripts.Engine.Game;
@@ -8,50 +9,53 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
     public abstract class BaseTower : Node2D
     {
         private const int TargetingSpeed = 20;
-        public Color _attackAreaColor = new Color(255, 255, 255, 0.6f);
-        private protected int _attackDamage;
+        private protected const int ProjectileSpeed = 10;
+        private readonly Color _attackAreaColor = new Color(255, 255, 255, 0.6f);
 
         // TODO : Tower upgrades
         // TODO : Tower projectile status effect
 
         private Vector2 _clickOffsetInTower;
-        private protected float _firePeriod;
         private protected bool _hasShot;
         private bool _isDeleted;
-        private protected int _projectileCollateral;
-        private protected PackedScene _projectileResource;
-        private protected float _shootTimeCounter;
 
 
         private Sprite _towerBody;
 
 
-        public CollisionShape2D AttackArea;
+        public Area2D AttackArea;
+        private protected int AttackDamage;
         public int AttackRadius;
         public BaseEnemy CurrentTarget;
         public Vector2 DragStart;
-        private protected int ProjectileSpeed = 10;
+        private protected float FirePeriod;
+        private protected int ProjectileCollateral;
+        private protected PackedScene ProjectileResource;
         public bool Purchased = true;
+        private protected float ShootTimeCounter;
+        public List<BaseEnemy> Targets;
         public AnimatedSprite TowerGun;
         public TowerType TowerType;
+
 
         // TODO : Tower type
         public NodeStateMachine<BaseTower, DefaultTowerState> TowerStateMachine { get; private set; }
 
         public override void _Ready()
         {
-            AttackArea = GetNode("Area2D").GetNode<CollisionShape2D>("TowerRange");
+            AttackArea = GetNode<Area2D>("Area2D");
             TowerGun = GetNode<AnimatedSprite>("Gun");
-            _projectileResource = GD.Load<PackedScene>(TowerType.ProjectilePath);
+            ProjectileResource = GD.Load<PackedScene>(TowerType.ProjectilePath);
             TowerStateMachine =
                 new NodeStateMachine<BaseTower, DefaultTowerState>(this, DefaultTowerState.Idle,
                     DefaultTowerState.Global);
 
-            _firePeriod = 1f / TowerType.FireRate;
+            FirePeriod = 1f / TowerType.FireRate;
             AttackRadius = TowerType.AttackRadius;
-            _attackDamage = TowerType.Damage;
-            _projectileCollateral = TowerType.Collateral;
+            AttackDamage = TowerType.Damage;
+            ProjectileCollateral = TowerType.Collateral;
             _hasShot = false;
+            Targets = new List<BaseEnemy>();
         }
 
         public override void _PhysicsProcess(float delta)
@@ -66,19 +70,19 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
 
         public virtual void Shoot(BaseEnemy enemy, float delta)
         {
-            _shootTimeCounter += delta;
-            if (!(_shootTimeCounter > _firePeriod)) return;
+            ShootTimeCounter += delta;
+            if (!(ShootTimeCounter > FirePeriod)) return;
             _hasShot = true;
             // projectile exists and is instantiated
-            if (!(_projectileResource.Instance() is Projectile projectile)) return;
+            if (!(ProjectileResource.Instance() is Projectile projectile)) return;
             AddChild(projectile);
-            projectile.Setup(_projectileCollateral);
+            projectile.Setup(ProjectileCollateral);
             projectile.Source = this;
-            projectile.Damage = _attackDamage;
+            projectile.Damage = AttackDamage;
             projectile.SetVelocity(this, enemy.GlobalPosition, ProjectileSpeed);
             projectile.FlipSprite();
             projectile.LookAt(enemy.GlobalPosition);
-            _shootTimeCounter -= _firePeriod;
+            ShootTimeCounter -= FirePeriod;
         }
 
         public void TrackNextTarget(float delta)
@@ -97,16 +101,18 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
             TowerStateMachine.Draw();
         }
 
-        private void OnAreaEntered(object body)
+        private void OnAreaEntered(Node body)
         {
-            if (CurrentTarget != null && !CurrentTarget.IsDead()) return;
-            if (body is BaseEnemy enemy) CurrentTarget = enemy;
+            if (!body.IsInGroup("enemies")) return;
+            if (CurrentTarget != null) return;
+            if (body is BaseEnemy enemy) Targets.Add(enemy);
         }
 
-        private void OnBodyExit(object body)
+        private void OnBodyExit(Node body)
         {
+            if (!body.IsInGroup("enemies")) return;
             if (!(body is BaseEnemy enemy)) return;
-            if (CurrentTarget == enemy) CurrentTarget = null;
+            Targets.Remove(enemy);
         }
 
         public void PlayAttackAnimation()

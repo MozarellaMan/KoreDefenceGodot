@@ -15,12 +15,12 @@ namespace KoreDefenceGodot.Core.Scripts.Tower.Towers
 
         public override void Shoot(BaseEnemy enemy, float delta)
         {
-            _shootTimeCounter += delta;
-            if (!(_shootTimeCounter > _firePeriod)) return;
+            ShootTimeCounter += delta;
+            if (!(ShootTimeCounter > FirePeriod)) return;
             _hasShot = true;
             // projectile exists and is instantiated
-            if (!(_projectileResource.Instance() is Projectile projectile)) return;
-            if (!(_projectileResource.Instance() is Projectile projectile2)) return;
+            if (!(ProjectileResource.Instance() is Projectile projectile)) return;
+            if (!(ProjectileResource.Instance() is Projectile projectile2)) return;
 
             // adding projectiles (i.e. instancing) to the screen, xOffset from the gun
 
@@ -32,7 +32,7 @@ namespace KoreDefenceGodot.Core.Scripts.Tower.Towers
 
             SetupProjectile(projectile, enemy, 8, 5);
             SetupProjectile(projectile2, enemy, 8, 5, -1);
-            _shootTimeCounter -= _firePeriod;
+            ShootTimeCounter -= FirePeriod;
         }
 
         /// <summary>
@@ -49,9 +49,9 @@ namespace KoreDefenceGodot.Core.Scripts.Tower.Towers
         private void SetupProjectile(Projectile projectile, Node2D enemy, float xOffset, float yOffset,
             int isSecond = 1)
         {
-            projectile.Setup(_projectileCollateral);
+            projectile.Setup(ProjectileCollateral);
             projectile.Source = this;
-            projectile.Damage = _attackDamage;
+            projectile.Damage = AttackDamage;
 
             // get direction and magnitude
             var direction =

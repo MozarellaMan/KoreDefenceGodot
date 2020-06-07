@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using System.Linq;
+using Godot;
 using KoreDefenceGodot.Core.Scripts.Engine.Game;
 using KoreDefenceGodot.Core.Scripts.Engine.State;
 
@@ -50,11 +51,12 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
             public override void OnEnter(BaseTower entity)
             {
                 entity.PlayIdleAnimation();
+                entity.CurrentTarget = null;
             }
 
             public override void Update(BaseTower entity, float delta)
             {
-                if (entity.CurrentTarget != null && entity.Purchased)
+                if ((entity.CurrentTarget != null || entity.Targets.Count != 0) && entity.Purchased)
                 {
                     entity.TowerStateMachine.ChangeState(Attacking);
                 }
@@ -77,7 +79,9 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
 
             public override void Update(BaseTower entity, float delta)
             {
-                if (entity.CurrentTarget == null)
+                entity.Targets = entity.Targets.Where(enemy => !enemy.IsDead()).ToList();
+                entity.CurrentTarget = entity.Targets.Count == 0 ? null : entity.Targets.Last();
+                if (entity.CurrentTarget == null && entity.Targets.Count == 0)
                 {
                     entity.TowerStateMachine.ChangeState(Idle);
                 }
@@ -86,6 +90,8 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
                     entity.TrackNextTarget(delta);
                     entity.Shoot(entity.CurrentTarget, delta);
                 }
+
+                entity.CurrentTarget = entity.Targets.Count == 0 ? null : entity.CurrentTarget;
             }
         }
 
