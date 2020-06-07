@@ -58,6 +58,11 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
             TowerStateMachine.Update(delta);
         }
 
+        public override void _Input(InputEvent @event)
+        {
+            TowerStateMachine.UpdateInput(@event);
+        }
+
         public virtual void Shoot(BaseEnemy enemy, float delta)
         {
             _shootTimeCounter += delta;
@@ -84,6 +89,12 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
             TowerGun.GlobalRotationDegrees += difference * (TargetingSpeed * delta);
         }
 
+        public override void _Draw()
+        {
+            // uncomment to test bounding rectangle
+            // DrawRect(GetRect(), Colors.White);
+        }
+
         private void OnAreaEntered(object body)
         {
             if (CurrentTarget != null && !CurrentTarget.IsDead()) return;
@@ -104,6 +115,15 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
         public void PlayIdleAnimation()
         {
             TowerGun.Play("Idle");
+        }
+
+        /// <summary>
+        ///     Get the tower gun sprite's bounding rectangle
+        /// </summary>
+        /// <returns> the rectangle </returns>
+        protected virtual Rect2 GetRect()
+        {
+            return GameInfo.GetRect(TowerGun);
         }
     }
 }

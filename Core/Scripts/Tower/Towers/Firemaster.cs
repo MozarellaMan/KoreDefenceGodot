@@ -69,5 +69,21 @@ namespace KoreDefenceGodot.Core.Scripts.Tower.Towers
             projectile.LookAt(new Vector2(enemy.Position.x + xOffset * isSecond,
                 enemy.Position.y + yOffset * isSecond));
         }
+
+
+        /// <summary>
+        ///     Makes a smaller bounding rectangle for the firemaster tower
+        /// </summary>
+        /// <returns> the bounding rectangle </returns>
+        protected override Rect2 GetRect()
+        {
+            var rect = base.GetRect();
+
+            // shrink rectangle to better match sprite on screen
+            rect.Size /= 2;
+            rect.Position += rect.Size / 2;
+
+            return rect;
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Godot;
+using KoreDefenceGodot.Core.Scripts.Engine.Game;
 using KoreDefenceGodot.Core.Scripts.Engine.State;
 
 namespace KoreDefenceGodot.Core.Scripts.Tower
@@ -30,6 +31,13 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
 
         private sealed class GlobalState : DefaultTowerState
         {
+            public override void HandleInput(BaseTower entity, InputEvent inputEvent)
+            {
+                if (!(inputEvent is InputEventMouseButton eventMouseButton) || !inputEvent.IsPressed()) return;
+                if (eventMouseButton.ButtonIndex != (int) ButtonList.Left) return;
+                if (GameInfo.GetRect(entity.TowerGun).HasPoint(entity.ToLocal(eventMouseButton.Position)))
+                    GD.Print("clicked!");
+            }
         }
 
         private sealed class IdleState : DefaultTowerState
