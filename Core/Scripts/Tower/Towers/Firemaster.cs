@@ -10,7 +10,6 @@ namespace KoreDefenceGodot.Core.Scripts.Tower.Towers
         public override void _Ready()
         {
             TowerType = TowerType.Firemaster;
-            ProjectileSpeed = 15;
             base._Ready();
         }
 

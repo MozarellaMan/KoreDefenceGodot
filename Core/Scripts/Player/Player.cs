@@ -102,7 +102,7 @@ namespace KoreDefenceGodot.Core.Scripts.Player
                 projectile.Damage = _projectileDamage;
                 projectile.Lifetime = _projectileLifetime;
                 projectile.SetVelocity(this, @event.Position, _projectileSpeed);
-                projectile.LookAt(@event.GlobalPosition);
+                projectile.LookAt(@event.Position);
             }
 
             _timeSinceLastShot = 0;
