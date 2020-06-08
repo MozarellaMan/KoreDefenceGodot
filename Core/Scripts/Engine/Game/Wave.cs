@@ -19,7 +19,6 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Game
         public void CreateWave()
         {
             var waveCount = GameInfo.GetRawWaveNumber() - 1;
-            GD.Print(waveCount);
             var currentWave = WaveSpec.WaveNumbers[waveCount];
             if (currentWave == null) return;
             _factory = GD.Load<PackedScene>("res://Data/Scenes/Enemy/EnemyFactory.tscn")
@@ -34,6 +33,12 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Game
             _gamePath = gamePath;
             _playerBase = playerBase;
             // TODO Load wave sound resources
+        }
+
+        public override void _Process(float delta)
+        {
+            if (_factory.GetChildCount() == 0)
+                CreateWave();
         }
 
         public void StartWave()

@@ -14,6 +14,7 @@ namespace KoreDefenceGodot.Core.Scripts
         private Wave _runningWave;
         private TileSystem _tileSystem;
 
+
         private void LoadTilesAndPath()
         {
             // Instance tile generating object
