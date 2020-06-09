@@ -55,7 +55,7 @@ namespace KoreDefenceGodot.Core.Scripts.Tower.Towers
 
             // get direction and magnitude
             var direction =
-                Position.DirectionTo(new Vector2(enemy.GlobalPosition.x + xOffset, enemy.GlobalPosition.y));
+                Position.DirectionTo(new Vector2(enemy.GlobalPosition.x + xOffset, enemy.GlobalPosition.y + yOffset));
 
             var mag = (float) Math.Sqrt(direction.x * direction.x + direction.y * direction.y);
 

@@ -106,6 +106,12 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
                 var mousePos = entity.GetGlobalMousePosition();
                 entity.Update();
                 entity.DragTo(mousePos);
+
+                var canPlace = entity.CanPlaceTower();
+
+                entity.AttackColour = canPlace ? GameInfo.ValidColour : GameInfo.InvalidColour;
+
+                entity.DragStart = canPlace ? entity.Position : entity.DragStart;
             }
 
 
@@ -123,6 +129,7 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
             public override void OnExit(BaseTower entity)
             {
                 entity.Update();
+                if (!entity.CanPlaceTower()) entity.ResetToDragStart();
             }
         }
 

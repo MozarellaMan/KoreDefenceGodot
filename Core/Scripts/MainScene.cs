@@ -40,6 +40,7 @@ namespace KoreDefenceGodot.Core.Scripts
             LoadTilesAndPath();
             _runningWave.Setup(_gamePath, _playerBase);
             _runningWave.CreateWave();
+            GameInfo.GamePath = _gamePath;
         }
 
         public override void _Process(float delta)

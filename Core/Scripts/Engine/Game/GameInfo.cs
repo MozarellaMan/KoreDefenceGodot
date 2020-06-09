@@ -9,6 +9,8 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Game
 {
     public class GameInfo : Node
     {
+        public static Color InvalidColour = new Color(255, 0, 0, 0.5f);
+        public static Color ValidColour = new Color(255, 255, 255, 0.5f);
         public List<BaseEnemy> EnemyList { get; set; }
 
         // TODO : Implement towers + tower list
@@ -17,7 +19,7 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Game
         /// </summary>
         public Tile[,] TileList { get; set; }
 
-        public Path GamePath { get; set; }
+        public static Path GamePath { get; set; }
 
         // TODO Impelement currency
         public Player.Player Player { get; set; }
@@ -58,6 +60,7 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Game
         {
             return LevelNumber * 3 + WaveNumber;
         }
+
 
         /// <summary>
         ///     Get bounding rectangle of an animated sprite
