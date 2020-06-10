@@ -41,7 +41,9 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
                 if (entity.TowerStateMachine.IsInState(Broken)) return;
                 if (!(inputEvent is InputEventMouseButton eventMouseButton) ||
                     !inputEvent.IsActionPressed("picked_up")) return;
-                if (GameInfo.GetRect(entity.TowerGun).HasPoint(entity.ToLocal(eventMouseButton.Position)))
+
+
+                if (entity.GetRect().HasPoint(entity.ToLocal(eventMouseButton.Position)))
                     entity.TowerStateMachine.ChangeState(entity.Purchased ? PickedUp : Buying);
             }
         }

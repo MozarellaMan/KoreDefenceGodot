@@ -150,7 +150,7 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
         ///     Get the tower gun sprite's bounding rectangle
         /// </summary>
         /// <returns> the rectangle </returns>
-        protected virtual Rect2 GetRect()
+        protected internal virtual Rect2 GetRect()
         {
             return GameInfo.GetRect(TowerGun);
         }
@@ -176,7 +176,7 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
             if (notOnPath)
             {
                 if (GameInfo.TowerList == null) return notOnPath;
-                if (GameInfo.TowerList.Any(CollidesWithTower)) return false;
+                if (GameInfo.TowerList.Any(tower => CollidesWithTower(tower))) return false;
                 // TODO : Check if tower collides with lava tiles
             }
 
@@ -263,11 +263,16 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
         ///     Checks if the tower is overlapping another tower
         /// </summary>
         /// <param name="tower">the tower to check</param>
+        /// <param name="padding">optional padding to add to collision rectangles. default is 4</param>
         /// <returns>true if both tower's bounding rectangles are intersecting</returns>
-        private bool CollidesWithTower(BaseTower tower)
+        private bool CollidesWithTower(BaseTower tower, int padding = 4)
         {
             //GD.Print(Name,GetGlobalRect(), tower.Name,tower.GetGlobalRect());
-            return tower != this && GetGlobalRect().Intersects(tower.GetGlobalRect());
+            var paddedRect = GetGlobalRect().Grow(padding);
+            var paddedTargetRect = tower.GetGlobalRect().Grow(padding);
+
+
+            return tower != this && paddedRect.Intersects(paddedTargetRect);
         }
 
         /// <summary>
