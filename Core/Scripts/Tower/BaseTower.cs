@@ -29,6 +29,7 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
         public BaseEnemy CurrentTarget;
         public Vector2 DragStart;
         private protected float FirePeriod;
+        public CollisionShape2D PlayerCollision;
         private protected int ProjectileCollateral;
         private protected PackedScene ProjectileResource;
         public bool Purchased = true;
@@ -56,6 +57,7 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
             ProjectileCollateral = TowerType.Collateral;
             _hasShot = false;
             Targets = new List<BaseEnemy>();
+            PlayerCollision = GetNode("StaticBody2D").GetNode<CollisionShape2D>("CollisionShape2D");
         }
 
         public override void _PhysicsProcess(float delta)

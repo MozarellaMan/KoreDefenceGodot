@@ -98,6 +98,8 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
             public override void OnEnter(BaseTower entity)
             {
                 entity.DragStart = entity.Position;
+                entity.ZIndex = 4;
+                entity.PlayerCollision.Disabled = true;
                 // TODO : show gui sell menu
             }
 
@@ -129,6 +131,8 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
             public override void OnExit(BaseTower entity)
             {
                 entity.Update();
+                entity.ZIndex = 3;
+                entity.PlayerCollision.Disabled = false;
                 if (!entity.CanPlaceTower()) entity.ResetToDragStart();
             }
         }
