@@ -157,6 +157,7 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
 
 
             // check if tower is in map boundaries 
+            // could replace "magic numbers" with direct accessors to sky-box image and ground texture image
             if (Position.y < 130 + GetRect().Size.y / 2 || Position.x > 690 - GetRect().Size.x / 2) return false;
 
 

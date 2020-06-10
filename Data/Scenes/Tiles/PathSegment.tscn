@@ -14,9 +14,14 @@ animations = [ {
 "name": "Horizontal",
 "speed": 1.0
 }, {
-"frames": [ ExtResource( 5 ) ],
+"frames": [ ExtResource( 2 ) ],
 "loop": false,
-"name": "Straight",
+"name": "LeftDown",
+"speed": 1.0
+}, {
+"frames": [ ExtResource( 1 ) ],
+"loop": false,
+"name": "RightDown",
 "speed": 1.0
 }, {
 "frames": [ ExtResource( 6 ) ],
@@ -24,19 +29,14 @@ animations = [ {
 "name": "DownLeft",
 "speed": 1.0
 }, {
-"frames": [ ExtResource( 2 ) ],
-"loop": false,
-"name": "LeftDown",
-"speed": 1.0
-}, {
 "frames": [ ExtResource( 4 ) ],
 "loop": false,
 "name": "DownRight",
 "speed": 1.0
 }, {
-"frames": [ ExtResource( 1 ) ],
+"frames": [ ExtResource( 5 ) ],
 "loop": false,
-"name": "RightDown",
+"name": "Straight",
 "speed": 1.0
 } ]
 
@@ -44,8 +44,8 @@ animations = [ {
 extents = Vector2( 16, 16 )
 
 [node name="PathSegment" type="StaticBody2D"]
-collision_layer = 4
-collision_mask = 4
+collision_layer = 32
+collision_mask = 0
 
 [node name="Path" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
