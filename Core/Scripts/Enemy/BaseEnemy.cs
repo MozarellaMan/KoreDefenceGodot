@@ -191,6 +191,7 @@ namespace KoreDefenceGodot.Core.Scripts.Enemy
 
         public void PlayAttackAnimation()
         {
+            // TODO : Implement attack animation
         }
     }
 }

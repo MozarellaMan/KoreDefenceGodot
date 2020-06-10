@@ -3,6 +3,7 @@ using Godot;
 using KoreDefenceGodot.Core.Scripts.Enemy;
 using KoreDefenceGodot.Core.Scripts.Engine.Tiles;
 using KoreDefenceGodot.Core.Scripts.Player;
+using KoreDefenceGodot.Core.Scripts.Tower;
 using Path = KoreDefenceGodot.Core.Scripts.Engine.Tiles.Path;
 
 namespace KoreDefenceGodot.Core.Scripts.Engine.Game
@@ -12,6 +13,7 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Game
         public static Color InvalidColour = new Color(255, 0, 0, 0.5f);
         public static Color ValidColour = new Color(255, 255, 255, 0.5f);
         public List<BaseEnemy> EnemyList { get; set; }
+        public static List<BaseTower> TowerList { get; set; }
 
         // TODO : Implement towers + tower list
         /// <summary>

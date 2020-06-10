@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 using KoreDefenceGodot.Core.Scripts.Enemy;
 using KoreDefenceGodot.Core.Scripts.Engine.Game;
@@ -72,6 +73,19 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
             TowerStateMachine.UpdateInput(@event);
         }
 
+        public override void _Draw()
+        {
+            // uncomment to test bounding rectangle
+            //DrawRect(GetRect(), Colors.White);
+            // GD.Print(ToGlobal(GetRect().Position));
+            TowerStateMachine.Draw();
+        }
+
+        /// <summary>
+        ///     Method that handles the tower spawning a projectile, and it's behaviour in relation to the targeted enemy
+        /// </summary>
+        /// <param name="enemy">the enemy being targeted</param>
+        /// <param name="delta">frame delta time</param>
         public virtual void Shoot(BaseEnemy enemy, float delta)
         {
             ShootTimeCounter += delta;
@@ -89,6 +103,11 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
             ShootTimeCounter -= FirePeriod;
         }
 
+
+        /// <summary>
+        ///     This rotates the tower gun to face the current target
+        /// </summary>
+        /// <param name="delta">frame delta time</param>
         public void TrackNextTarget(float delta)
         {
             if (CurrentTarget == null) return;
@@ -98,13 +117,6 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
             TowerGun.GlobalRotationDegrees += difference * (TargetingSpeed * delta);
         }
 
-        public override void _Draw()
-        {
-            // uncomment to test bounding rectangle
-            //DrawRect(GetRect(), Colors.White);
-            // GD.Print(ToGlobal(GetRect().Position));
-            TowerStateMachine.Draw();
-        }
 
         private void OnAreaEntered(Node body)
         {
@@ -163,7 +175,8 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
 
             if (notOnPath)
             {
-                // TODO : Check if tower collides with other towers + buildings
+                if (GameInfo.TowerList == null) return notOnPath;
+                if (GameInfo.TowerList.Any(CollidesWithTower)) return false;
                 // TODO : Check if tower collides with lava tiles
             }
 
@@ -206,6 +219,10 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
             return false;
         }
 
+
+        /// <summary>
+        ///     Draws the "attack radius" visualisation on the screen when called
+        /// </summary>
         public virtual void DrawAttackRadius()
         {
             DrawCircle(ToLocal(GlobalPosition), AttackRadius, AttackColour);
@@ -230,6 +247,33 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
             return bounds.Intersects(targetBounds);
         }
 
+        /// <summary>
+        ///     Gets the bounding rectangle of the tower with it's position in the world space
+        /// </summary>
+        /// <returns>the rect2 object</returns>
+        private Rect2 GetGlobalRect()
+        {
+            var rect = GetRect();
+            rect.Position = ToGlobal(GetRect().Position);
+
+            return rect;
+        }
+
+        /// <summary>
+        ///     Checks if the tower is overlapping another tower
+        /// </summary>
+        /// <param name="tower">the tower to check</param>
+        /// <returns>true if both tower's bounding rectangles are intersecting</returns>
+        private bool CollidesWithTower(BaseTower tower)
+        {
+            //GD.Print(Name,GetGlobalRect(), tower.Name,tower.GetGlobalRect());
+            return tower != this && GetGlobalRect().Intersects(tower.GetGlobalRect());
+        }
+
+        /// <summary>
+        ///     Reverts the tower's position to the position before it was picked up.
+        ///     Drag start is set in the picked up or buying state
+        /// </summary>
         public void ResetToDragStart()
         {
             Position = DragStart;
