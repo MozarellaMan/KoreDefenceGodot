@@ -50,6 +50,7 @@ namespace KoreDefenceGodot.Core.Scripts.Tower.Towers
             int isSecond = 1)
         {
             projectile.Setup(ProjectileCollateral);
+            projectile.Lifetime = 0.2f;
             projectile.Source = this;
             projectile.Damage = AttackDamage;
 
