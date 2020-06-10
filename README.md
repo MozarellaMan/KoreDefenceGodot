@@ -18,6 +18,6 @@ If you won't code in C#, then you can use GDScript and code in the editor. It's 
 
 # Things to know
 
-The components of the game are designed to be object oriented - but it might not look that way because of the lack of constructors.
-This is because of the way Godot works with C#.
+The components of the game are designed to be object oriented - but it might not look that way because of the lack of constructors.  
+This is because of the way Godot works with C#.  
 The method I use as a sort of "constructor" is called "Setup()".
