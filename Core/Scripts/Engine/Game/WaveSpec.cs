@@ -190,7 +190,7 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Game
         public class WaveDefinition
         {
             public readonly EnemyPoolWave[] EnemyWaves;
-            public readonly string[] Popups;
+            public readonly string[]? Popups;
             public readonly float SpawnDelay;
 
             public WaveDefinition(float spawnDelay, EnemyPoolWave[] enemyPoolWaves, string[] popups)

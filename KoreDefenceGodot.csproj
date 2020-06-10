@@ -15,6 +15,7 @@
     <ApiConfiguration Condition=" '$(Configuration)' != 'ExportRelease' ">Debug</ApiConfiguration>
     <ApiConfiguration Condition=" '$(Configuration)' == 'ExportRelease' ">Release</ApiConfiguration>
     <LangVersion>8</LangVersion>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'ExportDebug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>

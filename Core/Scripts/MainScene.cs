@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Diagnostics;
 using Godot;
 using KoreDefenceGodot.Core.Scripts.Engine.Game;
 using KoreDefenceGodot.Core.Scripts.Engine.Tiles;
@@ -11,11 +12,11 @@ namespace KoreDefenceGodot.Core.Scripts
     public abstract class MainScene : Node2D
     {
         private const string GameTitle = "Kore Defence";
-        private List<BaseTower> _currentTowers;
-        private Path _gamePath;
-        private PlayerBase _playerBase;
-        private Wave _runningWave;
-        private TileSystem _tileSystem;
+        private List<BaseTower> _currentTowers = null!;
+        private Path _gamePath = null!;
+        private PlayerBase? _playerBase;
+        private Wave? _runningWave;
+        private TileSystem? _tileSystem;
 
 
         private void LoadTilesAndPath()
@@ -27,7 +28,7 @@ namespace KoreDefenceGodot.Core.Scripts
 
             // Generate Path
             _gamePath = new Path();
-            _gamePath.Setup(_tileSystem.Tiles, new[] {2, 2, 2, 2, 2, 2, 2, 1, -10, 10, -9},
+            _gamePath.Setup(_tileSystem?.Tiles!, new[] {2, 2, 2, 2, 2, 2, 2, 1, -10, 10, -9},
                 new[] {3, -3, 2, -3, 2, -3, 3, 2, 3, 2, 2});
 
             // Create player base at end of Path
@@ -48,8 +49,9 @@ namespace KoreDefenceGodot.Core.Scripts
             GD.Print(GameInfo.TowerList.Count);
             GD.Print("Main Scene ready!");
             LoadTilesAndPath();
-            _runningWave.Setup(_gamePath, _playerBase);
-            _runningWave.CreateWave();
+            Debug.Assert(_playerBase != null, nameof(_playerBase) + " != null");
+            _runningWave?.Setup(_gamePath, _playerBase!);
+            _runningWave?.CreateWave();
             GameInfo.GamePath = _gamePath;
         }
 
@@ -60,7 +62,7 @@ namespace KoreDefenceGodot.Core.Scripts
 
         public override void _PhysicsProcess(float delta)
         {
-            _runningWave.RunWave(delta);
+            _runningWave?.RunWave(delta);
         }
     }
 }

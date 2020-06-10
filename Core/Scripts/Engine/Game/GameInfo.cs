@@ -12,19 +12,19 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Game
     {
         public static Color InvalidColour = new Color(255, 0, 0, 0.5f);
         public static Color ValidColour = new Color(255, 255, 255, 0.5f);
-        public List<BaseEnemy> EnemyList { get; set; }
-        public static List<BaseTower> TowerList { get; set; }
+        public List<BaseEnemy>? EnemyList { get; set; }
+        public static List<BaseTower>? TowerList { get; set; }
 
         // TODO : Implement towers + tower list
         /// <summary>
         ///     List of all tiles, needed for lava collisions
         /// </summary>
-        public Tile[,] TileList { get; set; }
+        public Tile[,]? TileList { get; set; }
 
-        public static Path GamePath { get; set; }
+        public static Path? GamePath { get; set; }
 
-        // TODO Impelement currency
-        public Player.Player Player { get; set; }
+        // TODO Implement currency
+        public Player.Player? Player { get; set; }
 
         // TODO Implement tile finder
         // TODO Implement tower remover?
@@ -40,7 +40,7 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Game
         /// </summary>
         public static int WaveNumber { get; set; } = 1;
 
-        public PlayerBase PlayerBase { get; set; }
+        public PlayerBase? PlayerBase { get; set; }
 
         // flags used for achievements
         public bool HasUsedSlownessFlag { get; set; } = false;

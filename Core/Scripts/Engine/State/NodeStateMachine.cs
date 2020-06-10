@@ -5,12 +5,13 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.State
     public class NodeStateMachine<TNode, TState> : IStateMachine<TNode, TState>
         where TState : IState<TNode>
     {
-        private TState _previousState;
+        private TState _previousState = default!;
 
         public NodeStateMachine(TNode node, TState initState)
         {
             Node = node;
             CurrentState = initState;
+            GlobalState = default!;
         }
 
         // Global state is optional

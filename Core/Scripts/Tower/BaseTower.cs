@@ -16,33 +16,33 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
         // TODO : Tower upgrades
         // TODO : Tower projectile status effect
 
-        private Vector2 _clickOffsetInTower;
+        private readonly Vector2 _clickOffsetInTower = Vector2.Zero;
         private protected bool _hasShot;
         private bool _isDeleted;
 
-        private Sprite _towerBody;
+        private Sprite? _towerBody;
 
 
-        public Area2D AttackArea;
+        public Area2D AttackArea = null!;
         public Color AttackColour = GameInfo.ValidColour;
         private protected int AttackDamage;
         public int AttackRadius;
-        public StaticBody2D CollisionBody;
-        public BaseEnemy CurrentTarget;
+        public StaticBody2D CollisionBody = null!;
+        public BaseEnemy? CurrentTarget;
         public Vector2 DragStart;
         private protected float FirePeriod;
-        public CollisionShape2D PlayerCollision;
+        public CollisionShape2D PlayerCollision = null!;
         private protected int ProjectileCollateral;
-        private protected PackedScene ProjectileResource;
+        private protected PackedScene ProjectileResource = null!;
         public bool Purchased = true;
         private protected float ShootTimeCounter;
-        public List<BaseEnemy> Targets;
-        public AnimatedSprite TowerGun;
-        public TowerType TowerType;
+        public List<BaseEnemy> Targets = null!;
+        public AnimatedSprite TowerGun = null!;
+        public TowerType TowerType = null!;
 
 
         // TODO : Tower type
-        public NodeStateMachine<BaseTower, DefaultTowerState> TowerStateMachine { get; private set; }
+        public NodeStateMachine<BaseTower, DefaultTowerState> TowerStateMachine { get; private set; } = null!;
 
         public override void _Ready()
         {
@@ -86,20 +86,26 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
         /// </summary>
         /// <param name="enemy">the enemy being targeted</param>
         /// <param name="delta">frame delta time</param>
-        public virtual void Shoot(BaseEnemy enemy, float delta)
+        public virtual void Shoot(BaseEnemy? enemy, float delta)
         {
             ShootTimeCounter += delta;
-            if (!(ShootTimeCounter > FirePeriod)) return;
-            _hasShot = true;
-            // projectile exists and is instantiated
-            if (!(ProjectileResource.Instance() is Projectile projectile)) return;
-            AddChild(projectile);
-            projectile.Setup(ProjectileCollateral);
-            projectile.Source = this;
-            projectile.Damage = AttackDamage;
-            projectile.SetVelocity(this, enemy.GlobalPosition, ProjectileSpeed);
-            projectile.FlipSprite();
-            projectile.LookAt(enemy.GlobalPosition);
+
+            if (enemy != null)
+            {
+                if (!(ShootTimeCounter > FirePeriod)) return;
+                _hasShot = true;
+                // projectile exists and is instantiated
+                if (!(ProjectileResource.Instance() is Projectile projectile)) return;
+                AddChild(projectile);
+                projectile.Setup(ProjectileCollateral);
+                projectile.Source = this;
+                projectile.Damage = AttackDamage;
+
+                projectile.SetVelocity(this, enemy.GlobalPosition, ProjectileSpeed);
+                projectile.FlipSprite();
+                projectile.LookAt(enemy.GlobalPosition);
+            }
+
             ShootTimeCounter -= FirePeriod;
         }
 
@@ -192,7 +198,8 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
         /// <returns>true if colliding with path, false otherwise</returns>
         public bool CollidesWithPath()
         {
-            var pathPoints = GameInfo.GamePath.PathPoints;
+            var pathPoints = GameInfo.GamePath?.PathPoints;
+            if (pathPoints == null) return false;
             for (var i = 0; i < pathPoints.Length / 2 - 1; i++)
             {
                 var x1 = pathPoints[i, 0];

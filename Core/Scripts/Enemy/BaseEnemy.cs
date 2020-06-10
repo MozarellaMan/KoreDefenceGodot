@@ -8,8 +8,8 @@ namespace KoreDefenceGodot.Core.Scripts.Enemy
 {
     public abstract class BaseEnemy : KinematicBody2D
     {
-        private AnimatedSprite _enemySprite;
-        private Path _gamePath;
+        private AnimatedSprite _enemySprite = null!;
+        private Path _gamePath = null!;
 
         /// <summary>
         ///     Used to check if there are any points go to left on the path
@@ -23,14 +23,14 @@ namespace KoreDefenceGodot.Core.Scripts.Enemy
         /// </summary>
         private Vector2 _target;
 
-        private PlayerBase _targetBase;
+        private PlayerBase? _targetBase;
         private float _time;
         private int _travelCount;
         private int Health { get; set; }
         private float Speed { get; set; }
         private bool Affected { get; set; }
-        public NodeStateMachine<BaseEnemy, DefaultEnemyState> EnemyStateMachine { get; private set; }
-        public EnemyType EnemyType { get; set; }
+        public NodeStateMachine<BaseEnemy, DefaultEnemyState> EnemyStateMachine { get; private set; } = null!;
+        public EnemyType EnemyType { get; private set; } = null!;
 
         /// <summary>
         ///     Flag that tells whether the enemy has reached the player base.
@@ -148,7 +148,7 @@ namespace KoreDefenceGodot.Core.Scripts.Enemy
 
         public void AttackBase()
         {
-            _targetBase.Damage(EnemyType.Damage);
+            _targetBase?.Damage(EnemyType.Damage);
         }
 
 

@@ -13,25 +13,30 @@ namespace KoreDefenceGodot.Core.Scripts.Tower.Towers
             base._Ready();
         }
 
-        public override void Shoot(BaseEnemy enemy, float delta)
+        public override void Shoot(BaseEnemy? enemy, float delta)
         {
             ShootTimeCounter += delta;
-            if (!(ShootTimeCounter > FirePeriod)) return;
-            _hasShot = true;
-            // projectile exists and is instantiated
-            if (!(ProjectileResource.Instance() is Projectile projectile)) return;
-            if (!(ProjectileResource.Instance() is Projectile projectile2)) return;
 
-            // adding projectiles (i.e. instancing) to the screen, xOffset from the gun
+            if (enemy != null)
+            {
+                if (!(ShootTimeCounter > FirePeriod)) return;
+                _hasShot = true;
+                // projectile exists and is instantiated
+                if (!(ProjectileResource.Instance() is Projectile projectile)) return;
+                if (!(ProjectileResource.Instance() is Projectile projectile2)) return;
 
-            AddChild(projectile);
-            AddChild(projectile2);
-            projectile.Position = new Vector2(TowerGun.Position.x + 8, TowerGun.Position.y + 5);
-            projectile2.Position = new Vector2(TowerGun.Position.x - 8, TowerGun.Position.y - 5);
+                // adding projectiles (i.e. instancing) to the screen, xOffset from the gun
+
+                AddChild(projectile);
+                AddChild(projectile2);
+                projectile.Position = new Vector2(TowerGun.Position.x + 8, TowerGun.Position.y + 5);
+                projectile2.Position = new Vector2(TowerGun.Position.x - 8, TowerGun.Position.y - 5);
 
 
-            SetupProjectile(projectile, enemy, 8, 5);
-            SetupProjectile(projectile2, enemy, 8, 5, -1);
+                SetupProjectile(projectile, enemy, 8, 5);
+                SetupProjectile(projectile2, enemy, 8, 5, -1);
+            }
+
             ShootTimeCounter -= FirePeriod;
         }
 

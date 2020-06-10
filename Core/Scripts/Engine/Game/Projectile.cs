@@ -13,7 +13,7 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Game
 
         // TODO Status effects
         private int _enemyHitCount;
-        private AnimatedSprite _projectileSprite;
+        private AnimatedSprite _projectileSprite = null!;
         private float _timeSinceCreation;
         public Vector2 Acceleration = new Vector2(0, 0);
 
@@ -22,7 +22,7 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Game
         internal Vector2 Velocity { get; set; }
         public bool PlayAnimation { get; set; }
 
-        public Node Source { get; set; }
+        public Node? Source { get; set; }
 
         /// <summary>
         ///     Part of instantiating a new projectile
@@ -92,9 +92,14 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Game
             // TODO : Implement Collateral achievement
 
             if (enemy.EnemyType == EnemyType.Korechanic)
-                enemy.DealDamage(Damage, Source);
+            {
+                if (Source != null) enemy.DealDamage(Damage, Source);
+            }
             else
+            {
                 enemy.DealDamage(Damage);
+            }
+
             _enemiesShot.Add(enemy);
 
             // TODO : Check for effects
