@@ -184,6 +184,7 @@ namespace KoreDefenceGodot.Core.Scripts.Enemy
             }
         }
 
+
         public void EnemyReachedBase()
         {
             HasReachedBase = true;

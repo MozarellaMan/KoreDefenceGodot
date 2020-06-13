@@ -33,9 +33,9 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Game
         /// <param name="playAnimation">if this projectile should play it's animation, default is true</param>
         public void Setup(int collateral, bool playAnimation = true)
         {
-            _collateral = collateral;
-            PlayAnimation = playAnimation;
+            (_collateral, PlayAnimation) = (collateral, playAnimation);
         }
+
 
         public override void _Ready()
         {
