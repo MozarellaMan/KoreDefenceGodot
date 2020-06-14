@@ -1,6 +1,7 @@
 # KoreDefenceGodot
 Porting my university group project game to be playable on the Web!
 
+Try playing the current release here: https://mozarellaman.github.io/KoreDefenceGame/
 # How To Build
 
 Clone the repository
