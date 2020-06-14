@@ -13,3 +13,5 @@ data_*/
 # Releases
 releases/
 /.idea/
+/releases/web/index.html
+/releases/web/index.js

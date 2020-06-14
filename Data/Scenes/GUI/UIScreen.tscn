@@ -33,3 +33,4 @@ size_flags_vertical = 0
 [node name="Shop" parent="HBoxContainer/SideMenu" instance=ExtResource( 1 )]
 margin_left = 0.0
 margin_right = 310.0
+mouse_filter = 1
