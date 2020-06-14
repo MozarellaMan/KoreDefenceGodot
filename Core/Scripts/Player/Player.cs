@@ -14,7 +14,7 @@ namespace KoreDefenceGodot.Core.Scripts.Player
 		[Export] private int _projectileCollateral = 1;
 		[Export] private float _projectileCooldown = 0.25f;
 		[Export] private int _projectileDamage = 50;
-		[Export] private float _projectileLifetime = 0.25f;
+		[Export] private float _projectileLifetime = 0.13f;
 		[Export] private int _projectileSpeed = 20;
 		private bool _rightFlag;
 
