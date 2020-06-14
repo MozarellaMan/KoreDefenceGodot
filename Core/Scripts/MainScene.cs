@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using Godot;
 using KoreDefenceGodot.Core.Scripts.Engine.Game;
+using KoreDefenceGodot.Core.Scripts.Engine.GUI;
 using KoreDefenceGodot.Core.Scripts.Engine.Tiles;
 using KoreDefenceGodot.Core.Scripts.Player;
 using KoreDefenceGodot.Core.Scripts.Tower;
@@ -40,6 +41,7 @@ namespace KoreDefenceGodot.Core.Scripts
 
 		public override void _Ready()
 		{
+			GUIManager.SetupTowerShop();
 			_currentTowers = new List<BaseTower>();
 			foreach (var child in GetChildren())
 				if (child is BaseTower tower)

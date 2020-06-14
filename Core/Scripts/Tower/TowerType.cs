@@ -1,14 +1,17 @@
-﻿namespace KoreDefenceGodot.Core.Scripts.Tower
+﻿using System.Collections.Generic;
+
+namespace KoreDefenceGodot.Core.Scripts.Tower
 {
     public class TowerType
     {
+        
         public static readonly TowerType Catapult = new TowerType(
             50,
             250,
             1.5f,
             300,
             1,
-            "res://Data/Assets/towers/icons/bluesun.png",
+            "res://Data/Assets/towers/icons/catapult.png",
             "Rock Catapult",
             "",
             "An advanced device dating back to 4th century BC. You have re-purposed and upgraded it to handle the heat of volcanic rocks infused with Firon. It also includes a selfie function."
@@ -62,8 +65,10 @@
             "Your ultimate creation.\nBillions of Zircon in R&D, and many tears and breakdowns led to this. This is your magnum opus. Concentrated, powerful, piercing Firon energy. Handle with care. "
         );
 
+        public static readonly List<TowerType> Types = new List<TowerType> {Catapult, Firemaster, Geyser, BlueSunArrow, FironSphere};
 
-        public TowerType(int damage, int cost, float fireRate, int attackRadius, int collateral, string iconPath,
+
+        private TowerType(int damage, int cost, float fireRate, int attackRadius, int collateral, string iconPath,
             string name, string projectilePath, string description)
         {
             Damage = damage;

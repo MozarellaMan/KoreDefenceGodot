@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Core/Scripts/MainScene.cs" type="Script" id=1]
 [ext_resource path="res://Core/Scripts/Player/Player.cs" type="Script" id=2]
@@ -6,10 +6,19 @@
 [ext_resource path="res://Data/Scenes/BaseMap.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Data/Scenes/GUI/UIScreen.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Data/Scenes/Tower/Firemaster.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Core/Scripts/Engine/GUI/GUIManager.cs" type="Script" id=7]
 [ext_resource path="res://Data/Scenes/Game/Wave.tscn" type="PackedScene" id=8]
 
 [node name="Root" type="Node2D"]
 script = ExtResource( 1 )
+
+[node name="GUIManager" type="Node" parent="."]
+script = ExtResource( 7 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 4
+
+[node name="UIScreen" parent="CanvasLayer" instance=ExtResource( 5 )]
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 219.112, 665.513 )
@@ -28,8 +37,3 @@ position = Vector2( 394.168, 275.272 )
 
 [node name="Firemaster3" parent="." instance=ExtResource( 6 )]
 position = Vector2( 489.802, 425.185 )
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = 4
-
-[node name="UIScreen" parent="CanvasLayer" instance=ExtResource( 5 )]

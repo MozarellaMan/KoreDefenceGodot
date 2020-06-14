@@ -64,6 +64,7 @@
     <Compile Include="Core\Scripts\Engine\Game\Projectile.cs" />
     <Compile Include="Core\Scripts\Engine\Game\Wave.cs" />
     <Compile Include="Core\Scripts\Engine\Game\WaveSpec.cs" />
+    <Compile Include="Core\Scripts\Engine\GUI\GUIManager.cs" />
     <Compile Include="Core\Scripts\Engine\GUI\TowerButton.cs" />
     <Compile Include="Core\Scripts\Engine\State\IState.cs" />
     <Compile Include="Core\Scripts\Engine\State\IStateMachine.cs" />
@@ -71,6 +72,7 @@
     <Compile Include="Core\Scripts\Engine\Tiles\Path.cs" />
     <Compile Include="Core\Scripts\Engine\Tiles\Tile.cs" />
     <Compile Include="Core\Scripts\Engine\Tiles\TileSystem.cs" />
+    <Compile Include="Core\Scripts\GameUtil.cs" />
     <Compile Include="Core\Scripts\MainScene.cs" />
     <Compile Include="Core\Scripts\Player\Player.cs" />
     <Compile Include="Core\Scripts\Player\PlayerBase.cs" />

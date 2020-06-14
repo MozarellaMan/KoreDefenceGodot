@@ -21,6 +21,7 @@ config/icon="res://Data/Assets/icon.png"
 
 [autoload]
 
+GameUtil="*res://Core/Scripts/GameUtil.cs"
 GameInfo="*res://Core/Scripts/Engine/Game/GameInfo.cs"
 WaveSpec="*res://Core/Scripts/Engine/Game/WaveSpec.cs"
 
@@ -30,6 +31,7 @@ window/size/width=1000
 window/size/height=800
 window/stretch/mode="2d"
 window/stretch/aspect="keep"
+window/size/resizable.HTML5=false
 
 [importer_defaults]
 
