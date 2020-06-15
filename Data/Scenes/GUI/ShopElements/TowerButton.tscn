@@ -75,7 +75,7 @@ __meta__ = {
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Tower/TowerInfo"]
 margin_right = 310.0
-margin_bottom = 100.0
+margin_bottom = 120.0
 grow_horizontal = 2
 rect_min_size = Vector2( 0, 100 )
 size_flags_horizontal = 5
@@ -85,14 +85,16 @@ __meta__ = {
 }
 
 [node name="TowerLabel" type="Label" parent="VBoxContainer/Tower/TowerInfo/VBoxContainer"]
-margin_top = 79.0
+margin_top = 99.0
 margin_right = 310.0
-margin_bottom = 100.0
+margin_bottom = 120.0
 size_flags_horizontal = 7
 size_flags_vertical = 14
 theme = ExtResource( 2 )
 text = "Rock Catapult"
 align = 1
 valign = 1
+[connection signal="button_down" from="VBoxContainer/Tower" to="." method="OnButtonDown"]
+[connection signal="button_up" from="VBoxContainer/Tower" to="." method="OnButtonUp"]
 [connection signal="mouse_entered" from="VBoxContainer/Tower" to="." method="OnMouseEnter"]
 [connection signal="mouse_exited" from="VBoxContainer/Tower" to="." method="OnMouseExit"]

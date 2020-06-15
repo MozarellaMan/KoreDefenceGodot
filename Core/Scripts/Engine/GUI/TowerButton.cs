@@ -49,9 +49,23 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.GUI
 		{
 			OnHoverEnd();
 		}
+		
+		
+		private void OnButtonDown()
+		{
+			GD.Print($"{_type?.Name} has been pressed!");
+		}
+
+
+		private void OnButtonUp()
+		{
+			GD.Print($"{_type?.Name} has been released!");
+		}
+
 
 	}
 }
+
 
 
 
