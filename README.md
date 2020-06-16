@@ -1,6 +1,7 @@
 # KoreDefenceGodot
 Porting my university group project game to be playable on the Web!
 
+Try playing the current release here: https://mozarellaman.github.io/KoreDefenceGame/
 # How To Build
 
 Clone the repository
@@ -16,7 +17,11 @@ https://www.youtube.com/watch?v=N4M5eV982n0
 
 If you won't code in C#, then you can use GDScript and code in the editor. It's pretty similar to Python.
 
-# Things to know
+# Screenshots
+
+
+
+# Useful Things to know
 
 The components of the game are designed to be object oriented - but it might not look that way because of the lack of constructors.  
 This is because of the way Godot works with C#.  
