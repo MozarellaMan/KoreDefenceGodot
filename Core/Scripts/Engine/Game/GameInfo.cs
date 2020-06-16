@@ -14,8 +14,7 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Game
         public static Color ValidColour = new Color(255, 255, 255, 0.5f);
         public List<BaseEnemy>? EnemyList { get; set; }
         public static List<BaseTower>? TowerList { get; set; }
-
-        // TODO : Implement towers + tower list
+        
         /// <summary>
         ///     List of all tiles, needed for lava collisions
         /// </summary>
@@ -27,7 +26,6 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Game
         public Player.Player? Player { get; set; }
 
         // TODO Implement tile finder
-        // TODO Implement tower remover?
         public int MoneySpawnCount { get; set; } = 0;
 
         /// <summary>
