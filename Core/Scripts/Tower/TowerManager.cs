@@ -8,7 +8,10 @@ using static KoreDefenceGodot.Core.Scripts.Tower.TowerType;
 
 namespace KoreDefenceGodot.Core.Scripts.Tower
 {
-    public class TowerManager : Node2D
+    /// <summary>
+    ///     Responsible for removing, adding, and updating towers in the game world.
+    /// </summary>
+    public abstract class TowerManager : Node2D
     {
         private List<BaseTower> _towers =  null!;
         private readonly Dictionary<TowerType, string?> _towerResources = new Dictionary<TowerType, string?>
@@ -19,7 +22,6 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
             {BlueSunArrow,null},
             {FironSphere, null}
         };
-        
 
         public override void _Ready()
         {
@@ -32,7 +34,8 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
 
         public override void _Process(float delta)
         {
-            _towers = _towers.Where(tower => tower != null).ToList();
+            _towers.Where(tower => tower.IsToBeDeleted).ToList().ForEach(tower => tower.QueueFree());
+            _towers = _towers.Where(tower => tower.IsToBeDeleted == false).ToList();
         }
 
         public void BuyTower(TowerType type, Vector2 pos)
@@ -61,7 +64,6 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
             newTower.Position = pos;
             newTower.Purchased = true;
             _towers.Add(newTower);
-            //GD.Print(GetChildren());
         }
     }
 }

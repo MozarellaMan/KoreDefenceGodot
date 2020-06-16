@@ -18,7 +18,7 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
 
 		private readonly Vector2 _clickOffsetInTower = Vector2.Zero;
 		private protected bool _hasShot;
-		private bool _isDeleted;
+		public bool IsToBeDeleted;
 
 		private Sprite? _towerBody;
 
@@ -50,7 +50,7 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
 		public override void _Ready()
 		{
 			ZAsRelative = false;
-			_isDeleted = false;
+			IsToBeDeleted = false;
 			AttackArea = GetNode<Area2D>("Area2D");
 			TowerGun = GetNode<AnimatedSprite>("Gun");
 			ProjectileResource = GD.Load<PackedScene>(TowerType.ProjectilePath);
@@ -67,11 +67,7 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
 			CollisionBody = GetNode<StaticBody2D>("StaticBody2D");
 			PlayerCollision = CollisionBody.GetNode<CollisionShape2D>("CollisionShape2D");
 		}
-
-		public override void _Process(float delta)
-		{
-			if(_isDeleted) QueueFree(); // delete tower if marked for deletion
-		}
+		
 
 		public override void _PhysicsProcess(float delta)
 		{
@@ -284,6 +280,6 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
 		/// </summary>
 		public void ResetToDragStart() => Position = DragStart;
 
-		public void SetForDeletion() => _isDeleted = true;
+		public void SetForDeletion() => IsToBeDeleted = true;
 	}
 }
