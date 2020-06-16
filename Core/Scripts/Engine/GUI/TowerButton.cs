@@ -3,7 +3,7 @@ using KoreDefenceGodot.Core.Scripts.Tower;
 
 namespace KoreDefenceGodot.Core.Scripts.Engine.GUI
 {
-	public class TowerButton : MarginContainer
+	public abstract class TowerButton : MarginContainer
 	{
 		private Label _priceLabel =  null!;
 		private TextureButton _button = null!;
@@ -12,8 +12,10 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.GUI
 		private ColorRect _background = null!;
 		private readonly Color _hoverColour = Color.Color8(46, 46, 46,200);
 		private readonly Color _backgroundColour =  new Color(1, 1, 1,0);
+		private TowerManager _towerManager = null!;
 
-		public void Setup(TowerType type) => _type = type;
+		public void Setup(TowerType type, TowerManager manager) => 
+			(_type, _towerManager) = (type, manager);
 
 
 		public override void _Ready()
@@ -50,21 +52,27 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.GUI
 			OnHoverEnd();
 		}
 		
-		
-		private void OnButtonDown()
+
+		private void OnGuiInput(InputEvent @event)
 		{
-			GD.Print($"{_type?.Name} has been pressed!");
+			if (@event.IsActionPressed("picked_up"))
+			{
+				if (@event is InputEventMouseButton mouseButton && _type != null)
+				{
+					_towerManager.BuyTower(_type, mouseButton.GlobalPosition);
+				}
+			}
+
+			if (@event.IsActionReleased("picked_up"))
+			{
+				//.Print($"{_type?.Name} was released!");
+			}
 		}
-
-
-		private void OnButtonUp()
-		{
-			GD.Print($"{_type?.Name} has been released!");
-		}
-
 
 	}
 }
+
+
 
 
 

@@ -1,11 +1,9 @@
-using System.Collections.Generic;
 using System.Diagnostics;
 using Godot;
 using KoreDefenceGodot.Core.Scripts.Engine.Game;
 using KoreDefenceGodot.Core.Scripts.Engine.GUI;
 using KoreDefenceGodot.Core.Scripts.Engine.Tiles;
 using KoreDefenceGodot.Core.Scripts.Player;
-using KoreDefenceGodot.Core.Scripts.Tower;
 using Path = KoreDefenceGodot.Core.Scripts.Engine.Tiles.Path;
 
 namespace KoreDefenceGodot.Core.Scripts
@@ -13,7 +11,6 @@ namespace KoreDefenceGodot.Core.Scripts
 	public abstract class MainScene : Node2D
 	{
 		private const string GameTitle = "Kore Defence";
-		private List<BaseTower> _currentTowers = null!;
 		private Path _gamePath = null!;
 		private PlayerBase? _playerBase;
 		private Wave? _runningWave;
@@ -42,13 +39,6 @@ namespace KoreDefenceGodot.Core.Scripts
 		public override void _Ready()
 		{
 			GUIManager.SetupTowerShop();
-			_currentTowers = new List<BaseTower>();
-			foreach (var child in GetChildren())
-				if (child is BaseTower tower)
-					_currentTowers.Add(tower);
-
-			GameInfo.TowerList = _currentTowers;
-			GD.Print(GameInfo.TowerList.Count);
 			GD.Print("Main Scene ready!");
 			LoadTilesAndPath();
 			Debug.Assert(_playerBase != null, nameof(_playerBase) + " != null");

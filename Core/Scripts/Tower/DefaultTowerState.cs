@@ -100,7 +100,6 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
             public override void OnEnter(BaseTower entity)
             {
                 entity.DragStart = entity.Position;
-                entity.ZIndex = 4;
                 entity.PlayerCollision.Disabled = true;
                 // TODO : show gui sell menu
             }
@@ -110,7 +109,7 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
                 var mousePos = entity.GetGlobalMousePosition();
                 entity.Update();
                 entity.DragTo(mousePos);
-
+                entity.ZIndex = 4;
                 var canPlace = entity.CanPlaceTower();
 
                 entity.AttackColour = canPlace ? GameInfo.ValidColour : GameInfo.InvalidColour;
@@ -145,6 +144,52 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
 
         private sealed class BuyingState : DefaultTowerState
         {
+            public override void OnEnter(BaseTower entity)
+            {
+                entity.DragStart = entity.Position;
+                entity.PlayerCollision.Disabled = true;
+            }
+
+            public override void Update(BaseTower entity, float delta)
+            {
+                PickedUp.Update(entity,delta);
+                entity.ZIndex = 10;
+            }
+
+            public override void HandleInput(BaseTower entity, InputEvent inputEvent)
+            {
+                if (!(inputEvent is InputEventMouseButton) || !inputEvent.IsActionReleased("picked_up")) return;
+
+                var canPlace = entity.CanPlaceTower();
+
+                if (canPlace)
+                {
+                    var purchased = GameInfo.GameCurrency.PurchaseTower(entity);
+                    if (purchased)
+                    {
+                        entity.TowerStateMachine.ChangeState(Idle);
+                    }
+                    else
+                    {
+                        entity.SetForDeletion();
+                    }
+                }
+                else
+                {
+                    entity.SetForDeletion();
+                }
+
+            }
+
+            public override void Draw(BaseTower entity)
+            {
+                PickedUp.Draw(entity);
+            }
+
+            public override void OnExit(BaseTower entity)
+            {
+                PickedUp.OnExit(entity);
+            }
         }
     }
 }

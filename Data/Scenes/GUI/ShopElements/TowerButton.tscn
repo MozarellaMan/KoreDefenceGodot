@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Data/Assets/towers/icons/catapult.png" type="Texture" id=1]
 [ext_resource path="res://Data/Scenes/GUI/Retro.tres" type="Theme" id=2]
 [ext_resource path="res://Data/Scenes/GUI/ShopElements/PriceLabel.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Core/Scripts/Engine/GUI/TowerButton.cs" type="Script" id=4]
+
+[sub_resource type="ImageTexture" id=1]
 
 [node name="TowerButton" type="MarginContainer"]
 margin_right = 310.0
@@ -57,7 +59,9 @@ margin_right = 310.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 0, 100 )
 size_flags_vertical = 7
+keep_pressed_outside = true
 texture_normal = ExtResource( 1 )
+texture_pressed = SubResource( 1 )
 expand = true
 stretch_mode = 3
 
@@ -94,7 +98,6 @@ theme = ExtResource( 2 )
 text = "Rock Catapult"
 align = 1
 valign = 1
-[connection signal="button_down" from="VBoxContainer/Tower" to="." method="OnButtonDown"]
-[connection signal="button_up" from="VBoxContainer/Tower" to="." method="OnButtonUp"]
+[connection signal="gui_input" from="VBoxContainer/Tower" to="." method="OnGuiInput"]
 [connection signal="mouse_entered" from="VBoxContainer/Tower" to="." method="OnMouseEnter"]
 [connection signal="mouse_exited" from="VBoxContainer/Tower" to="." method="OnMouseExit"]

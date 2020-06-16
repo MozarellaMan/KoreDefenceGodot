@@ -79,6 +79,7 @@
     <Compile Include="Core\Scripts\Player\PlayerBase.cs" />
     <Compile Include="Core\Scripts\Tower\BaseTower.cs" />
     <Compile Include="Core\Scripts\Tower\DefaultTowerState.cs" />
+    <Compile Include="Core\Scripts\Tower\TowerManager.cs" />
     <Compile Include="Core\Scripts\Tower\Towers\Firemaster.cs" />
     <Compile Include="Core\Scripts\Tower\TowerType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

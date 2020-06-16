@@ -23,7 +23,7 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Game
 
         public static Path? GamePath { get; set; }
 
-        public static Currency GameCurrency = new Currency();
+        public static Currency GameCurrency = new Currency(10000);
         public Player.Player? Player { get; set; }
 
         // TODO Implement tile finder

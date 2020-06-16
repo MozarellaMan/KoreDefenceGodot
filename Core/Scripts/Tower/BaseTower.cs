@@ -40,17 +40,22 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
 		public AnimatedSprite TowerGun = null!;
 		public TowerType TowerType = null!;
 
+		private DefaultTowerState _initialState =  DefaultTowerState.Idle;
 
-		// TODO : Tower type
+		
 		public NodeStateMachine<BaseTower, DefaultTowerState> TowerStateMachine { get; private set; } = null!;
 
+		public void Setup(DefaultTowerState initState) => _initialState = initState;
+		
 		public override void _Ready()
 		{
+			ZAsRelative = false;
+			_isDeleted = false;
 			AttackArea = GetNode<Area2D>("Area2D");
 			TowerGun = GetNode<AnimatedSprite>("Gun");
 			ProjectileResource = GD.Load<PackedScene>(TowerType.ProjectilePath);
 			TowerStateMachine =
-				new NodeStateMachine<BaseTower, DefaultTowerState>(this, DefaultTowerState.Idle,
+				new NodeStateMachine<BaseTower, DefaultTowerState>(this, _initialState,
 					DefaultTowerState.Global);
 
 			FirePeriod = 1f / TowerType.FireRate;
@@ -61,6 +66,11 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
 			Targets = new List<BaseEnemy>();
 			CollisionBody = GetNode<StaticBody2D>("StaticBody2D");
 			PlayerCollision = CollisionBody.GetNode<CollisionShape2D>("CollisionShape2D");
+		}
+
+		public override void _Process(float delta)
+		{
+			if(_isDeleted) QueueFree(); // delete tower if marked for deletion
 		}
 
 		public override void _PhysicsProcess(float delta)
@@ -273,5 +283,7 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
 		///     Drag start is set in the picked up or buying state
 		/// </summary>
 		public void ResetToDragStart() => Position = DragStart;
+
+		public void SetForDeletion() => _isDeleted = true;
 	}
 }
