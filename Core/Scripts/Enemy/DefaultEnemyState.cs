@@ -1,4 +1,5 @@
 ﻿using Godot;
+using KoreDefenceGodot.Core.Scripts.Engine.Game;
 using KoreDefenceGodot.Core.Scripts.Engine.State;
 
 namespace KoreDefenceGodot.Core.Scripts.Enemy
@@ -69,7 +70,7 @@ namespace KoreDefenceGodot.Core.Scripts.Enemy
         {
             public override void OnEnter(BaseEnemy entity)
             {
-                GD.Print("dead!");
+                GameInfo.GameCurrency.EnemyKillBonus(entity);
                 entity.QueueFree();
             }
         }
