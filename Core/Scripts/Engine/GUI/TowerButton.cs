@@ -59,7 +59,7 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.GUI
 			{
 				if (@event is InputEventMouseButton mouseButton && _type != null)
 				{
-					_towerManager.BuyTower(_type, mouseButton.GlobalPosition);
+					_towerManager.CreateTower(_type, mouseButton.GlobalPosition);
 				}
 			}
 

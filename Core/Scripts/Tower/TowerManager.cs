@@ -34,11 +34,17 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
 
         public override void _Process(float delta)
         {
+            // filter and remove deleted towers
             _towers.Where(tower => tower.IsToBeDeleted).ToList().ForEach(tower => tower.QueueFree());
             _towers = _towers.Where(tower => tower.IsToBeDeleted == false).ToList();
         }
 
-        public void BuyTower(TowerType type, Vector2 pos)
+        /// <summary>
+        ///     Creates a tower of the given type at the given position
+        /// </summary>
+        /// <param name="type">the type of tower</param>
+        /// <param name="pos">the tower position</param>
+        public void CreateTower(TowerType type, Vector2 pos)
         {
             if (_towerResources[type] is null)
             {
