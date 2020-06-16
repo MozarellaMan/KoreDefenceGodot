@@ -29,12 +29,14 @@ namespace KoreDefenceGodot.Core.Scripts.Tower.Towers
 
 				AddChild(projectile);
 				AddChild(projectile2);
-				projectile.Position = new Vector2(TowerGun.Position.x + 8, TowerGun.Position.y + 5);
-				projectile2.Position = new Vector2(TowerGun.Position.x - 8, TowerGun.Position.y - 5);
+				projectile.Position = new Vector2(TowerGun.Position.x + 5, TowerGun.Position.y + 5);
+				projectile2.Position = new Vector2(TowerGun.Position.x - 5, TowerGun.Position.y - 5);
+				projectile.Rotation = Rotation;
+				projectile2.Rotation = Rotation;
 
 
-				SetupProjectile(projectile, enemy, 8, 5);
-				SetupProjectile(projectile2, enemy, 8, 5, -1);
+				SetupProjectile(projectile, enemy, 5, 5);
+				SetupProjectile(projectile2, enemy, 5, 5, -1);
 			}
 
 			ShootTimeCounter -= FirePeriod;
@@ -59,9 +61,9 @@ namespace KoreDefenceGodot.Core.Scripts.Tower.Towers
 			projectile.Source = this;
 			projectile.Damage = AttackDamage;
 
+			var enemyPos = enemy.Position + new Vector2(xOffset, xOffset);
 			// get direction and magnitude
-			var direction =
-				Position.DirectionTo(new Vector2(enemy.GlobalPosition.x + xOffset, enemy.GlobalPosition.y + yOffset));
+			var direction = Position.DirectionTo(enemyPos);
 
 			var mag = (float) Math.Sqrt(direction.x * direction.x + direction.y * direction.y);
 
@@ -73,7 +75,7 @@ namespace KoreDefenceGodot.Core.Scripts.Tower.Towers
 
 			// turns sprite to look at enemy
 			projectile.LookAt(new Vector2(enemy.Position.x + xOffset * isSecond,
-				enemy.Position.y + yOffset * isSecond));
+				enemy.Position.y + xOffset * isSecond));
 		}
 
 
