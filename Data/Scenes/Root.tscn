@@ -1,11 +1,10 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Core/Scripts/MainScene.cs" type="Script" id=1]
 [ext_resource path="res://Core/Scripts/Player/Player.cs" type="Script" id=2]
 [ext_resource path="res://Data/Scenes/Player/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Data/Scenes/BaseMap.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Data/Scenes/GUI/UIScreen.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Data/Scenes/Tower/Firemaster.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Core/Scripts/Engine/GUI/GUIManager.cs" type="Script" id=7]
 [ext_resource path="res://Data/Scenes/Game/Wave.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Core/Scripts/Tower/TowerManager.cs" type="Script" id=9]
@@ -28,20 +27,6 @@ script = ExtResource( 2 )
 [node name="TowerManager" type="Node2D" parent="."]
 skew = 4.37114e-08
 script = ExtResource( 9 )
-
-[node name="Firemaster" parent="TowerManager" instance=ExtResource( 6 )]
-position = Vector2( 85.617, 198.521 )
-skew = 4.37114e-08
-z_as_relative = false
-
-[node name="Firemaster2" parent="TowerManager" instance=ExtResource( 6 )]
-position = Vector2( 394.168, 275.272 )
-skew = 4.37114e-08
-
-[node name="Firemaster3" parent="TowerManager" instance=ExtResource( 6 )]
-position = Vector2( 229.366, 416.861 )
-skew = 4.37114e-08
-z_as_relative = false
 
 [node name="GUILayer" type="Node2D" parent="."]
 z_index = 9

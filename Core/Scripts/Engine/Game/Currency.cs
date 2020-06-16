@@ -11,7 +11,7 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Game
         public int Coins
         {
             get => _coins;
-            set
+            private set
             {
                 _coins = value;
                 CurrencyString = $"Zircon: {_coins}";

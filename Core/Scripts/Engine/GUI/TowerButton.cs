@@ -1,4 +1,5 @@
 using Godot;
+using KoreDefenceGodot.Core.Scripts.Engine.Game;
 using KoreDefenceGodot.Core.Scripts.Tower;
 
 namespace KoreDefenceGodot.Core.Scripts.Engine.GUI
@@ -13,6 +14,8 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.GUI
 		private readonly Color _hoverColour = Color.Color8(46, 46, 46,200);
 		private readonly Color _backgroundColour =  new Color(1, 1, 1,0);
 		private TowerManager _towerManager = null!;
+		private Texture _normalTexture = null!;
+		private Texture _buyingTexture = null!;
 
 		public void Setup(TowerType type, TowerManager manager) => 
 			(_type, _towerManager) = (type, manager);
@@ -28,6 +31,8 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.GUI
 			_button.TextureNormal = GD.Load<Texture>(_type?.IconPath);
 			_towerLabel.Text = _type?.Name;
 			_priceLabel.Text = _type?.Cost.ToString();
+			_normalTexture = _button.TextureNormal;
+			_buyingTexture = _button.TexturePressed;
 		}
 
 		private void OnHover()
@@ -59,14 +64,19 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.GUI
 			{
 				if (@event is InputEventMouseButton mouseButton && _type != null)
 				{
-					_towerManager.CreateTower(_type, mouseButton.GlobalPosition);
+					if (GameInfo.GameCurrency.CanAfford(_type.Cost))
+						_towerManager.CreateTower(_type, mouseButton.GlobalPosition);
+					else
+					{
+						_background.Color = GameInfo.InvalidColour;
+						_button.TexturePressed = _normalTexture;
+					}
 				}
 			}
 
-			if (@event.IsActionReleased("picked_up"))
-			{
-				//.Print($"{_type?.Name} was released!");
-			}
+			if (!@event.IsActionReleased("picked_up")) return;
+			_background.Color = _backgroundColour;
+			_button.TexturePressed = _buyingTexture;
 		}
 
 	}
