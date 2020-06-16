@@ -137,29 +137,17 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
 			Targets.Remove(enemy);
 		}
 
-		public void PlayAttackAnimation()
-		{
-			TowerGun.Play("Attacking");
-		}
+		public void PlayAttackAnimation() => TowerGun.Play("Attacking");
 
-		public void PlayIdleAnimation()
-		{
-			TowerGun.Play("Idle");
-		}
+		public void PlayIdleAnimation() => TowerGun.Play("Idle");
 
-		public void DragTo(Vector2 pos)
-		{
-			Position = pos - _clickOffsetInTower;
-		}
+		public void DragTo(Vector2 pos) => Position = pos - _clickOffsetInTower;
 
 		/// <summary>
 		///     Get the tower gun sprite's bounding rectangle
 		/// </summary>
 		/// <returns> the rectangle </returns>
-		protected internal virtual Rect2 GetRect()
-		{
-			return GameInfo.GetRect(TowerGun);
-		}
+		protected internal virtual Rect2 GetRect() => GameUtil.GetRect(TowerGun);
 
 		/// <summary>
 		///     Checks if the tower can be placed at it's current Position value
@@ -230,10 +218,8 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
 		/// <summary>
 		///     Draws the "attack radius" visualisation on the screen when called
 		/// </summary>
-		public virtual void DrawAttackRadius()
-		{
+		public virtual void DrawAttackRadius() => 
 			DrawCircle(ToLocal(GlobalPosition), AttackRadius, AttackColour);
-		}
 
 
 		/// <summary>
@@ -286,9 +272,6 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
 		///     Reverts the tower's position to the position before it was picked up.
 		///     Drag start is set in the picked up or buying state
 		/// </summary>
-		public void ResetToDragStart()
-		{
-			Position = DragStart;
-		}
+		public void ResetToDragStart() => Position = DragStart;
 	}
 }

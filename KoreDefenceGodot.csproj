@@ -60,6 +60,7 @@
     <Compile Include="Core\Scripts\Enemy\EnemyFactory.cs" />
     <Compile Include="Core\Scripts\Enemy\EnemyPoolWave.cs" />
     <Compile Include="Core\Scripts\Enemy\EnemyType.cs" />
+    <Compile Include="Core\Scripts\Engine\Game\Currency.cs" />
     <Compile Include="Core\Scripts\Engine\Game\GameInfo.cs" />
     <Compile Include="Core\Scripts\Engine\Game\Projectile.cs" />
     <Compile Include="Core\Scripts\Engine\Game\Wave.cs" />
