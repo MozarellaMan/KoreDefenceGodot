@@ -1,6 +1,7 @@
 #nullable enable
 using Godot;
 using KoreDefenceGodot.Core.Scripts.Enemy;
+using KoreDefenceGodot.Core.Scripts.Engine.Game;
 
 namespace KoreDefenceGodot.Core.Scripts.Player
 {
@@ -12,6 +13,9 @@ namespace KoreDefenceGodot.Core.Scripts.Player
 		private bool _takingDmg;
 		private float _time;
 		private int Health { get; set; }
+		
+		[Signal]
+		public delegate void HealthChanged(int newHealth);
 
 		public void Setup(int x, int y, int health = DefaultHealth)
 		{
@@ -30,6 +34,7 @@ namespace KoreDefenceGodot.Core.Scripts.Player
 			_baseSprite = GetNode<AnimatedSprite>("Base");
 			_baseSprite.Play("BaseNormal");
 			_shader = _baseSprite.Material as ShaderMaterial;
+			GameInfo.PlayerBase = this;
 		}
 
 		public override void _Process(float delta)
@@ -46,6 +51,7 @@ namespace KoreDefenceGodot.Core.Scripts.Player
 			var newHealth = Health - amount;
 			Health = newHealth < 0 ? 0 : newHealth;
 			_takingDmg = true;
+			EmitSignal(nameof(HealthChanged), Health);
 		}
 
 		private void UpdateDamage(float delta)
@@ -54,6 +60,8 @@ namespace KoreDefenceGodot.Core.Scripts.Player
 			const float animTime = 0.1f;
 			if (!(_time > animTime)) return;
 			_time = 0;
+			
+			// responsible for the "damage flash" effect
 			if (_takingDmg && (int) (_shader?.GetShaderParam("FlashStatus") ?? false) == 0)
 			{
 				_shader?.SetShaderParam("FlashStatus", 1);
@@ -74,5 +82,7 @@ namespace KoreDefenceGodot.Core.Scripts.Player
 		{
 			if (body is BaseEnemy enemy) enemy.EnemyReachedBase();
 		}
+
+
 	}
 }

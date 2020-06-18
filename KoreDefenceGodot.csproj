@@ -67,6 +67,7 @@
     <Compile Include="Core\Scripts\Engine\Game\WaveSpec.cs" />
     <Compile Include="Core\Scripts\Engine\GUI\CurrencyLabel.cs" />
     <Compile Include="Core\Scripts\Engine\GUI\GUIManager.cs" />
+    <Compile Include="Core\Scripts\Engine\GUI\HealthBar.cs" />
     <Compile Include="Core\Scripts\Engine\GUI\TowerButton.cs" />
     <Compile Include="Core\Scripts\Engine\State\IState.cs" />
     <Compile Include="Core\Scripts\Engine\State\IStateMachine.cs" />
