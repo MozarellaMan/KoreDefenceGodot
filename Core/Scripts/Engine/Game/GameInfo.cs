@@ -39,7 +39,7 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Game
         public static int WaveNumber { get; set; } = 1;
 
         public static PlayerBase? PlayerBase { get; set; }
-        public static readonly int DefaultMaxHealth = 1000;
+        public const int DefaultMaxHealth = 1000;
 
         // flags used for achievements
         public bool HasUsedSlownessFlag { get; set; } = false;
