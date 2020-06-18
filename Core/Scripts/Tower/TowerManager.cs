@@ -70,6 +70,7 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
             newTower.Position = pos;
             newTower.Purchased = true;
             _towers.Add(newTower);
+            GameInfo.TowerList = _towers;
         }
     }
 }

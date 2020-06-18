@@ -82,7 +82,7 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
 		public override void _Draw()
 		{
 			// uncomment to test bounding rectangle
-			//DrawRect(GetRect(), Colors.White);
+			// DrawRect(GetRect(), Colors.White);
 			// GD.Print(ToGlobal(GetRect().Position));
 			TowerStateMachine.Draw();
 		}
