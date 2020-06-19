@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using System;
+using Godot;
 using KoreDefenceGodot.Core.Scripts.Engine.Game;
 using KoreDefenceGodot.Core.Scripts.Engine.State;
 
@@ -63,7 +64,20 @@ namespace KoreDefenceGodot.Core.Scripts.Enemy
             public override void OnEnter(BaseEnemy entity)
             {
                 entity.AttackBase();
+                var rnd = new Random();
+                entity.Position = 
+                    new Vector2(rnd.Next(-50,60) + entity.Position.x,entity.Position.y);
             }
+
+            public override void Update(BaseEnemy entity, float delta)
+            {
+                entity.AttackTimer += delta;
+                if (!(entity.AttackTimer >= entity.EnemyType.AttackRate)) return;
+                entity.AttackBase();
+                entity.AttackTimer = 0;
+            }
+
+            public override void OnExit(BaseEnemy entity) => entity.AttackTimer = 0;
         }
 
         private sealed class DeadState : DefaultEnemyState

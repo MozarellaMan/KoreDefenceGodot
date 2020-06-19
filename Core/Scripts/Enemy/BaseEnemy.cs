@@ -18,6 +18,8 @@ namespace KoreDefenceGodot.Core.Scripts.Enemy
 
         private bool _takingDmg;
 
+        public float AttackTimer = 0;
+
         /// <summary>
         ///     The next point for the enemy to travel to
         /// </summary>
