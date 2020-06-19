@@ -181,15 +181,9 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
 
             }
 
-            public override void Draw(BaseTower entity)
-            {
-                PickedUp.Draw(entity);
-            }
+            public override void Draw(BaseTower entity) => PickedUp.Draw(entity);
 
-            public override void OnExit(BaseTower entity)
-            {
-                PickedUp.OnExit(entity);
-            }
+            public override void OnExit(BaseTower entity) => PickedUp.OnExit(entity);
         }
     }
 }
