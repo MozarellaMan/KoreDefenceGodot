@@ -13,7 +13,6 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.GUI
         {
             _tween = GetParent().GetNode<Tween>("Tween");
             MaxValue = GameInfo.DefaultMaxHealth;
-            GameInfo.PlayerBase?.Connect("HealthChanged", this, nameof(OnHealthChange));
         }
 
         public override void _Process(float delta)
