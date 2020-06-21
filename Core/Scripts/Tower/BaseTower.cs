@@ -20,7 +20,9 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
 		private protected bool _hasShot;
 		public bool IsToBeDeleted;
 
-		private Sprite? _towerBody;
+		// private Rect2? test = null;
+
+		private Sprite _towerBody;
 
 
 		public Area2D AttackArea = null!;
@@ -82,8 +84,16 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
 		public override void _Draw()
 		{
 			// uncomment to test bounding rectangle
-			// DrawRect(GetRect(), Colors.White);
-			// GD.Print(ToGlobal(GetRect().Position));
+			 // DrawRect(GetRect(), Colors.White);
+			 
+			 // uncomment to test path collision boxes
+			 // if (test != null)
+			 // {
+				//  DrawRect(test.Value,Colors.White);
+			 // }
+			// 
+			
+			
 			TowerStateMachine.Draw();
 		}
 
@@ -193,7 +203,7 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
 		public bool CollidesWithPath()
 		{
 			var pathPoints = GameInfo.GamePath?.PathPoints;
-			if (pathPoints == null) return false;
+			if (pathPoints == null) throw new ArgumentException("path does not exist!");
 			for (var i = 0; i < pathPoints.Length / 2 - 1; i++)
 			{
 				var x1 = pathPoints[i, 0];
@@ -242,6 +252,12 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
 			bounds.Position = ToGlobal(GetRect().Position);
 
 			var targetBounds = new Rect2(leftX - 20, upY - 20, rightX - leftX, downY - upY);
+
+			// Uncomment to test collision boxes on screen
+			// GD.Print(targetBounds);
+			// var testTarget = targetBounds;
+			// testTarget.Position = ToLocal(testTarget.Position);
+			// test = testTarget;
 
 			return bounds.Intersects(targetBounds);
 		}

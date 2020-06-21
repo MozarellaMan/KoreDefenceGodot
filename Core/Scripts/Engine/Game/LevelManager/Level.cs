@@ -48,6 +48,8 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Game.LevelManager
             PlayerBase?.Setup(_gamePath.GetEndPoint());
             AddChild(PlayerBase);
             _gameWave = GetNode<Node2D>("Wave") as Wave;
+            GameInfo.GamePath = _gamePath;
+
         }
 
 
@@ -55,7 +57,6 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Game.LevelManager
         {
             _gameWave?.Setup(_gamePath, PlayerBase!);
             _gameWave?.CreateWave(++CurrentWave);
-            GameInfo.GamePath = _gamePath;
         }
         
 
