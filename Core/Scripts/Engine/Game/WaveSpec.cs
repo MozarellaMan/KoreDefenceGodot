@@ -200,10 +200,8 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Game
                 Popups = popups;
             }
 
-            public WaveDefinition(float spawnDelay, EnemyPoolWave[] enemyPoolWaves)
-            {
-                (SpawnDelay, EnemyWaves) = (spawnDelay, enemyPoolWaves);
-            }
+            public WaveDefinition(float spawnDelay, EnemyPoolWave[] enemyPoolWaves) 
+                => (SpawnDelay, EnemyWaves) = (spawnDelay, enemyPoolWaves);
         }
     }
 }

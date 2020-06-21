@@ -38,7 +38,7 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Game
 
 		public override void _Process(float delta)
 		{
-			if (_factory.GetChildCount() == 0)
+			if (_factory?.GetChildCount() == 0)
 				CreateWave();
 		}
 

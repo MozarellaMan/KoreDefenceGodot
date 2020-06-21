@@ -25,7 +25,7 @@ config/icon="res://Data/Assets/icon.png"
 
 [autoload]
 
-GameUtil="*res://Core/Scripts/GameUtil.cs"
+GameUtil="*res://Core/Scripts/Engine/Game/GameUtil.cs"
 GameInfo="*res://Core/Scripts/Engine/Game/GameInfo.cs"
 WaveSpec="*res://Core/Scripts/Engine/Game/WaveSpec.cs"
 

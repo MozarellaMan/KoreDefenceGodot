@@ -1,4 +1,6 @@
-﻿using Godot;
+﻿using System.Linq;
+using Godot;
+using KoreDefenceGodot.Core.Scripts.Engine.Game;
 using KoreDefenceGodot.Core.Scripts.Tower;
 
 namespace KoreDefenceGodot.Core.Scripts.Engine.GUI
@@ -20,13 +22,12 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.GUI
             _infoSection =
                 _uiScreen.GetNode<MarginContainer>("HBoxContainer/SideMenu/Shop/Sections/VBoxContainer/InfoSection");
             _towerButton = GD.Load<PackedScene>("res://Data/Scenes/GUI/ShopElements/TowerButton.tscn");
-            _towerManager = GetParent().GetNode("TowerManager") as TowerManager;
+            _towerManager = GetParent().GetNode("Level").GetNode("TowerManager") as TowerManager;
         }
 
         public static void SetupTowerShop()
         {
             GameUtil.ClearChildren(_shopList);
-            
             TowerType.Types.ForEach(type =>
             {
                 if (!(_towerButton.Instance() is TowerButton button)) return;
@@ -34,6 +35,15 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.GUI
                     button.Setup(type, _towerManager);
                 _shopList.AddChild(button);
             });
+            foreach (var towerButton in _shopList.GetChildren().OfType<TowerButton>())
+            {
+                if (towerButton.TowerType != null && GameInfo.GameCurrency.CanAfford(towerButton.TowerType.Cost))
+                {
+                    towerButton.Locked = false;
+                }
+            }
         }
+        
+        
     }
 }

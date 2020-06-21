@@ -62,6 +62,9 @@
     <Compile Include="Core\Scripts\Enemy\EnemyType.cs" />
     <Compile Include="Core\Scripts\Engine\Game\Currency.cs" />
     <Compile Include="Core\Scripts\Engine\Game\GameInfo.cs" />
+    <Compile Include="Core\Scripts\Engine\Game\GameUtil.cs" />
+    <Compile Include="Core\Scripts\Engine\Game\LevelManager\Level.cs" />
+    <Compile Include="Core\Scripts\Engine\Game\LevelManager\LevelStates.cs" />
     <Compile Include="Core\Scripts\Engine\Game\Projectile.cs" />
     <Compile Include="Core\Scripts\Engine\Game\Wave.cs" />
     <Compile Include="Core\Scripts\Engine\Game\WaveSpec.cs" />
@@ -75,7 +78,6 @@
     <Compile Include="Core\Scripts\Engine\Tiles\Path.cs" />
     <Compile Include="Core\Scripts\Engine\Tiles\Tile.cs" />
     <Compile Include="Core\Scripts\Engine\Tiles\TileSystem.cs" />
-    <Compile Include="Core\Scripts\GameUtil.cs" />
     <Compile Include="Core\Scripts\MainScene.cs" />
     <Compile Include="Core\Scripts\Player\Player.cs" />
     <Compile Include="Core\Scripts\Player\PlayerBase.cs" />
