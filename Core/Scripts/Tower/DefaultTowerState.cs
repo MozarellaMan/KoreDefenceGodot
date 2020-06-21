@@ -38,6 +38,11 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
         {
             public override void HandleInput(BaseTower entity, InputEvent inputEvent)
             {
+                if(entity.Locked) return;
+                
+                // Will only check to be picked up if not the tower is not locked
+                
+                // Check if tower is broken and filter input
                 if (entity.TowerStateMachine.IsInState(Broken)) return;
                 if (!(inputEvent is InputEventMouseButton eventMouseButton) ||
                     !inputEvent.IsActionPressed("picked_up")) return;

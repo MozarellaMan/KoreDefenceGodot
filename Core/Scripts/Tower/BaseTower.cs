@@ -41,6 +41,10 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
 
 		private DefaultTowerState _initialState =  DefaultTowerState.Idle;
 
+		/// <summary>
+		/// 	When true, the tower cannot be moved in the game.
+		/// </summary>
+		public bool Locked = false;
 		
 		public NodeStateMachine<BaseTower, DefaultTowerState> TowerStateMachine { get; private set; } = null!;
 

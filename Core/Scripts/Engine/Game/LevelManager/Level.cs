@@ -3,6 +3,7 @@ using KoreDefenceGodot.Core.Scripts.Engine.GUI;
 using KoreDefenceGodot.Core.Scripts.Engine.State;
 using KoreDefenceGodot.Core.Scripts.Engine.Tiles;
 using KoreDefenceGodot.Core.Scripts.Player;
+using KoreDefenceGodot.Core.Scripts.Tower;
 using Path = KoreDefenceGodot.Core.Scripts.Engine.Tiles.Path;
 
 namespace KoreDefenceGodot.Core.Scripts.Engine.Game.LevelManager
@@ -16,12 +17,14 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Game.LevelManager
         private TileSystem? _tileSystem;
         public NodeStateMachine<Level, LevelState> LevelStateMachine = null!;
         public Button? StartButton;
+        public TowerManager? TowerManager = null!;
 
 
         public override void _Ready()
         {
             LevelStateMachine = new NodeStateMachine<Level, LevelState>(this,LevelState.PreWave,LevelState.Global);
             StartButton = GUIManager.StartButton;
+            TowerManager = GetNode("TowerManager") as TowerManager;
         }
 
         public void TestInit()

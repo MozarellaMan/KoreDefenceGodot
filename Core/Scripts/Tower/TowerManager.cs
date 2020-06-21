@@ -40,6 +40,15 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
         }
 
         /// <summary>
+        ///     Lock/Unlock all the towers managed by the tower manager
+        /// </summary>
+        /// <param name="flag">true to lock all towers, false to unlock</param>
+        public void LockTowers(bool flag)
+        {
+            _towers.ForEach( tower => tower.Locked = flag);
+        }
+
+        /// <summary>
         ///     Creates a tower of the given type at the given position
         /// </summary>
         /// <param name="type">the type of tower</param>

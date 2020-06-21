@@ -52,6 +52,7 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Game.LevelManager
             public override void OnEnter(Level entity)
             {
                 GUIManager.EnableTowerShop();
+                entity.TowerManager?.LockTowers(false);
             }
 
             public override void Update(Level entity, float delta)
@@ -69,6 +70,7 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Game.LevelManager
             public override void OnEnter(Level entity)
             {
                 GUIManager.DisableTowerShop();
+                entity.TowerManager?.LockTowers(true);
                 entity.SetupNextWave();
                 GD.Print($"Wave {entity.CurrentWave} starting...");
             }
