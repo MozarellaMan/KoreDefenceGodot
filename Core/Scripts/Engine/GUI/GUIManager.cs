@@ -50,6 +50,7 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.GUI
 
         public static void DisableTowerShop()
         {
+            StartButton.Disabled = true;
             foreach (var towerButton in _shopList.GetChildren().OfType<TowerButton>())
             {
                 towerButton.DisableButton(true);
@@ -58,6 +59,8 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.GUI
         
         public static void EnableTowerShop()
         {
+            StartButton.Disabled = false;
+
             foreach (var towerButton in _shopList.GetChildren().OfType<TowerButton>())
             {
                 towerButton.DisableButton(false);
