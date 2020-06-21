@@ -6,6 +6,7 @@ using Path = KoreDefenceGodot.Core.Scripts.Engine.Tiles.Path;
 
 namespace KoreDefenceGodot.Core.Scripts.Enemy
 {
+    // TODO :  Fix weird distorsion from damage flash + draw order of multiple enemies
     public abstract class BaseEnemy : KinematicBody2D
     {
         private AnimatedSprite _enemySprite = null!;
