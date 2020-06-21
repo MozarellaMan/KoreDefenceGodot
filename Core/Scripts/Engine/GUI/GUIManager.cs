@@ -47,7 +47,21 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.GUI
                 }
             }
         }
+
+        public static void DisableTowerShop()
+        {
+            foreach (var towerButton in _shopList.GetChildren().OfType<TowerButton>())
+            {
+                towerButton.DisableButton(true);
+            }
+        }
         
-        
+        public static void EnableTowerShop()
+        {
+            foreach (var towerButton in _shopList.GetChildren().OfType<TowerButton>())
+            {
+                towerButton.DisableButton(false);
+            }
+        }
     }
 }

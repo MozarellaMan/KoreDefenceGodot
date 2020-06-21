@@ -49,6 +49,11 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Game.LevelManager
 
         private sealed class PreWaveState : LevelState
         {
+            public override void OnEnter(Level entity)
+            {
+                GUIManager.EnableTowerShop();
+            }
+
             public override void Update(Level entity, float delta)
             {
                 if (entity.StartButton != null && entity.StartButton.Pressed)
@@ -63,7 +68,7 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Game.LevelManager
             
             public override void OnEnter(Level entity)
             {
-                
+                GUIManager.DisableTowerShop();
                 entity.SetupNextWave();
                 GD.Print($"Wave {entity.CurrentWave} starting...");
             }

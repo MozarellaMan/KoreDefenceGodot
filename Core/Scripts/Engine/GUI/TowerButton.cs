@@ -75,6 +75,7 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.GUI
 
 		private void OnHover()
 		{
+			
 			_background.Color = _hoverColour;
 		}
 		
@@ -86,18 +87,21 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.GUI
 
 		private void OnMouseEnter()
 		{
-			OnHover();
+			if(_isActive)
+				OnHover();
 		}
 
 
 		private void OnMouseExit()
 		{
-			OnHoverEnd();
+			if(_isActive)
+				OnHoverEnd();
 		}
 		
 
 		private void OnGuiInput(InputEvent @event)
 		{
+			if (!_isActive) return;
 			if (@event.IsActionPressed("picked_up"))
 			{
 				if (@event is InputEventMouseButton mouseButton && TowerType != null)
@@ -115,8 +119,14 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.GUI
 			if (!@event.IsActionReleased("picked_up")) return;
 			_background.Color = _backgroundColour;
 			_button.TexturePressed = _buyingTexture;
+
 		}
 
+
+		public void DisableButton(bool flag)
+		{
+			_isActive = !flag;
+		}
 	}
 }
 

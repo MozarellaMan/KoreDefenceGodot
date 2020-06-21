@@ -22,9 +22,6 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
 
 		// private Rect2? test = null;
 
-		private Sprite _towerBody;
-
-
 		public Area2D AttackArea = null!;
 		public Color AttackColour = GameInfo.ValidColour;
 		private protected int AttackDamage;
