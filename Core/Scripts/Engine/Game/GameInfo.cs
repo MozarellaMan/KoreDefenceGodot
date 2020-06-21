@@ -22,7 +22,7 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Game
 
         public static Path? GamePath { get; set; }
 
-        public static Currency GameCurrency = new Currency(500);
+        public static Currency GameCurrency = new Currency(10000);
         public Player.Player? Player { get; set; }
 
         // TODO Implement tile finder
@@ -51,7 +51,7 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Game
         ///     Then finds wave number from raw wave number e.g. 20 will return 2, 21 will return 3.
         /// </summary>
         /// <param name="rawWaveNumber"></param>
-        public void SetRawWaveNumber(int rawWaveNumber)
+        public static void SetRawWaveNumber(int rawWaveNumber)
         {
             LevelNumber = (rawWaveNumber - 1 - (rawWaveNumber - 1) % 3) / 3 + 1;
             WaveNumber = (rawWaveNumber - 1) % 3 + 1;

@@ -64,7 +64,7 @@
     <Compile Include="Core\Scripts\Engine\Game\GameInfo.cs" />
     <Compile Include="Core\Scripts\Engine\Game\GameUtil.cs" />
     <Compile Include="Core\Scripts\Engine\Game\LevelManager\Level.cs" />
-    <Compile Include="Core\Scripts\Engine\Game\LevelManager\LevelStates.cs" />
+    <Compile Include="Core\Scripts\Engine\Game\LevelManager\LevelState.cs" />
     <Compile Include="Core\Scripts\Engine\Game\Projectile.cs" />
     <Compile Include="Core\Scripts\Engine\Game\Wave.cs" />
     <Compile Include="Core\Scripts\Engine\Game\WaveSpec.cs" />

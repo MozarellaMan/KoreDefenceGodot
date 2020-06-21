@@ -20,6 +20,7 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.State
             Node = node;
             CurrentState = initState;
             GlobalState = globalState;
+            GlobalState?.OnEnter(node);
         }
 
         private TNode Node { get; }

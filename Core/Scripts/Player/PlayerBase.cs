@@ -73,9 +73,9 @@ namespace KoreDefenceGodot.Core.Scripts.Player
 			}
 		}
 
-		private bool IsDead()
+		public bool IsDead()
 		{
-			return Health == 0;
+			return Health <= 0;
 		}
 
 		protected virtual void _OnBodyEntered(object body)

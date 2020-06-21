@@ -12,7 +12,7 @@ namespace KoreDefenceGodot.Core.Scripts
 		public override void _Ready()
 		{
 			_game = GetNode("Level") as Level;
-			_game?.TestInit();
+			//_game?.TestInit();
 		}
 
 		public override void _Process(float delta)

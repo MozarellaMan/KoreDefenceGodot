@@ -10,6 +10,7 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.GUI
         private MarginContainer _uiScreen = null!;
         private static VBoxContainer _shopList = null!;
         private MarginContainer _infoSection = null!;
+        public static Button StartButton = null!;
         private static PackedScene _towerButton = null!;
         private static TowerManager? _towerManager = null!;
 
@@ -23,6 +24,9 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.GUI
                 _uiScreen.GetNode<MarginContainer>("HBoxContainer/SideMenu/Shop/Sections/VBoxContainer/InfoSection");
             _towerButton = GD.Load<PackedScene>("res://Data/Scenes/GUI/ShopElements/TowerButton.tscn");
             _towerManager = GetParent().GetNode("Level").GetNode("TowerManager") as TowerManager;
+            StartButton =
+                _uiScreen.GetNode<Button>(
+                    "HBoxContainer/SideMenu/Shop/Sections/VBoxContainer/InfoSection/VBoxContainer/StartButton");
         }
 
         public static void SetupTowerShop()
