@@ -56,6 +56,7 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Tiles
 			// GD.Print($"{Position} is occupied by {type.ToString()}!");
 
 			var pathSegment = PathResource.Instance();
+
 			pathSegment.GetNode<AnimatedSprite>("Path").Play(type.ToString());
 
 			AddChild(pathSegment);
