@@ -7,6 +7,7 @@ Try playing the current release here: https://mozarellaman.github.io/KoreDefence
 Microsoft Build Tools 2019 (https://visualstudio.microsoft.com/2c8e2887-17be-4989-b644-2c267c9965be)
 Nuget (https://docs.microsoft.com/en-us/nuget/install-nuget-client-tools) Download the exe, put it in a convenient place, add to PATH
 
+## Instructions
 Clone the repository
 
 Go here, download the mono version 64 bit
@@ -20,6 +21,7 @@ https://www.youtube.com/watch?v=N4M5eV982n0
 Disclaimer: JetBrains Rider is not free, but can be used with a student email or if you contribute to an OSS (Open Source Project)
 
 If you won't code in C#, then you can use GDScript and code in the editor. It's pretty similar to Python.
+
 
 # Screenshots
 
