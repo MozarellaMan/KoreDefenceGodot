@@ -16,7 +16,7 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Game
 		private AnimatedSprite _projectileSprite = null!;
 		private float _timeSinceCreation;
 		public Vector2 Acceleration = new Vector2(0, 0);
-
+		public Action? OnDeath;
 		public int Damage;
 		public float Lifetime = 2;
 		internal Vector2 Velocity { get; set; }
@@ -73,12 +73,19 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Game
 			var newVelocity = Velocity += Acceleration;
 			Translate(newVelocity);
 
-			if (IsDead()) QueueFree();
+			if (!IsDead()) return;
+			ActionOnDeath();
+			QueueFree();
 		}
 
 		private bool IsDead()
 		{
 			return _timeSinceCreation > Lifetime || _enemyHitCount >= _collateral;
+		}
+
+		private void ActionOnDeath()
+		{
+			OnDeath?.Invoke();
 		}
 
 		private void OnBodyEntered(int body_id, Node body, int body_shape, int area_shape)
