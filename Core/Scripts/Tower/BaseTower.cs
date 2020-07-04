@@ -37,6 +37,7 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
 		private protected float ShootTimeCounter;
 		public List<BaseEnemy> Targets = null!;
 		public AnimatedSprite TowerGun = null!;
+		public Sprite TowerBody = null!;
 		public TowerType TowerType = null!;
 
 		private DefaultTowerState _initialState =  DefaultTowerState.Idle;
@@ -55,6 +56,7 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
 			ZAsRelative = false;
 			IsToBeDeleted = false;
 			AttackArea = GetNode<Area2D>("Area2D");
+			TowerBody = GetNode<Sprite>("Body");
 			TowerGun = GetNode<AnimatedSprite>("Gun");
 			ProjectileResource = GD.Load<PackedScene>(TowerType.ProjectilePath);
 			TowerStateMachine =
@@ -103,13 +105,14 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
 		/// </summary>
 		/// <param name="enemy">the enemy being targeted</param>
 		/// <param name="delta">frame delta time</param>
-		public virtual void Shoot(BaseEnemy? enemy, float delta)
+		/// <param name="immediate">whether the fire period time should be ignored, shoot as soon as called</param>
+		public virtual void Shoot(BaseEnemy? enemy, float delta, bool immediate = false)
 		{
 			ShootTimeCounter += delta;
 
 			if (enemy != null)
 			{
-				if (!(ShootTimeCounter > FirePeriod)) return;
+				if (!(ShootTimeCounter > FirePeriod) && immediate == false) return;
 				_hasShot = true;
 				// projectile exists and is instantiated
 				if (!(ProjectileResource.Instance() is Projectile projectile)) return;
@@ -154,7 +157,7 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
 			Targets.Remove(enemy);
 		}
 
-		public void PlayAttackAnimation() => TowerGun.Play("Attacking");
+		public virtual void PlayAttackAnimation() => TowerGun.Play("Attacking");
 
 		public void PlayIdleAnimation() => TowerGun.Play("Idle");
 

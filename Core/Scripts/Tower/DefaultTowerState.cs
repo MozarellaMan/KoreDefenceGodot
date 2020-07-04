@@ -2,6 +2,7 @@
 using Godot;
 using KoreDefenceGodot.Core.Scripts.Engine.Game;
 using KoreDefenceGodot.Core.Scripts.Engine.State;
+using KoreDefenceGodot.Core.Scripts.Tower.Towers;
 
 namespace KoreDefenceGodot.Core.Scripts.Tower
 {

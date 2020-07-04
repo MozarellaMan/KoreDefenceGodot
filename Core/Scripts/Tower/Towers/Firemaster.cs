@@ -13,7 +13,7 @@ namespace KoreDefenceGodot.Core.Scripts.Tower.Towers
 			base._Ready();
 		}
 
-		public override void Shoot(BaseEnemy? enemy, float delta)
+		public override void Shoot(BaseEnemy? enemy, float delta, bool immediate = false)
 		{
 			ShootTimeCounter += delta;
 

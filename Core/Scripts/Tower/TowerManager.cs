@@ -16,7 +16,7 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
         private List<BaseTower> _towers =  null!;
         private readonly Dictionary<TowerType, string?> _towerResources = new Dictionary<TowerType, string?>
         {
-            {Catapult, null},
+            {TowerType.Catapult, "res://Data/Scenes/Tower/Catapult.tscn"},
             {TowerType.Firemaster, "res://Data/Scenes/Tower/Firemaster.tscn"},
             {Geyser, null},
             {BlueSunArrow,null},
@@ -63,9 +63,9 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
 
             var newTowerResource = GD.Load<PackedScene>(_towerResources[type]);
 
-            var newTower = type.Enum switch
+            BaseTower? newTower = type.Enum switch
             {
-                // TODO : Implement Catapult Tower
+                TowerEnum.Catapult => newTowerResource.Instance() as Catapult,
                 TowerEnum.Firemaster => newTowerResource.Instance() as Firemaster,
                 // TODO : Implement Geyser Tower
                 // TODO : Implement Blue Sun Arrow Tower

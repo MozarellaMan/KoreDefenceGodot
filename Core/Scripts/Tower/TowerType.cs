@@ -16,12 +16,12 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
         public static readonly TowerType Catapult = new TowerType(
             50,
             250,
-            1.5f,
+            1.9f,
             300,
             1,
             "res://Data/Assets/towers/icons/catapult.png",
             "Rock Catapult",
-            "",
+            "res://Data/Scenes/Tower/Projectiles/CatapultRock.tscn",
             "An advanced device dating back to 4th century BC. You have re-purposed and upgraded it to handle the heat of volcanic rocks infused with Firon. It also includes a selfie function.",
             TowerEnum.Catapult
         );
