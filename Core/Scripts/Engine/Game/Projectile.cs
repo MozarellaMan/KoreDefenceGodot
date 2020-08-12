@@ -27,8 +27,6 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Game
 		/// <summary>
 		///     Part of instantiating a new projectile
 		/// </summary>
-		/// <param name="x">x position of projectile</param>
-		/// <param name="y">y position of projectile</param>
 		/// <param name="collateral">the amount of enemies the projectile can pass through</param>
 		/// <param name="playAnimation">if this projectile should play it's animation, default is true</param>
 		public void Setup(int collateral, bool playAnimation = true)

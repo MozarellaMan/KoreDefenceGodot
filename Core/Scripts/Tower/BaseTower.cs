@@ -25,7 +25,7 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
 		public Area2D AttackArea = null!;
 		public Color AttackColour = GameInfo.ValidColour;
 		private protected int AttackDamage;
-		public int AttackRadius;
+		protected int AttackRadius;
 		public StaticBody2D CollisionBody = null!;
 		public BaseEnemy? CurrentTarget;
 		public Vector2 DragStart;
@@ -37,7 +37,7 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
 		private protected float ShootTimeCounter;
 		public List<BaseEnemy> Targets = null!;
 		public AnimatedSprite TowerGun = null!;
-		public Sprite TowerBody = null!;
+		protected Sprite TowerBody = null!;
 		public TowerType TowerType = null!;
 
 		private DefaultTowerState _initialState =  DefaultTowerState.Idle;
