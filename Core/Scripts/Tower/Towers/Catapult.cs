@@ -1,30 +1,33 @@
-using System;
 using Godot;
 using KoreDefenceGodot.Core.Scripts.Enemy;
-using KoreDefenceGodot.Core.Scripts.Engine.Game;
 
 namespace KoreDefenceGodot.Core.Scripts.Tower.Towers
 {
 	public abstract class Catapult : BaseTower
 	{
-		public bool CanCatapult = false;
 		private Vector2[]? _shapePoints;
+		
 
-		public AnimationPlayer Anim = null!;
+		private AnimationPlayer _anim = null!;
 		public override void _Ready()
 		{
 			TowerType = TowerType.Catapult;
-			Anim = GetNode<AnimationPlayer>("AnimationPlayer");
-			
+			_anim = GetNode<AnimationPlayer>("AnimationPlayer");
 			base._Ready();
 			var coneShape = GetNode<CollisionPolygon2D>("Area2D/TowerRange");
-			_shapePoints = ConfigureArcPoints(Position,AttackRadius,75,110,32);
+			_shapePoints = ConfigureArcPoints(Position,AttackRadius,70,110,32);
 			coneShape.Polygon = _shapePoints;
+			TargetingSpeed = 12; // slight adjustment for this tower, ugly I know!
 		}
 
-		public override void Shoot(BaseEnemy? enemy, float delta, bool immediate = false)
+		public override void TrackNextTarget(float delta)
 		{
-			base.Shoot(enemy, delta, immediate);
+			
+		}
+
+		public override void Shoot(BaseEnemy? enemy, float delta)
+		{
+			base.Shoot(enemy, delta);
 			PlayAttackAnimation();
 		}
 
@@ -50,7 +53,7 @@ namespace KoreDefenceGodot.Core.Scripts.Tower.Towers
 
 		public override void PlayAttackAnimation()
 		{
-			Anim.Play("shoot");
+			_anim.Play("shoot");
 		}
 	}
 }

@@ -29,6 +29,10 @@ GameInfo="*res://Core/Scripts/Engine/Game/GameInfo.cs"
 WaveSpec="*res://Core/Scripts/Engine/Game/WaveSpec.cs"
 GameUtil="*res://Core/Scripts/Engine/Game/GameUtil.cs"
 
+[debug]
+
+settings/fps/force_fps=60
+
 [display]
 
 window/size/width=1000

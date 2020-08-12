@@ -10,8 +10,8 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
 {
 	public abstract class BaseTower : Node2D
 	{
-		private const int TargetingSpeed = 20;
-		private protected const int ProjectileSpeed = 10;
+		private protected int TargetingSpeed = 20;
+		private protected  int ProjectileSpeed = 10;
 
 		// TODO : Tower upgrades
 		// TODO : Tower projectile status effect
@@ -71,6 +71,7 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
 			Targets = new List<BaseEnemy>();
 			CollisionBody = GetNode<StaticBody2D>("StaticBody2D");
 			PlayerCollision = CollisionBody.GetNode<CollisionShape2D>("CollisionShape2D");
+			ShootTimeCounter = FirePeriod;
 		}
 		
 
@@ -105,14 +106,13 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
 		/// </summary>
 		/// <param name="enemy">the enemy being targeted</param>
 		/// <param name="delta">frame delta time</param>
-		/// <param name="immediate">whether the fire period time should be ignored, shoot as soon as called</param>
-		public virtual void Shoot(BaseEnemy? enemy, float delta, bool immediate = false)
+		public virtual void Shoot(BaseEnemy? enemy, float delta)
 		{
 			ShootTimeCounter += delta;
 
 			if (enemy != null)
 			{
-				if (!(ShootTimeCounter > FirePeriod) && immediate == false) return;
+				if (!(ShootTimeCounter > FirePeriod)) return;
 				_hasShot = true;
 				// projectile exists and is instantiated
 				if (!(ProjectileResource.Instance() is Projectile projectile)) return;
@@ -134,7 +134,7 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
 		///     This rotates the tower gun to face the current target
 		/// </summary>
 		/// <param name="delta">frame delta time</param>
-		public void TrackNextTarget(float delta)
+		public virtual void TrackNextTarget(float delta)
 		{
 			if (CurrentTarget == null) return;
 

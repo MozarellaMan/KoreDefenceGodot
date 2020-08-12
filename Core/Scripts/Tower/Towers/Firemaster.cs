@@ -13,7 +13,7 @@ namespace KoreDefenceGodot.Core.Scripts.Tower.Towers
 			base._Ready();
 		}
 
-		public override void Shoot(BaseEnemy? enemy, float delta, bool immediate = false)
+		public override void Shoot(BaseEnemy? enemy, float delta)
 		{
 			ShootTimeCounter += delta;
 
@@ -29,10 +29,10 @@ namespace KoreDefenceGodot.Core.Scripts.Tower.Towers
 
 				AddChild(projectile);
 				AddChild(projectile2);
-				projectile.Position = new Vector2(TowerGun.Position.x + 5, TowerGun.Position.y + 5);
-				projectile2.Position = new Vector2(TowerGun.Position.x - 5, TowerGun.Position.y - 5);
-				projectile.Rotation = Rotation;
-				projectile2.Rotation = Rotation;
+				projectile.GlobalPosition = new Vector2(TowerGun.GlobalPosition.x + 5, TowerGun.GlobalPosition.y + 5);
+				projectile2.GlobalPosition = new Vector2(TowerGun.GlobalPosition.x - 5, TowerGun.GlobalPosition.y - 5);
+				projectile.GlobalRotation = GlobalRotation;
+				projectile2.GlobalRotation = GlobalRotation;
 
 
 				SetupProjectile(projectile, enemy, 5, 5);
@@ -61,9 +61,9 @@ namespace KoreDefenceGodot.Core.Scripts.Tower.Towers
 			projectile.Source = this;
 			projectile.Damage = AttackDamage;
 
-			var enemyPos = enemy.Position + new Vector2(xOffset, xOffset);
+			var enemyPos = enemy.GlobalPosition + new Vector2(xOffset, xOffset);
 			// get direction and magnitude
-			var direction = Position.DirectionTo(enemyPos);
+			var direction = GlobalPosition.DirectionTo(enemyPos);
 
 			var mag = (float) Math.Sqrt(direction.x * direction.x + direction.y * direction.y);
 
@@ -74,8 +74,8 @@ namespace KoreDefenceGodot.Core.Scripts.Tower.Towers
 
 
 			// turns sprite to look at enemy
-			projectile.LookAt(new Vector2(enemy.Position.x + xOffset * isSecond,
-				enemy.Position.y + xOffset * isSecond));
+			projectile.LookAt(new Vector2(enemy.GlobalPosition.x + xOffset * isSecond,
+				enemy.GlobalPosition.y + xOffset * isSecond));
 		}
 
 
