@@ -25,7 +25,7 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Game
         public static Currency GameCurrency = new Currency(10000);
         public Player.Player? Player { get; set; }
 
-        // TODO Implement tile finder
+        // TODO Implement tile finder 
         public int MoneySpawnCount { get; set; } = 0;
 
         /// <summary>

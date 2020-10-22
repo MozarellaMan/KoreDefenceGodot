@@ -42,7 +42,7 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Game.LevelManager
             AddChild(_tileSystem);
 
             // Generate Path
-            // TODO #1: Change paths depending on level
+            // TODO #1: Change paths depending on level value
             _gamePath = new Path();
             _gamePath.Setup(_tileSystem?.Tiles!, new[] {2, 2, 2, 2, 2, 2, 2, 1, -10, 10, -9},
                 new[] {3, -3, 2, -3, 2, -3, 3, 2, 3, 2, 2});

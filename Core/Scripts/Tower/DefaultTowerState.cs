@@ -107,7 +107,7 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
             {
                 entity.DragStart = entity.Position;
                 entity.PlayerCollision.Disabled = true;
-                // TODO : show gui sell menu
+                // TODO : Implement and show the shop sell menu when tower is picked up
             }
 
             public override void Update(BaseTower entity, float delta)

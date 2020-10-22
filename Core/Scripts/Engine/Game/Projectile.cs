@@ -11,7 +11,7 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Game
 
 		private int _collateral;
 
-		// TODO Status effects
+		// TODO Status effects for enemies
 		private int _enemyHitCount;
 		private AnimatedSprite _projectileSprite = null!;
 		private float _timeSinceCreation;
@@ -94,7 +94,7 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Game
 			if (_enemiesShot.Contains(enemy)) return;
 			_enemyHitCount++;
 
-			// TODO : Implement Collateral achievement
+			// TODO : Implement Collateral achievement (hitting many enemies with the same projectile) 
 
 			if (enemy.EnemyType == EnemyType.Korechanic)
 			{
@@ -107,8 +107,8 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Game
 
 			_enemiesShot.Add(enemy);
 
-			// TODO : Check for effects
-			// TODO : Increment player damage achievement
+			// TODO : Check for effects 
+			// TODO : Increment player damage achievement 
 		}
 
 		public void FlipSprite()

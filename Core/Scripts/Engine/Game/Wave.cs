@@ -15,8 +15,8 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Game
 		private bool WaveStarted = false;
 
 		public bool WaveOver { get; private set; }
-		// TODO UI popups
-		// TODO Wave start & end sounds
+		// TODO UI popups at the end of each wave
+		// TODO Wave start & end sounds 
 
 		public void CreateWave(int waveNum = 0)
 		{
@@ -33,12 +33,12 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Game
 		{
 			_gamePath = gamePath;
 			_playerBase = playerBase;
-			// TODO Load wave sound resources
+			// TODO Load wave sound resources 
 		}
 
 		public void StartWave()
 		{
-			// TODO Play wave sound start
+			// TODO Play wave sound start 
 			CreateWave();
 		}
 
@@ -61,7 +61,7 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Game
 			}
 			else
 			{
-				// TODO Play wave end sound
+				// TODO Play wave end sound  
 			}
 
 			WaveStarted = true;

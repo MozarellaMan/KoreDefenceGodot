@@ -13,8 +13,8 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
 		private protected int TargetingSpeed = 20;
 		private protected  int ProjectileSpeed = 10;
 
-		// TODO : Tower upgrades
-		// TODO : Tower projectile status effect
+		// TODO : Tower upgrades 
+		// TODO : Tower projectile status effect 
 
 		private readonly Vector2 _clickOffsetInTower = Vector2.Zero;
 		private protected bool _hasShot;
@@ -191,7 +191,7 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
 			{
 				if (GameInfo.TowerList == null) return notOnPath;
 				if (GameInfo.TowerList.Any(tower => CollidesWithTower(tower))) return false;
-				// TODO : Check if tower collides with lava tiles
+				// TODO : Check if tower collides with lava tiles 
 			}
 
 			return notOnPath;

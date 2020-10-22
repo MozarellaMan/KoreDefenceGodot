@@ -67,9 +67,9 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
             {
                 TowerEnum.Catapult => newTowerResource.Instance() as Catapult,
                 TowerEnum.Firemaster => newTowerResource.Instance() as Firemaster,
-                // TODO : Implement Geyser Tower
-                // TODO : Implement Blue Sun Arrow Tower
-                // TODO : Implement Firon Tower
+                // TODO : Implement Geyser Tower 
+                // TODO : Implement Blue Sun Arrow Tower 
+                // TODO : Implement Firon Tower 
                 _ => null
             };
 

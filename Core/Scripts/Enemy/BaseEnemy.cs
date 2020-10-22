@@ -6,7 +6,7 @@ using Path = KoreDefenceGodot.Core.Scripts.Engine.Tiles.Path;
 
 namespace KoreDefenceGodot.Core.Scripts.Enemy
 {
-    // TODO :  Fix weird distortion from damage flash + draw order of multiple enemies
+    // TODO :  Fix weird distortion from damage flash + draw order of multiple enemies 
     public abstract class BaseEnemy : KinematicBody2D
     {
         private AnimatedSprite _enemySprite = null!;
@@ -162,12 +162,12 @@ namespace KoreDefenceGodot.Core.Scripts.Enemy
 
         private void CheckToPlayDeathAnimation(bool isDead)
         {
-            // TODO Implement death animation
+            // TODO Implement death animation 
         }
 
         private void CheckToAffect(bool affected)
         {
-            // TODO Implement enemy status effects
+            // TODO Implement enemy status effects 
         }
 
         private void UpdateDamageEffect(float delta)
@@ -195,7 +195,7 @@ namespace KoreDefenceGodot.Core.Scripts.Enemy
 
         public void PlayAttackAnimation()
         {
-            // TODO : Implement attack animation
+            // TODO : Implement attack animation 
         }
     }
 }

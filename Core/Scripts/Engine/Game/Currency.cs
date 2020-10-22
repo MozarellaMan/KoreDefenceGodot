@@ -40,7 +40,7 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Game
         public bool PurchaseTower(BaseTower tower)
         {
             if (!CanAfford(tower)) return false;
-            // TODO : Play purchasing sound
+            // TODO : Play purchasing sound when tower is purchased
             Coins -= tower.TowerType.Cost;
             tower.Purchased = true;
             return true;
@@ -57,10 +57,10 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Game
             Coins += enemyMultiplier;
         }
 
-        public void IncreaseCurrencyFromSell(int amount)
+        public void AddCoins(int amount)
         {
             Coins += amount;
-            // TODO: Update tower shop
+            // TODO: Update tower shop display with new values 
         }
     }
 }
