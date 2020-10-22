@@ -119,10 +119,6 @@ picked_up={
 2d_physics/layer_5="projectiles"
 2d_physics/layer_6="path"
 
-[mono]
-
-debugger_agent/wait_for_debugger=true
-
 [rendering]
 
 quality/driver/driver_name="GLES2"

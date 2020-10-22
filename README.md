@@ -18,8 +18,6 @@ Try playing the current release here: https://mozarellaman.github.io/KoreDefence
 
 ### Development tips
 
-- The project is configured to start and wait for a debugger to attach, you can turn this off in the project settings under the "Mono" section if you want to run the game from the editor
-
 - I suggest JetBrains Rider as the IDE to use with Godot, here's a [video](https://www.youtube.com/watch?v=N4M5eV982n0) on getting that set up:  
 (this includes setting up C# to work on your computer)
 Disclaimer: JetBrains Rider is not free, but can be used with a student email or if you contribute to an OSS (Open Source Project)
