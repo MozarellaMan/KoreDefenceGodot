@@ -13,7 +13,7 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
             Firon
         }
         
-        public static readonly TowerType Catapult = new TowerType(
+        public static readonly TowerType Catapult = new (
             50,
             250,
             1.9f,
@@ -26,7 +26,7 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
             TowerEnum.Catapult
         );
 
-        public static readonly TowerType Firemaster = new TowerType(
+        public static readonly TowerType Firemaster = new(
             10,
             500,
             5f,
@@ -39,7 +39,7 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
             TowerEnum.Firemaster
         );
 
-        public static readonly TowerType Geyser = new TowerType(
+        public static readonly TowerType Geyser = new(
             40,
             900,
             1f,
@@ -52,7 +52,7 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
             TowerEnum.Geyser
         );
 
-        public static readonly TowerType BlueSunArrow = new TowerType(
+        public static readonly TowerType BlueSunArrow = new(
             250,
             1750,
             .5f,
@@ -65,7 +65,7 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
             TowerEnum.BlueSunArrow
         );
 
-        public static readonly TowerType FironSphere = new TowerType(
+        public static readonly TowerType FironSphere = new(
             175,
             3500,
             .75f,
@@ -78,7 +78,7 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
             TowerEnum.Firon
             );
 
-        public static readonly List<TowerType> Types = new List<TowerType> {Catapult, Firemaster, Geyser, BlueSunArrow, FironSphere};
+        public static readonly List<TowerType> Types = new() {Catapult, Firemaster, Geyser, BlueSunArrow, FironSphere};
 
 
         private TowerType(int damage, int cost, float fireRate, int attackRadius, int collateral, string iconPath,
@@ -104,7 +104,7 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
         public string IconPath { get; }
         public string Name { get; }
         public string ProjectilePath { get; }
-        public string Description { get; }
+        private string Description { get; }
         
         public TowerEnum Enum { get; }
     }

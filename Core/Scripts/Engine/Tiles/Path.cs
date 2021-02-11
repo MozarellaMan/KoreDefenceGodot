@@ -118,7 +118,7 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Tiles
 
 		public Vector2 GetEndPoint()
 		{
-			return new Vector2(_curPositionX * _tileSize, _curPositionY * _tileSize);
+			return new(_curPositionX * _tileSize, _curPositionY * _tileSize);
 		}
 	}
 }

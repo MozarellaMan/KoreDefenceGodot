@@ -5,7 +5,7 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.State
     public interface IStateMachine<TEntity, in TState> where TState : IState<TEntity>
     {
         /// <summary>
-        ///     CUpdate the current state. (called every game update)
+        ///     Update the current state. (called every game update)
         /// </summary>
         /// <param name="delta"> frame delta time</param>
         void Update(float delta);

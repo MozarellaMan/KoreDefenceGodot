@@ -17,7 +17,7 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Game.LevelManager
         private TileSystem? _tileSystem;
         public NodeStateMachine<Level, LevelState> LevelStateMachine = null!;
         public Button? StartButton;
-        public TowerManager? TowerManager = null!;
+        public TowerManager? TowerManager;
 
 
         public override void _Ready()
@@ -34,7 +34,7 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Game.LevelManager
             SetupNextWave();
         }
         
-        public void LoadTilesAndPath(int[,] pathSpec = null!)
+        public void LoadTilesAndPath(int[,]? pathSpec = null)
         {
             // Instance tile generating object
             _tileSystem = GD.Load<PackedScene>("res://Data/Scenes/Tiles/TileSystem.tscn").Instance() as TileSystem;
@@ -67,7 +67,7 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Game.LevelManager
 
         public override void _PhysicsProcess(float delta)
         {
-            LevelStateMachine?.Update(delta);
+            LevelStateMachine.Update(delta);
 
         }
 
@@ -76,7 +76,7 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Game.LevelManager
             _gameWave?.RunWave(delta);
         }
 
-        public void UpdateTowerShop()
+        private void UpdateTowerShop()
         {
             GUIManager.SetupTowerShop();
         }

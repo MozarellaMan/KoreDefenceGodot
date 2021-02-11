@@ -17,7 +17,7 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
 		// TODO : Tower projectile status effect 
 
 		private readonly Vector2 _clickOffsetInTower = Vector2.Zero;
-		private protected bool _hasShot;
+		private protected bool HasShot;
 		public bool IsToBeDeleted;
 
 		// private Rect2? test = null;
@@ -67,7 +67,7 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
 			AttackRadius = TowerType.AttackRadius;
 			AttackDamage = TowerType.Damage;
 			ProjectileCollateral = TowerType.Collateral;
-			_hasShot = false;
+			HasShot = false;
 			Targets = new List<BaseEnemy>();
 			CollisionBody = GetNode<StaticBody2D>("StaticBody2D");
 			PlayerCollision = CollisionBody.GetNode<CollisionShape2D>("CollisionShape2D");
@@ -113,7 +113,7 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
 			if (enemy != null)
 			{
 				if (!(ShootTimeCounter > FirePeriod)) return;
-				_hasShot = true;
+				HasShot = true;
 				// projectile exists and is instantiated
 				if (!(ProjectileResource.Instance() is Projectile projectile)) return;
 				AddChild(projectile);
@@ -175,7 +175,7 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
 		/// <returns> true if the tower can be placed at it's position </returns>
 		public bool CanPlaceTower()
 		{
-			var notOnPath = !CollidesWithPath();
+			var canPlaceTower = !CollidesWithPath();
 
 			// check if tower is outside screen
 			if (Position.x < 0 + GetRect().Size.x / 2 || Position.x > GetViewport().Size.x || Position.y < 0 ||
@@ -186,15 +186,13 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
 			// could replace "magic numbers" with direct accessors to sky-box image and ground texture image
 			if (Position.y < 130 + GetRect().Size.y / 2 || Position.x > 690 - GetRect().Size.x / 2) return false;
 
-
-			if (notOnPath)
+			return canPlaceTower switch
 			{
-				if (GameInfo.TowerList == null) return notOnPath;
-				if (GameInfo.TowerList.Any(tower => CollidesWithTower(tower))) return false;
+				true when GameInfo.TowerList == null => canPlaceTower,
 				// TODO : Check if tower collides with lava tiles 
-			}
-
-			return notOnPath;
+				true when GameInfo.TowerList.Any(tower => CollidesWithTower(tower)) => false,
+				_ => canPlaceTower
+			};
 		}
 
 
@@ -204,7 +202,7 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
 		///     Method should be scalable for both different paths and different tower sizes.
 		/// </summary>
 		/// <returns>true if colliding with path, false otherwise</returns>
-		public bool CollidesWithPath()
+		private bool CollidesWithPath()
 		{
 			var pathPoints = GameInfo.GamePath?.PathPoints;
 			if (pathPoints == null) throw new ArgumentException("path does not exist!");

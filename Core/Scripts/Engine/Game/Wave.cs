@@ -9,10 +9,10 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Game
 	public abstract class Wave : Node2D
 	{
 		private float _elapsedTime;
-		private EnemyFactory _factory = null!;
+		private EnemyFactory? _factory;
 		private Path _gamePath = null!;
 		private PlayerBase _playerBase = null!;
-		private bool WaveStarted = false;
+		private bool _waveStarted;
 
 		public bool WaveOver { get; private set; }
 		// TODO UI popups at the end of each wave
@@ -21,7 +21,6 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Game
 		public void CreateWave(int waveNum = 0)
 		{
 			var currentWave = WaveSpec.WaveNumbers[waveNum];
-			if (currentWave == null) return;
 			_factory = (GD.Load<PackedScene>("res://Data/Scenes/Enemy/EnemyFactory.tscn")
 				.Instance() as EnemyFactory)!;
 
@@ -64,13 +63,13 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Game
 				// TODO Play wave end sound  
 			}
 
-			WaveStarted = true;
+			_waveStarted = true;
 		}
 
 		public bool WaveCompleted()
 		{
-			if (_factory == null || !WaveStarted || _factory.CanSpawnMoreEnemies()) return false;
-			WaveStarted = false;
+			if (_factory == null || !_waveStarted || _factory.CanSpawnMoreEnemies()) return false;
+			_waveStarted = false;
 			return _factory.GetChildCount() == 0;
 		}
 	}

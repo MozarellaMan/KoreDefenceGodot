@@ -5,7 +5,7 @@ using KoreDefenceGodot.Core.Scripts.Engine.Game;
 
 namespace KoreDefenceGodot.Core.Scripts.Tower.Towers
 {
-	public class Firemaster : BaseTower
+	public abstract class Firemaster : BaseTower
 	{
 		public override void _Ready()
 		{
@@ -20,7 +20,7 @@ namespace KoreDefenceGodot.Core.Scripts.Tower.Towers
 			if (enemy != null)
 			{
 				if (!(ShootTimeCounter > FirePeriod)) return;
-				_hasShot = true;
+				HasShot = true;
 				// projectile exists and is instantiated
 				if (!(ProjectileResource.Instance() is Projectile projectile)) return;
 				if (!(ProjectileResource.Instance() is Projectile projectile2)) return;

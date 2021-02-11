@@ -16,21 +16,21 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Game
     {
         public static readonly WaveDefinition[] WaveNumbers =
         {
-            new WaveDefinition(
+            new(
                 1f,
                 new[]
                 {
                     new EnemyPoolWave(EnemyType.Koreman, 3, 1)
                 }
             ),
-            new WaveDefinition(
+            new(
                 0.5f,
                 new[]
                 {
                     new EnemyPoolWave(EnemyType.Koreman, 5, 1)
                 }
             ),
-            new WaveDefinition(
+            new(
                 1f,
                 new[]
                 {
@@ -38,7 +38,7 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Game
                     new EnemyPoolWave(EnemyType.Machomaniac, 2, 1)
                 }
             ),
-            new WaveDefinition(
+            new(
                 0.5f,
                 new[]
                 {
@@ -46,14 +46,14 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Game
                     new EnemyPoolWave(EnemyType.Machomaniac, 3, 1)
                 }
             ),
-            new WaveDefinition(
+            new(
                 0.2f,
                 new[]
                 {
                     new EnemyPoolWave(EnemyType.Koreman, 15, 1)
                 }
             ),
-            new WaveDefinition(
+            new(
                 2f,
                 new[]
                 {
@@ -61,7 +61,7 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Game
                     new EnemyPoolWave(EnemyType.Machomaniac, 4, 1)
                 }
             ),
-            new WaveDefinition(
+            new(
                 0.8f,
                 new[]
                 {
@@ -70,7 +70,7 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Game
                     new EnemyPoolWave(EnemyType.Machomaniac, 5, 1)
                 }
             ),
-            new WaveDefinition(
+            new(
                 0.5f,
                 new[]
                 {
@@ -78,7 +78,7 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Game
                     new EnemyPoolWave(EnemyType.KoreProtector, 3, 1)
                 }
             ),
-            new WaveDefinition(
+            new(
                 .1f,
                 new[]
                 {
@@ -86,7 +86,7 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Game
                     new EnemyPoolWave(EnemyType.Koreman, 5, 1)
                 }
             ),
-            new WaveDefinition(
+            new(
                 .8f,
                 new[]
                 {
@@ -96,7 +96,7 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Game
                     new EnemyPoolWave(EnemyType.KoreProtector, 2, 1)
                 }
             ),
-            new WaveDefinition(
+            new(
                 .1f,
                 new[]
                 {
@@ -104,7 +104,7 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Game
                     new EnemyPoolWave(EnemyType.KoreProtector, 6, 1)
                 }
             ),
-            new WaveDefinition(
+            new(
                 1f,
                 new[]
                 {
@@ -113,7 +113,7 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Game
                     new EnemyPoolWave(EnemyType.Koreman, 2, 1)
                 }
             ),
-            new WaveDefinition(
+            new(
                 .8f,
                 new[]
                 {
@@ -122,7 +122,7 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Game
                     new EnemyPoolWave(EnemyType.Volcanologist, 5, 1)
                 }
             ),
-            new WaveDefinition(
+            new(
                 .1f,
                 new[]
                 {
@@ -130,7 +130,7 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Game
                     new EnemyPoolWave(EnemyType.Machomaniac, 5, 1)
                 }
             ),
-            new WaveDefinition(
+            new(
                 2f,
                 new[]
                 {
@@ -139,14 +139,14 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Game
                     new EnemyPoolWave(EnemyType.Machomaniac, 10, 1)
                 }
             ),
-            new WaveDefinition(
+            new(
                 .8f,
                 new[]
                 {
                     new EnemyPoolWave(EnemyType.KoreProtector, 15, 1)
                 }
             ),
-            new WaveDefinition(
+            new(
                 0.25f,
                 new[]
                 {
@@ -155,7 +155,7 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Game
                     new EnemyPoolWave(EnemyType.Machomaniac, 5, 1)
                 }
             ),
-            new WaveDefinition(
+            new(
                 .25f,
                 new[]
                 {
@@ -164,21 +164,21 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Game
                     new EnemyPoolWave(EnemyType.Volcanologist, 18, 1)
                 }
             ),
-            new WaveDefinition(
+            new(
                 .25f,
                 new[]
                 {
                     new EnemyPoolWave(EnemyType.KoreProtector, 35, 1)
                 }
             ),
-            new WaveDefinition(
+            new(
                 .1f,
                 new[]
                 {
                     new EnemyPoolWave(EnemyType.Volcanologist, 35, 1)
                 }
             ),
-            new WaveDefinition(
+            new(
                 .25f,
                 new[]
                 {

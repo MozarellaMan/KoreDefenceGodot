@@ -95,26 +95,28 @@ namespace KoreDefenceGodot.Core.Scripts.Enemy
                 var moveX = 0f;
                 var moveY = 0f;
 
-                if (distanceToTarget.x > 0)
+                switch (distanceToTarget.x)
                 {
-                    moveX = Speed * delta;
-                    _enemySprite.Play("WalkRight");
-                }
-                else if (distanceToTarget.x < 0)
-                {
-                    moveX = -Speed * delta;
-                    _enemySprite.Play("WalkLeft");
+                    case > 0:
+                        moveX = Speed * delta;
+                        _enemySprite.Play("WalkRight");
+                        break;
+                    case < 0:
+                        moveX = -Speed * delta;
+                        _enemySprite.Play("WalkLeft");
+                        break;
                 }
 
-                if (distanceToTarget.y > 0)
+                switch (distanceToTarget.y)
                 {
-                    moveY = Speed * delta;
-                    _enemySprite.Play("WalkDown");
-                }
-                else if (distanceToTarget.y < 0)
-                {
-                    moveY = -Speed * delta;
-                    _enemySprite.Play("WalkUp");
+                    case > 0:
+                        moveY = Speed * delta;
+                        _enemySprite.Play("WalkDown");
+                        break;
+                    case < 0:
+                        moveY = -Speed * delta;
+                        _enemySprite.Play("WalkUp");
+                        break;
                 }
 
                 if (Math.Abs(moveX) > Math.Abs(distanceToTarget.x) || Math.Abs(moveY) > Math.Abs(distanceToTarget.y))

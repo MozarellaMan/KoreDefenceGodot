@@ -7,21 +7,18 @@ namespace KoreDefenceGodot.Core.Scripts.Player
 	{
 		private bool _downFlag;
 		private bool _leftFlag;
-
-
 		private PackedScene? _playerProjectile;
 		private AnimatedSprite _playerSprite = null!;
-		[Export] private int _projectileCollateral = 1;
+		[Export] private int _projectileCollateral = 2;
 		[Export] private float _projectileCooldown = 0.25f;
 		[Export] private int _projectileDamage = 50;
 		[Export] private float _projectileLifetime = 0.13f;
 		[Export] private int _projectileSpeed = 20;
 		private bool _rightFlag;
-
 		[Export] private int _speed = 150;
-
 		private float _timeSinceLastShot;
 		private bool _upFlag;
+		
 
 		private void MovePlayer(float delta)
 		{

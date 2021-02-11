@@ -6,6 +6,10 @@ using KoreDefenceGodot.Core.Scripts.Tower.Towers;
 
 namespace KoreDefenceGodot.Core.Scripts.Tower
 {
+    record Town
+    {
+        
+    }
     public class DefaultTowerState : IState<BaseTower>
     {
         public static readonly DefaultTowerState Global = new GlobalState();

@@ -5,13 +5,20 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.State
     public class NodeStateMachine<TNode, TState> : IStateMachine<TNode, TState>
         where TState : IState<TNode>
     {
-        private TState _previousState = default!;
+        private TState? _previousState;
+        
+        private TNode Node { get; }
+        private TState CurrentState { get; set; }
+
+        /// <summary>
+        ///     Sometimes you have logic that runs in every state, this is what you would put into the global state.
+        /// </summary>
+        private TState? GlobalState { get; }
 
         public NodeStateMachine(TNode node, TState initState)
         {
             Node = node;
             CurrentState = initState;
-            GlobalState = default!;
         }
 
         // Global state is optional
@@ -20,36 +27,29 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.State
             Node = node;
             CurrentState = initState;
             GlobalState = globalState;
-            GlobalState?.OnEnter(node);
+            GlobalState.OnEnter(node);
         }
 
-        private TNode Node { get; }
-        private TState CurrentState { get; set; }
-
-        /// <summary>
-        ///     Sometimes you have logic that runs in every state, this is what you would put into the global state.
-        /// </summary>
-        private TState GlobalState { get; }
 
         public void Update(float delta)
         {
             GlobalState?.Update(Node, delta);
-            CurrentState?.Update(Node, delta);
+            CurrentState.Update(Node, delta);
         }
 
         public void UpdateInput(InputEvent inputEvent)
         {
             GlobalState?.HandleInput(Node, inputEvent);
-            CurrentState?.HandleInput(Node, inputEvent);
+            CurrentState.HandleInput(Node, inputEvent);
         }
 
         public void ChangeState(TState newState)
         {
             _previousState = CurrentState;
 
-            CurrentState?.OnExit(Node);
+            CurrentState.OnExit(Node);
             CurrentState = newState;
-            CurrentState?.OnEnter(Node);
+            CurrentState.OnEnter(Node);
         }
 
         public bool GoBack()
@@ -67,7 +67,7 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.State
         public void Draw()
         {
             GlobalState?.Draw(Node);
-            CurrentState?.Draw(Node);
+            CurrentState.Draw(Node);
         }
     }
 }

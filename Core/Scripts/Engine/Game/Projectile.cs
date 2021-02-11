@@ -7,15 +7,15 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Game
 {
 	public abstract class Projectile : Area2D
 	{
-		private readonly List<BaseEnemy> _enemiesShot = new List<BaseEnemy>();
+		private readonly List<BaseEnemy> _enemiesShot = new();
 
 		private int _collateral;
 
 		// TODO Status effects for enemies
 		private int _enemyHitCount;
-		private AnimatedSprite _projectileSprite = null!;
+		private AnimatedSprite? _projectileSprite;
 		private float _timeSinceCreation;
-		public Vector2 Acceleration = new Vector2(0, 0);
+		public Vector2 Acceleration = new(0, 0);
 		public Action? OnDeath;
 		public int Damage;
 		public float Lifetime = 2;

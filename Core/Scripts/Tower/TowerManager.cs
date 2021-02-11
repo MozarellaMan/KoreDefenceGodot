@@ -14,7 +14,7 @@ namespace KoreDefenceGodot.Core.Scripts.Tower
     public abstract class TowerManager : Node2D
     {
         private List<BaseTower> _towers =  null!;
-        private readonly Dictionary<TowerType, string?> _towerResources = new Dictionary<TowerType, string?>
+        private readonly Dictionary<TowerType, string?> _towerResources = new()
         {
             {TowerType.Catapult, "res://Data/Scenes/Tower/Catapult.tscn"},
             {TowerType.Firemaster, "res://Data/Scenes/Tower/Firemaster.tscn"},

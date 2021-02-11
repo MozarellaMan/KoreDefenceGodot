@@ -5,7 +5,7 @@ using KoreDefenceGodot.Core.Scripts.Tower;
 
 namespace KoreDefenceGodot.Core.Scripts.Engine.GUI
 {
-    public class GUIManager : Node
+    public abstract class GUIManager : Node
     {
         private MarginContainer _uiScreen = null!;
         private static VBoxContainer _shopList = null!;

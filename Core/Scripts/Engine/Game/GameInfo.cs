@@ -8,10 +8,10 @@ using Path = KoreDefenceGodot.Core.Scripts.Engine.Tiles.Path;
 
 namespace KoreDefenceGodot.Core.Scripts.Engine.Game
 {
-    public class GameInfo : Node
+    public abstract class GameInfo : Node
     {
-        public static Color InvalidColour = new Color(255, 0, 0, 0.5f);
-        public static Color ValidColour = new Color(255, 255, 255, 0.5f);
+        public static Color InvalidColour = new(255, 0, 0, 0.5f);
+        public static Color ValidColour = new(255, 255, 255, 0.5f);
         public List<BaseEnemy>? EnemyList { get; set; }
         public static List<BaseTower>? TowerList { get; set; }
         
@@ -22,7 +22,7 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Game
 
         public static Path? GamePath { get; set; }
 
-        public static Currency GameCurrency = new Currency(10000);
+        public static Currency GameCurrency = new(10000);
         public Player.Player? Player { get; set; }
 
         // TODO Implement tile finder 
@@ -31,12 +31,12 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.Game
         /// <summary>
         ///     Should be from 1 - 7. Represents each "level" of the game
         /// </summary>
-        public static int LevelNumber { get; set; }
+        private static int LevelNumber { get; set; }
 
         /// <summary>
         ///     Should be from 1-3. Each "level" has 3 "waves"
         /// </summary>
-        public static int WaveNumber { get; set; } = 1;
+        private static int WaveNumber { get; set; } = 1;
 
         public static PlayerBase? PlayerBase { get; set; }
         public const int DefaultMaxHealth = 1000;

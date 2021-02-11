@@ -12,9 +12,9 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.GUI
 		public TowerType? TowerType;
 		private ColorRect _background = null!;
 		private readonly Color _hoverColour = Color.Color8(46, 46, 46,200);
-		private readonly Color _backgroundColour =  new Color(1, 1, 1,0);
-		private readonly Color _normalColor =  new Color(1, 1, 1);
-		private readonly Color _disabledcolor = Color.Color8(138, 137, 148);
+		private readonly Color _backgroundColour =  new(1, 1, 1,0);
+		private readonly Color _normalColor =  new(1, 1, 1);
+		private readonly Color _disabledColor = Color.Color8(138, 137, 148);
 		private TowerManager _towerManager = null!;
 		private Texture _normalTexture = null!;
 		private Texture _buyingTexture = null!;
@@ -59,9 +59,9 @@ namespace KoreDefenceGodot.Core.Scripts.Engine.GUI
 				}
 				else
 				{
-					_button.Modulate = _disabledcolor;
+					_button.Modulate = _disabledColor;
 					_towerLabel.Visible = true;
-					_towerLabel.Modulate = _disabledcolor;
+					_towerLabel.Modulate = _disabledColor;
 				}
 				
 			}
